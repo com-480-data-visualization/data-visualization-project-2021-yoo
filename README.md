@@ -1,10 +1,10 @@
 # Project of Data Visualization (COM-480)
 
-| Student's name | SCIPER |
-| -------------- | ------ |
-| Max STIEBER | 313425 |
-| Mahmoud SAID | |
-| Simon HAMON | 334060 |
+| Student's name                    | SCIPER |
+| --------------                    | ------ |
+| Mahmoud Mohamed Nabegh Ahmed SAID | 309264 |
+| Max STIEBER                       | 313425 |
+| Simon Adam Johan HAMON            | 334060 |
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
