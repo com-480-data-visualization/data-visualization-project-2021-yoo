@@ -6,7 +6,7 @@
 | Max STIEBER                       | 313425 |
 | Simon Adam Johan HAMON            | 334060 |
 
-[Milestone 1](#milestone1) • [Milestone 2](#milestone2) • [Milestone 3](#milestone3)
+[Milestone 1](#Milestone1) • [Milestone 2](#Milestone2) • [Milestone 3](#Milestone3)
 
 ## Milestone 1 (23rd April, 5pm)
 
