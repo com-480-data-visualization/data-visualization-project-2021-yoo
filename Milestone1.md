@@ -68,7 +68,7 @@ Comparisons that we want to show have as objective to compare team abalities in 
 
 We decide to represent heading rates in function of player height as it is an important consideration.
 
-Those charts purpose is to represent how we can handle data to compare teams, and thanks to Fifa dataset we can do comparation in every aspect of game, such as finitions of strikers, defense strength.
+Those charts purpose is to represent how we can handle data to compare teams, and thanks to Fifa dataset we can do comparation in every aspect of game, such as finshing of strikers, defense strength.
 
 We still have to consider that there is some parameters that we cannot control or implement, such as team configuration on field, coachs orders or players confidence. 
 
@@ -84,9 +84,9 @@ As we could have expected Fifa dataset have been explored by many others people.
 
 Those visualization give a good overview of the dataset, that can help us to see opportunities that we can do with this dataset. 
 
-The main difference is that we want to do more specifics visuals, more precisely on national teams for international event. 
+The main difference is that we want to develop visualizations for more in depth analysis comparing two teams going head to head which has not been done before according to our research, more precisely on national teams for international event. We also augment this by including the data from booking agencies and the teams latest results.
 
-We were not able to find such a work, especially with the same Dataset. Indeed some studies are related with World's Cup statistics but they don't rely on the same dataset. 
+We were not able to find such a work, with the same Dataset. Indeed some studies are related with World's Cup statistics but they don't rely on the same dataset.
 
 
 
