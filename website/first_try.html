@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    Some text-.........
+    <title>European Cup</title>
 </head>
 <body>
 <div id="fullpage">
-    <section id="intro" class="section">
+    <section id="intro" class="section1">
        First section
     </section>
 
-    <section id="team" class="section">
+    <section id="team" class="section2">
       Second section
     </section>
 
-    <section id="players" class="section">
+    <section id="players" class="section3 ">
        Third section
     </section>
 
@@ -24,4 +23,10 @@
 </body>
 
 <script src="lib/fullpage.min.js"></script>
+<script>
+new fullpage('#fullpage', {
+  autoScrolling: true,
+  navigation: true
+})
+</script>
 </html>
