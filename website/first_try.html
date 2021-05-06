@@ -9,6 +9,11 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script>
+    $(function () {
+      $("#divBodyContent").load("body.html");
+    });
+  </script>
   <style>
     .fakeimg {
       height: 200px;
@@ -24,11 +29,7 @@
 </head>
 
 <body>
-  <script>
-    $(function () {
-      $("#DivContent").load("body.html");
-    });
-  </script>
+  <div id='divBodyContent'></div>
 </body>
 
 </html>
