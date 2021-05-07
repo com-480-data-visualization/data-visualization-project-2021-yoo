@@ -34,44 +34,15 @@
       <div id="generalComp2"></div>
     </div>
     <div class="section">
-      <h3 class="text-center">First Team Analysis</h3>
-      <div class="d-flex flex-row" style="margin-right: 5%;">
+      <div id="firstTeam"></div>
 
-        <div class="card d-flex flex-row border-0 mr-auto p-2" style="height: 80px;">
-          <div class=" card-block border-0">
-            <h4 class="card-title border-0 ">Germany</h4>
-          </div>
-          <div class="card-header border-0 px-2">
-            <img src="images/download.jpeg" style="background-color: white;">
-          </div>
-          <div class="w-100"></div>
-        </div>
-
-        <img src="images/radar_chart_1.png" width="250" height="250">
+      <div class="section">
+        <div id="secondTeam"></div>
+      </div>
+      <div class="section">
+        <div id="stWeak"></div>
       </div>
     </div>
-
-    <div class="section">
-      <h3 class="text-center">First Team Analysis</h3>
-      <div class="d-flex flex-row" style="margin-right: 5%;">
-
-        <div class="card d-flex flex-row border-0 mr-auto p-2" style="height: 80px;">
-          <div class=" card-block border-0">
-            <h4 class="card-title border-0 ">France</h4>
-          </div>
-          <div class="card-header border-0 px-2">
-            <img src="images/flag-button-round-250.png" style="background-color: white;">
-          </div>
-          <div class="w-100"></div>
-        </div>
-
-        <img src="images/radar_chart_1.png" width="250" height="250">
-      </div>
-    </div>
-    <div class="section">
-      <div id="stWeak"></div>
-    </div>
-  </div>
 </body>
 
 <!---------------------------------------------- Libraries ------------------------------------------------------>
@@ -106,6 +77,18 @@
 <script>
   $(function () {
     $("#stWeak").load("strength_and_weakness.html");
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#firstTeam").load("first_team.html");
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#secondTeam").load("second_team.html");
   });
 </script>
 
