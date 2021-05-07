@@ -37,6 +37,10 @@ We are mainly restrict to use team compositions because systems vary a lot and a
 
 One of our thoughts as an upgrade will be to implement team composition, formation as well as those 11 players, in the matter of statistics. Therefore users could change as they wish the composition, at least for starting players.
 
+## Tools 
+
+As expected, to implement our project, we will use all lectures about HTML, CSS and Javascript. Our graphs require the use of 3D.js library. Plus for interaction and design, we will rely on lectures on interactions and perception colors. Two futurs lectures, graph and tabular data, will be useful as well for our comparison representation. It might gives us advice and tricks to adapt our graphs.
+
 ## Website 
 
 A draft website is avalaible here 
