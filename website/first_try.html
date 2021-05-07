@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Website Example</title>
+  <title>EURO 2021 Viz</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
@@ -16,9 +16,8 @@
     }
   </style>
 
-  <div class="jumbotron text-center" style="margin-bottom:0">
+  <div class="jumbotron text-center" style="margin-bottom:0; max-height: max-content;">
     <h1>EURO 2021</h1>
-    <p>Resize this responsive page to see the effect!</p>
   </div>
 
 </head>
@@ -35,7 +34,21 @@
       <div id="generalComp2"></div>
     </div>
     <div class="section">
+      <h3 class="text-center">Overall Comparison</h3>
+      <div class="d-flex flex-row" style="margin-right: 5%;">
 
+        <div class="card d-flex flex-row border-0 mr-auto p-2" style="height: 80px;">
+          <div class=" card-block border-0">
+            <h4 class="card-title border-0 ">Germany</h4>
+          </div>
+          <div class="card-header border-0 px-2">
+            <img src="images/download.jpeg" style="background-color: white;">
+          </div>
+          <div class="w-100"></div>
+        </div>
+
+        <img src="images/radar_chart_1.png" width="250" height="250">
+      </div>
     </div>
   </div>
 </body>
