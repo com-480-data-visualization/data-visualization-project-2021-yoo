@@ -155,12 +155,18 @@ interact('.dropzone').dropzone({
 
   ondropactivate: function (event) {
     // add active dropzone feedback
-    event.target.classList.add('drop-active')
+    var draggableElement = event.relatedTarget
+    var dropzoneElement = event.target
+    event.stopImmediatePropagation()
+    event.stopPropagation()
+    console.log(dropzoneElement)
+    dropzoneElement.replaceChildren(draggableElement.getElementsByTagName('span')[0])
+
   },
   ondragenter: function (event) {
     var draggableElement = event.relatedTarget
     var dropzoneElement = event.target
-    console.log(draggableElement)
+    console.log(dropzoneElement)
     // feedback the possibility of a drop
     dropzoneElement.classList.add('drop-target')
     draggableElement.classList.add('can-drop')
@@ -173,16 +179,13 @@ interact('.dropzone').dropzone({
     // event.relatedTarget.textContent.add('Dragged out 1')
   },
   ondrop: function (event) {
-    // var draggableElement = event.relatedTarget
-    var dropzoneElement = event.relatedTarget
-    dropzoneElement.textContent = 'dragged in'
-    // dropzoneElement = draggableElement.text
-  },
-  // ondropdeactivate: function (event) {
-  //   // remove active dropzone feedback
-  //   event.target.classList.remove('drop-active')
-  //   event.target.classList.remove('drop-target')
-  // }
+     event.relatedTarget.textContent = 'Dropped'
+   },
+  ondropdeactivate: function (event) {
+    // remove active dropzone feedback
+    event.target.classList.remove('drop-active')
+    event.target.classList.remove('drop-target')
+  }
 })
 
 interact('.drag-drop')
