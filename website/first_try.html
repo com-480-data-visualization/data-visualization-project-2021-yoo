@@ -62,6 +62,8 @@
 
 <script type="text/javascript" src="lib/jquery.pagepiling.js"></script>
 
+<link rel="stylesheet" href="main.css">
+
 
 <!---------------------------------------------- Our Scripts ------------------------------------------------------>
 
@@ -155,18 +157,12 @@ interact('.dropzone').dropzone({
 
   ondropactivate: function (event) {
     // add active dropzone feedback
-    var draggableElement = event.relatedTarget
-    var dropzoneElement = event.target
-    event.stopImmediatePropagation()
-    event.stopPropagation()
-    console.log(dropzoneElement)
-    dropzoneElement.replaceChildren(draggableElement.getElementsByTagName('span')[0])
-
+   event.target.classList.add('drop-active')
   },
   ondragenter: function (event) {
     var draggableElement = event.relatedTarget
     var dropzoneElement = event.target
-    console.log(dropzoneElement)
+    // console.log(dropzoneElement)
     // feedback the possibility of a drop
     dropzoneElement.classList.add('drop-target')
     draggableElement.classList.add('can-drop')
@@ -179,12 +175,22 @@ interact('.dropzone').dropzone({
     // event.relatedTarget.textContent.add('Dragged out 1')
   },
   ondrop: function (event) {
-     event.relatedTarget.textContent = 'Dropped'
+     var draggableElement = event.relatedTarget
+     var dropzoneElement = event.target
+     event.stopImmediatePropagation()
+     event.stopPropagation()
+     console.log(draggableElement)
+     console.log(dropzoneElement)
+     dropzoneElement.replaceChildren(draggableElement.getElementsByTagName('span')[0])
+     dropzoneElement.classList.add('dropped')
+     console.log(dropzoneElement)
+
    },
   ondropdeactivate: function (event) {
     // remove active dropzone feedback
     event.target.classList.remove('drop-active')
     event.target.classList.remove('drop-target')
+
   }
 })
 
@@ -192,11 +198,11 @@ interact('.drag-drop')
   .draggable({
     inertia: true,
     modifiers: [
-      interact.modifiers.restrictRect({
-        restriction: 'parent',
-        endOnly: true
-      })
-    ],
+    interact.modifiers.restrict({
+      restriction: '.dropzone',
+      endOnly: true
+    })
+  ],
     autoScroll: true,
     // dragMoveListener from the dragging demo above
     listeners: { move: dragMoveListener }

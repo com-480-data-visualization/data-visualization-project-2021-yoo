@@ -291,15 +291,18 @@ textarea {
 }
 
 #inner-dropzone {
-  height: 80px;
+  height: 140px;
 }
 
 .dropzone {
+	text-align: center;
+	font-size: 25px;
   background-color: #bfe4ff;
   border: dashed 4px transparent;
   border-radius: 4px;
   margin: 10px auto 30px;
-  padding: 10px;
+	padding-top: 10px;
+  padding-bottom: 10px;
   width: 80%;
   transition: background-color 0.3s;
 }
@@ -314,7 +317,7 @@ textarea {
   border-style: solid;
 }
 
-.drag-drop {
+/* .drag-drop {
   display: inline-block;
   min-width: 40px;
   padding: 2em 0.5em;
@@ -328,9 +331,13 @@ textarea {
   transform: translate(0px, 0px);
 
   transition: background-color 0.3s;
-}
+} */
 
 .drag-drop.can-drop {
   color: #000;
   background-color: #4e4;
+}
+
+.dropped{
+	font-size: 100px;
 }
