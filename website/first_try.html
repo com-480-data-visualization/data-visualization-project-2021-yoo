@@ -16,9 +16,7 @@
     }
   </style>
 
-  <div class="jumbotron text-center" style="margin-bottom:0; max-height: max-content;">
-    <h1>EURO 2021</h1>
-  </div>
+
 
 </head>
 
@@ -109,8 +107,8 @@
     $('#pagepiling').pagepiling({
       menu: '#menu',
       direction: 'vertical',
-      verticalCentered: false,
-      sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white'],
+      verticalCentered: true,
+      sectionsColor: ['#2b2e4a', 'white', 'white', 'white', 'white', 'white'],
       anchors: ['page1', 'page2', 'page3', 'page4'],
       scrollingSpeed: 700,
       navigation: {
@@ -199,7 +197,7 @@ interact('.drag-drop')
     inertia: true,
     modifiers: [
     interact.modifiers.restrict({
-      restriction: '.dropzone',
+      restriction: '#outer-dropzone.dropzone',
       endOnly: true
     })
   ],

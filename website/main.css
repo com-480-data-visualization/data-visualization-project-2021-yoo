@@ -28,8 +28,9 @@ html, body, figure {
 
 /* Default font and size */
 body {
-	font-family: sans-serif;
-	font-size: 1.1rem;
+	font-family: Raleway;
+	font-size: 2rem;
+	color: white;
 }
 
 .content-center{
@@ -67,7 +68,7 @@ h1, h2, h3, h4, h5, h6
 {
 	color: rgb(0, 44, 122);
 }
-h1 { font-size: 2rem; }
+h1 { font-size: 7rem; }
 h2 { font-size: 1.75rem; }
 h3 { font-size: 1.75rem; }
 h4 { font-size: 1.25rem; }
@@ -287,23 +288,25 @@ textarea {
 }
 
 #outer-dropzone {
-  height: 140px;
+  height: 180px;
+	width: 200px;
 }
 
 #inner-dropzone {
-  height: 140px;
+  height: 180px;
+	width: 200px;
 }
 
 .dropzone {
+	height: 180px;
 	text-align: center;
-	font-size: 25px;
-  background-color: #bfe4ff;
+  background-color: #ff8882;
   border: dashed 4px transparent;
-  border-radius: 4px;
-  margin: 10px auto 30px;
-	padding-top: 10px;
-  padding-bottom: 10px;
-  width: 80%;
+  border-radius: 20px;
+  /* margin: 10px auto 30px; */
+	padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
   transition: background-color 0.3s;
 }
 
@@ -335,9 +338,55 @@ textarea {
 
 .drag-drop.can-drop {
   color: #000;
-  background-color: #4e4;
+  /* background-color: #4e4; */
 }
 
 .dropped{
 	font-size: 100px;
+	background-color: #2b2e4a;
+}
+
+.vs{
+	padding-top: 35px;
+	background-color: #2b2e4a;
+	font-size: 70px;
+	color: white;
+	text-align: center;
+}
+
+
+#ec_group.table-borderless>tbody>tr:nth-of-type(odd){
+   background-color: #00000035;
+}
+
+
+#ec_group.table{
+	border-radius: 25px;
+	background-color: #FFFFFF35;
+}
+
+.table-borderless th {
+    border: none;
+}
+
+#ec_group.row{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#dropzone.table{
+	border-radius: 40px;
+	border-spacing: 90px;
+	padding-right: 120px;
+	padding-left: 120px;
+	background-color: transparent;
+}
+
+#outer-dropzone.dropzone{
+	width: auto;
+	height: auto;
+}
+
+#outer-dropzone.table tr {
+    border: none;
 }
