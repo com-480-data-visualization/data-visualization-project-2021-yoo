@@ -153,63 +153,205 @@
 <div class="table" id='dropzone'>
   <table class="table" id='dropzone'>
         <tr>
-            <td> <div id="outer-dropzone" class="dropzone">Drag <br> and <br> Drop</div> </td>
+            <td> <div id="outer-dropzone" class="dropzone left_drop">Drop the first team here</div> </td>
             <td> <div class='vs'>VS</div> </td>
-            <td> <div id="outer-dropzone" class="dropzone">Drag <br> and <br> Drop</div> </td>
+            <td> <div id="outer-dropzone" class="dropzone right_drop">Drop the second team here</div> </td>
         </tr>
   </table>
 </div>
 
+<p></p>
+<div class="row" id='best_players'>
+  <div class="table col-2">
+      <table class="table table-borderless" id="ec_group">
+          <thead>
+              <tr>
+                  <th class="col-1">Position</th>
+                  <th class="col-1">Player</th>
+                  <th class="col-1">Rating</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="col-1"> St </td>
+                  <td class="col-1"> Ronaldo </td>
+                  <td class="col-1"> 95 </td>
 
-<div class="table col-2">
-    <table class="table table-borderless" id="ec_group">
-        <thead>
-            <tr>
-                <th class="col-1">Position</th>
-                <th class="col-1">Player</th>
-                <th class="col-1">Rating</th>
-                <th class="col-1">Position</th>
-                <th class="col-1">Player</th>
-                <th class="col-1">Rating</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-1"> St </td>
-                <td class="col-1"> Ronaldo </td>
-                <td class="col-1"> 95 </td>
-                <td class="col-1"> St </td>
-                <td class="col-1"> Ronaldo </td>
-                <td class="col-1"> 95 </td>
+              </tr>
+              <tr>
+                  <td class="col-1"> St </td>
+                  <td class="col-1"> Ronaldo </td>
+                  <td class="col-1"> 95 </td>
 
-            </tr>
-            <tr>
-                <td class="col-1"> St </td>
-                <td class="col-1"> Ronaldo </td>
-                <td class="col-1"> 95 </td>
-                <td class="col-1"> St </td>
-                <td class="col-1"> Ronaldo </td>
-                <td class="col-1"> 95 </td>
+              </tr>
+              <tr>
+                  <td class="col-1"> St </td>
+                  <td class="col-1"> Ronaldo </td>
+                  <td class="col-1"> 95 </td>
 
-            </tr>
-            <tr>
-                <td class="col-1"> St </td>
-                <td class="col-1"> Ronaldo </td>
-                <td class="col-1"> 95 </td>
-                <td class="col-1"> St </td>
-                <td class="col-1"> Ronaldo </td>
-                <td class="col-1"> 95 </td>
+              </tr>
+              <tr>
+                  <td class="col-1"> St </td>
+                  <td class="col-1"> Ronaldo </td>
+                  <td class="col-1"> 95 </td>
 
-            </tr>
-            <tr>
-                <td class="col-1"> St </td>
-                <td class="col-1"> Ronaldo </td>
-                <td class="col-1"> 95 </td>
-                <td class="col-1"> St </td>
-                <td class="col-1"> Ronaldo </td>
-                <td class="col-1"> 95 </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 
-            </tr>
-        </tbody>
-    </table>
+  <div class="table col-2">
+      <table class="table table-borderless" id="ec_group">
+          <thead>
+              <tr>
+                  <th class="col-1">Position</th>
+                  <th class="col-1">Player</th>
+                  <th class="col-1">Rating</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="col-1"> St </td>
+                  <td class="col-1"> Ronaldo </td>
+                  <td class="col-1"> 95 </td>
+              </tr>
+              <tr>
+                  <td class="col-1"> St </td>
+                  <td class="col-1"> Ronaldo </td>
+                  <td class="col-1"> 95 </td>
+              </tr>
+              <tr>
+                  <td class="col-1"> St </td>
+                  <td class="col-1"> Ronaldo </td>
+                  <td class="col-1"> 95 </td>
+              </tr>
+              <tr>
+                  <td class="col-1"> St </td>
+                  <td class="col-1"> Ronaldo </td>
+                  <td class="col-1"> 95 </td>
+
+              </tr>
+          </tbody>
+      </table>
+  </div>
 </div>
+
+
+<script>
+/* The dragging code for '.draggable' from the demo above
+ * applies to this demo as well so it doesn't have to be repeated. */
+
+ function dragMoveListener (event) {
+   var target = event.target
+   // keep the dragged position in the data-x/data-y attributes
+   var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+   var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+
+   // translate the element
+   target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+
+   target.setAttribute('data-x', x)
+   target.setAttribute('data-y', y)
+
+ }
+
+var left_team = 0
+var right_team = 0
+
+// enable draggables to be dropped into this
+interact('.dropzone').dropzone({
+  // only accept elements matching this CSS selector
+  accept: '#yes-drop',
+  // Require a 75% element overlap for a drop to be possible
+  overlap: 0.75,
+
+  // listen for drop related events:
+
+  ondropactivate: function (event) {
+   event.target.classList.add('drop-active')
+  },
+  ondragenter: function (event) {
+    var draggableElement = event.relatedTarget
+    var dropzoneElement = event.target
+    // feedback the possibility of a drop
+    dropzoneElement.classList.add('drop-target')
+    draggableElement.classList.add('can-drop')
+  },
+  ondragleave: function (event) {
+    // remove the drop feedback style
+    event.target.classList.remove('drop-target')
+    event.relatedTarget.classList.remove('can-drop')
+    // event.relatedTarget.textContent.add('Dragged out 1')
+  },
+  ondrop: function (event) {
+     var draggableElement = event.relatedTarget
+     var dropzoneElement = event.target
+     event.stopImmediatePropagation()
+     console.log(draggableElement)
+     console.log(dropzoneElement)
+     team = draggableElement.getElementsByTagName('span')[0].cloneNode(true)
+     dropzoneElement.classList.add('dropped')
+     dropzoneElement.replaceChildren(team)
+     team = draggableElement.textContent.replace(/^\s+|\s+$/gm, '')
+     console.log(team)
+     if (dropzoneElement.classList.contains('left_drop')){left_team = team}
+     if (dropzoneElement.classList.contains('right_drop')){right_team = team}
+     if (left_team != 0 & right_team != 0){
+       best_players_table(left_team, right_team)
+     }
+
+     console.log(left_team)
+     console.log(right_team)
+
+
+   },
+  ondropdeactivate: function (event) {
+    // remove active dropzone feedback
+    event.target.classList.remove('drop-active')
+    event.target.classList.remove('drop-target')
+
+  },
+})
+
+interact('.drag-drop')
+  .draggable({
+    inertia: true,
+    modifiers: [
+    interact.modifiers.restrict({
+      restriction: '#outer-dropzone.dropzone',
+      endOnly: true
+    })
+  ],
+    autoScroll: true,
+    // dragMoveListener from the dragging demo above
+    listeners: { move: dragMoveListener},
+  })
+  .on('dragend', function (event) {
+    console.log('dragend')
+    var target = event.target
+    // add active dropzone feedback
+    if (!target.classList.contains('dropped')){
+      console.log('lalalu')
+      target.setAttribute('data-x', 0)
+      target.setAttribute('data-y', 0)
+      target.style.transform = 'translate(' + 0 + 'px, ' + 0 + 'px)'
+      }
+  })
+
+
+
+function best_players_table(team1, team2) {
+    $.getJSON('data/teams_basic_skills.json',
+    function(data){
+      console.log(data.filter(x => x.str_nationality == team1)
+                      .sort( (x, y) => y.int_overall_rating - x.int_overall_rating)
+                      .filter((x, idx) => idx < 5));
+      console.log(data.filter(x => x.str_nationality == team2)
+                      .sort( (x, y) => y.int_overall_rating - x.int_overall_rating)
+                      .filter((x, idx) => idx < 5));
+
+    })
+  }
+
+
+</script>
