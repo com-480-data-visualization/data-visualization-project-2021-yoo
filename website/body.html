@@ -4,9 +4,9 @@
 
 <br>
 
-<div class="row" id='ec_group'>
+<div class="row justify-content-center" id='ec_group'>
   <div class="table col-2">
-    <table class="table table-borderless" id="ec_group">
+    <table class="table table-borderless table_rounded" id="ec_group">
           <thead>
               <tr>
                   <th class="col-3">Group A</th>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="table col-2">
-      <table class="table table-borderless" id="ec_group">
+      <table class="table table-borderless table_rounded" id="ec_group">
           <thead>
               <tr>
                   <th class="col-3">Group B</th>
@@ -54,7 +54,7 @@
   </div>
 
   <div class="table col-2">
-      <table class="table table-borderless" id="ec_group">
+      <table class="table table-borderless table_rounded" id="ec_group">
           <thead>
               <tr>
                   <th class="col-1">Group C</th>
@@ -78,7 +78,7 @@
   </div>
 
   <div class="table col-2">
-    <table class="table table-borderless" id="ec_group">
+    <table class="table table-borderless table_rounded" id="ec_group">
           <thead>
               <tr>
                   <th class="col-1">Group D</th>
@@ -102,7 +102,7 @@
   </div>
 
   <div class="table col-2">
-      <table class="table table-borderless" id="ec_group">
+      <table class="table table-borderless table_rounded" id="ec_group">
           <thead>
               <tr>
                   <th class="col-1">Group E</th>
@@ -126,7 +126,7 @@
   </div>
 
   <div class="table col-2">
-      <table class="table table-borderless" id="ec_group">
+      <table class="table table-borderless table_rounded" id="ec_group">
           <thead>
               <tr>
                   <th class="col-1">Group F</th>
@@ -161,9 +161,9 @@
 </div>
 
 <p></p>
-<div class="row" id='best_players'>
+<div class="row inactive justify-content-center" id='best_players'>
   <div class="table col-2">
-      <table class="table table-borderless" id="ec_group">
+      <table class="table table-borderless table_rounded" id='team1_table'>
           <thead>
               <tr>
                   <th class="col-1">Position</th>
@@ -172,36 +172,12 @@
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td class="col-1"> St </td>
-                  <td class="col-1"> Ronaldo </td>
-                  <td class="col-1"> 95 </td>
-
-              </tr>
-              <tr>
-                  <td class="col-1"> St </td>
-                  <td class="col-1"> Ronaldo </td>
-                  <td class="col-1"> 95 </td>
-
-              </tr>
-              <tr>
-                  <td class="col-1"> St </td>
-                  <td class="col-1"> Ronaldo </td>
-                  <td class="col-1"> 95 </td>
-
-              </tr>
-              <tr>
-                  <td class="col-1"> St </td>
-                  <td class="col-1"> Ronaldo </td>
-                  <td class="col-1"> 95 </td>
-
-              </tr>
           </tbody>
       </table>
   </div>
 
   <div class="table col-2">
-      <table class="table table-borderless" id="ec_group">
+      <table class="table table-borderless table_rounded" id="team2_table">
           <thead>
               <tr>
                   <th class="col-1">Position</th>
@@ -210,27 +186,6 @@
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td class="col-1"> St </td>
-                  <td class="col-1"> Ronaldo </td>
-                  <td class="col-1"> 95 </td>
-              </tr>
-              <tr>
-                  <td class="col-1"> St </td>
-                  <td class="col-1"> Ronaldo </td>
-                  <td class="col-1"> 95 </td>
-              </tr>
-              <tr>
-                  <td class="col-1"> St </td>
-                  <td class="col-1"> Ronaldo </td>
-                  <td class="col-1"> 95 </td>
-              </tr>
-              <tr>
-                  <td class="col-1"> St </td>
-                  <td class="col-1"> Ronaldo </td>
-                  <td class="col-1"> 95 </td>
-
-              </tr>
           </tbody>
       </table>
   </div>
@@ -343,12 +298,25 @@ interact('.drag-drop')
 function best_players_table(team1, team2) {
     $.getJSON('data/teams_basic_skills.json',
     function(data){
-      console.log(data.filter(x => x.str_nationality == team1)
+      top_team1 = data.filter(x => x.str_nationality == team1)
                       .sort( (x, y) => y.int_overall_rating - x.int_overall_rating)
-                      .filter((x, idx) => idx < 5));
-      console.log(data.filter(x => x.str_nationality == team2)
+                      .filter((x, idx) => idx < 5);
+      top_team2 = data.filter(x => x.str_nationality == team2)
                       .sort( (x, y) => y.int_overall_rating - x.int_overall_rating)
-                      .filter((x, idx) => idx < 5));
+                      .filter((x, idx) => idx < 5);
+
+      top_team1.forEach((item, i) => {
+        $("#team1_table").append("<tr><td class='col-1'>" + item['str_best_position']
+          + "</td><td class='col-1'>" + item['Name'] +"</td><td class='col-1'>"
+            + item["int_overall_rating"] + "</td></tr>" )
+          });
+
+      top_team2.forEach((item, i) => {
+        $("#team2_table").append("<tr><td class='col-1'>" + item['str_best_position']
+          + "</td><td class='col-1'>" + item['Name'] +"</td><td class='col-1'>"
+            + item["int_overall_rating"] + "</td></tr>" )
+          });
+      $("#best_players").removeClass('inactive')
 
     })
   }

@@ -29,7 +29,7 @@ html, body, figure {
 /* Default font and size */
 body {
 	font-family: Raleway;
-	font-size: 2rem;
+	font-size: 16px;
 	color: white;
 }
 
@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6
 {
 	color: rgb(0, 44, 122);
 }
-h1 { font-size: 7rem; }
+h1 { font-size: 5rem; }
 h2 { font-size: 1.75rem; }
 h3 { font-size: 1.75rem; }
 h4 { font-size: 1.25rem; }
@@ -279,7 +279,7 @@ textarea {
 
 .navbar-toggler {
   padding: 1px 5px;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 0.3;
 }
 
@@ -288,24 +288,24 @@ textarea {
 }
 
 #outer-dropzone {
-  height: 180px;
-	width: 200px;
+  height: 120%;
+	width: 80%;
 }
 
 #inner-dropzone {
-  height: 180px;
-	width: 200px;
+  height: 120%;
+	width: 80%;
 }
 
 .dropzone {
-	height: 180px;
+	height: 40%;
 	text-align: center;
   background-color: #ff8882;
   border: dashed 4px transparent;
   border-radius: 20px;
   /* margin: 10px auto 30px; */
-	padding-top: 20px;
-  padding-bottom: 20px;
+	padding-top: 3%;
+  padding-bottom: 3%;
   width: 100%;
   transition: background-color 0.3s;
 }
@@ -344,10 +344,12 @@ textarea {
 .dropped{
 	font-size: 100px;
 	background-color: #2b2e4a;
+	color:transparent;
 }
 
+
 .vs{
-	padding-top: 35px;
+	padding-top: 5%;
 	background-color: #2b2e4a;
 	font-size: 70px;
 	color: white;
@@ -355,12 +357,12 @@ textarea {
 }
 
 
-#ec_group.table-borderless>tbody>tr:nth-of-type(odd){
+.table_rounded.table-borderless>tbody>tr:nth-of-type(odd){
    background-color: #00000035;
 }
 
 
-#ec_group.table{
+.table_rounded.table{
 	border-radius: 25px;
 	background-color: #FFFFFF35;
 }
@@ -369,16 +371,18 @@ textarea {
     border: none;
 }
 
-#ec_group.row{
-	padding-left: 30px;
-	padding-right: 30px;
+
+
+.table_rounded.row{
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 #dropzone.table{
 	border-radius: 40px;
-	border-spacing: 90px;
-	padding-right: 120px;
-	padding-left: 120px;
+	border-spacing: 5%;
+	padding-right: 10%;
+	padding-left: 10%;
 	background-color: transparent;
 }
 
@@ -389,4 +393,20 @@ textarea {
 
 #outer-dropzone.table tr {
     border: none;
+}
+
+.jumbotron{
+    position: relative;
+    padding:0 !important;
+    margin-top:70px !important;
+    background: #eee;
+    margin-top: 23px;
+    text-align:center;
+    margin-bottom: 0 !important;
+}
+
+.inactive *{
+	background-color: transparent;
+	color: transparent;
+
 }
