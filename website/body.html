@@ -162,13 +162,13 @@
 
 <p></p>
 <div class="row inactive justify-content-center" id='best_players'>
-  <div class="table col-2">
-      <table class="table table-borderless table_rounded" id='team1_table'>
+  <div class="table col">
+      <table class="table table-borderless table_rounded inactive" id='team_left_table'>
           <thead>
               <tr>
-                  <th class="col-1">Position</th>
-                  <th class="col-1">Player</th>
-                  <th class="col-1">Rating</th>
+                  <th>Position</th>
+                  <th>Player</th>
+                  <th>Rating</th>
               </tr>
           </thead>
           <tbody>
@@ -176,13 +176,13 @@
       </table>
   </div>
 
-  <div class="table col-2">
-      <table class="table table-borderless table_rounded" id="team2_table">
+  <div class="table col">
+      <table class="table table-borderless table_rounded inactive" id="team_right_table">
           <thead>
               <tr>
-                  <th class="col-1">Position</th>
-                  <th class="col-1">Player</th>
-                  <th class="col-1">Rating</th>
+                  <th>Position</th>
+                  <th>Player</th>
+                  <th>Rating</th>
               </tr>
           </thead>
           <tbody>
@@ -251,8 +251,11 @@ interact('.dropzone').dropzone({
      console.log(team)
      if (dropzoneElement.classList.contains('left_drop')){left_team = team}
      if (dropzoneElement.classList.contains('right_drop')){right_team = team}
-     if (left_team != 0 & right_team != 0){
-       best_players_table(left_team, right_team)
+     if (left_team != 0){
+       best_players_table(left_team, 'left')
+     }
+     if (right_team != 0){
+       best_players_table(right_team, 'right')
      }
 
      console.log(left_team)
@@ -295,28 +298,20 @@ interact('.drag-drop')
 
 
 
-function best_players_table(team1, team2) {
+function best_players_table(team, pos) {
     $.getJSON('data/teams_basic_skills.json',
     function(data){
-      top_team1 = data.filter(x => x.str_nationality == team1)
+      top_team = data.filter(x => x.str_nationality == team)
                       .sort( (x, y) => y.int_overall_rating - x.int_overall_rating)
                       .filter((x, idx) => idx < 5);
-      top_team2 = data.filter(x => x.str_nationality == team2)
-                      .sort( (x, y) => y.int_overall_rating - x.int_overall_rating)
-                      .filter((x, idx) => idx < 5);
-
-      top_team1.forEach((item, i) => {
-        $("#team1_table").append("<tr><td class='col-1'>" + item['str_best_position']
-          + "</td><td class='col-1'>" + item['Name'] +"</td><td class='col-1'>"
-            + item["int_overall_rating"] + "</td></tr>" )
-          });
-
-      top_team2.forEach((item, i) => {
-        $("#team2_table").append("<tr><td class='col-1'>" + item['str_best_position']
-          + "</td><td class='col-1'>" + item['Name'] +"</td><td class='col-1'>"
+      $("#team_"+ pos + "_table tbody").empty()
+      top_team.forEach((item, i) => {
+        $("#team_"+ pos + "_table").append("<tr><td>" + item['str_best_position']
+          + "</td><td>" + item['Name'] +"</td><td>"
             + item["int_overall_rating"] + "</td></tr>" )
           });
       $("#best_players").removeClass('inactive')
+      $("#team_" + pos + "_table").removeClass('inactive')
 
     })
   }

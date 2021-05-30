@@ -365,6 +365,7 @@ textarea {
 .table_rounded.table{
 	border-radius: 25px;
 	background-color: #FFFFFF35;
+	padding-left: 20%
 }
 
 .table-borderless th {
@@ -373,9 +374,10 @@ textarea {
 
 
 
-.table_rounded.row{
-	padding-left: 5%;
-	padding-right: 5%;
+.row{
+	padding-left: 3%;
+	padding-right: 3%;
+	/* margin: 20%; */
 }
 
 #dropzone.table{
@@ -405,8 +407,28 @@ textarea {
     margin-bottom: 0 !important;
 }
 
-.inactive *{
+.inactive{
 	background-color: transparent;
 	color: transparent;
+	border-top: 0;
+	border-bottom:0;
 
 }
+
+.inactive.table_rounded.table{
+	border-radius: 0px;
+	background-color: transparent;
+	border-top: 0;
+	border-bottom:0;
+}
+
+.inactive.table > thead > tr > th {
+	 border-top: 0 !important;
+ 		border-bottom: 0 !important;}
+
+	#dropzone.table > tbody > tr > td,
+    .table > thead > tr > td,
+    .table {
+        border-bottom:0;
+        border-top: 0;
+    }
