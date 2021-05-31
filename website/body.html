@@ -191,8 +191,17 @@
   </div>
 </div>
 
+<div class="tooltip bs-tooltip-top" role="tooltip">
+  <div class="arrow"></div>
+  <div class="tooltip-inner">
+    Some tooltip text!
+  </div>
+</div>
+
 
 <script>
+
+const position_dict = {"GK": "Goalkeeper", "CB": "Center-back", "LCB": "Left center-back", "RCB": "Right center-back", "LB": "Left-back (Full-back)", "RB": "Right-back (Full-back)", "CM": "Centre midfield", "LDM": "Left center midfield", "LAM": "Left attacking midfield", "RDM": "Right center midfield", "RAM": "Right attacking midfield", "CDM": "Centre defensive midfield", "CAM": "Centre attacking midfield", "LM": "Left midfield", "RM": "Right midfield", "ST": "Striker", "CF": "Center forward", "LW": "Left winger", "RW": "Right winger", "LWV": "Left wing back", "RWV": "Right wing back"}
 /* The dragging code for '.draggable' from the demo above
  * applies to this demo as well so it doesn't have to be repeated. */
 
@@ -306,8 +315,11 @@ function best_players_table(team, pos) {
                       .filter((x, idx) => idx < 5);
       $("#team_"+ pos + "_table tbody").empty()
       top_team.forEach((item, i) => {
-        $("#team_"+ pos + "_table").append("<tr><td>" + item['str_best_position']
-          + "</td><td>" + item['Name'] +"</td><td>"
+        best_position = item['str_best_position']
+        position_explain = position_dict[best_position]
+        $("#team_"+ pos + "_table").append("<tr><td><span id='tooltip_position' data-toggle='tooltip' title='" +
+          position_explain +"'>" + best_position
+          + "</span></td><td>" + item['Name'] +"</td><td>"
             + item["int_overall_rating"] + "</td></tr>" )
           });
       $("#best_players").removeClass('inactive')
@@ -315,6 +327,15 @@ function best_players_table(team, pos) {
 
     })
   }
+
+
+  $(document).ready(function() {
+      $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+  });
+
+  $('#tooltip_position').on(function () {
+   console.log('YOOOO')
+  })
 
 
 </script>
