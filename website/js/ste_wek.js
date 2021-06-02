@@ -310,7 +310,7 @@ function highlightArea(pitch_elem) {
 }
 
 function loadPlayers() {
-    return $.getJSON('data/teams_basic_skills.json')
+    return $.getJSON('website/data/teams_basic_skills.json')
         .then(response => {
             console.log(response)
             return response
