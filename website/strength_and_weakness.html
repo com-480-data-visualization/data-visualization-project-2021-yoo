@@ -1,70 +1,90 @@
 <h3 class="text-center">Strength and Weaknesses</h3>
 
-<div class="container">
+<div>
     <div class="row">
-        <div class="col-sm">
-            <div class="d-flex flex-column justify-content-left">
-                <div class="card border-0">
-                    <div class="card-header border-0 px-2">
-                        <img src="images/download.jpeg" style="background-color: white;">
-                    </div>
-                    <div class=" card-block border-0">
-                        <h4 class="card-title border-0 ">Germany</h4>
-                    </div>
-                    <div class="w-100"></div>
+        <div class="col-sm text-center">
+            <!-- <div class="d-flex flex-column justify-content-left"> -->
+            <div class="card border-0">
+                <div class="card-header border-0 px-2">
+                    <span class="flag-icon flag-icon-de" style="height: 100%;">
                 </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;">
-                    <label class="btn btn-secondary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> ATT
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> DEF
-                    </label>
+                <div class=" card-block border-0">
+                    <h4 class="card-title border-0 ">Germany</h4>
                 </div>
+                <div class="w-100"></div>
             </div>
+            <div class="btn-group btn-group-toggle" id="first_team_state" data-toggle="buttons"
+                style="align-items: center;">
+                <label class="btn btn-secondary active" for="att" id='first-att'>
+                    <input type="radio" name="options" id="option1" autocomplete="off"> ATT
+                </label>
+                <label class="btn btn-secondary" for="def" id='first-def'>
+                    <input type="radio" name="options" id="option1" autocomplete="off"> DEF
+                </label>
+            </div>
+            <!-- <div class="btn-group btn-group-toggle pl-2" id="first-state" data-toggle="buttons"
+                style="align-items: center;">
+                <label class="btn btn-secondary active" for="option_state-att">ATT </label>
+                <input type="radio" name="option_state" id="option_state-att" value="Attack" checked="">
+                <label class="btn btn-secondary" for="option_state-def">DEF </label>
+                <input type="radio" name="option_state" id="option_state-def" value="Defense">
+            </div> -->
+            <!-- </div> -->
         </div>
-        <div class="col-sm">
-            <div class="d-flex flex-column justify-content-center">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;">
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> Possesion
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> High Press
-                    </label>
-                    <label class="btn btn-secondary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> Crossing
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> Deadballs
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> Counter Attack
-                    </label>
-                </div>
+        <div class="col-sm text-center">
+            <!-- <div class="d-flex flex-column justify-content-center"> -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="strategy">
+                <label class="btn btn-secondary" for="poss">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Possesion
+                </label>
+                <label class="btn btn-secondary" for="hipr">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> High Press
+                </label>
+                <label class="btn btn-secondary active" for="cros">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Dead Ball
+                </label>
+                <label class="btn btn-secondary" for="deba">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Wide Play
+                </label>
+                <label class="btn btn-secondary" for="coat">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Counter Attack
+                </label>
             </div>
-            <object data="images/Pich.svg" width="500" height="500" style="margin-top: 2%; width: 100%;"> </object>
+            <!-- </div> -->
+            <br>
+            <span>shooting</span>
+            <div id="bars" class="bars" style="margin-top: 2%;"></div>
+            <span>defense</span>
+            <div id="defenseBar" class="defenseBar" style="margin-top: 2%;"></div>
+            <span>Aerial skills</span>
+            <div id="aerialBar" class="aerialBar" style="margin-top: 2%;"></div>
+            <!-- <object data="images/Pich.svg" width="500" height="500" style="margin-top: 2%; width: 100%;"> </object> -->
+            <div id="pitch" class="pitch" style="margin-top: 5%;"></div>
         </div>
-        <div class="col-sm">
-            <div class="d-flex flex-column justify-content-left">
-                <div class="card border-0">
-                    <div class="card-header border-0 px-2">
-                        <img src="images/flag-button-round-250.png" style="background-color: white;">
-                    </div>
-                    <div class=" card-block border-0">
-                        <h4 class="card-title border-0 ">France</h4>
-                    </div>
-                    <div class="w-100"></div>
+        <div class="col-sm text-center">
+            <!-- <div class="d-flex flex-column justify-content-left"> -->
+            <div class="card border-0">
+                <div class="card-header border-0 px-2">
+                    <span class="flag-icon flag-icon-fr" style="height: 100%;">
                 </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;">
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> ATT
-                    </label>
-                    <label class="btn btn-secondary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> DEF
-                    </label>
+                <div class=" card-block border-0">
+                    <h4 class="card-title border-0 ">France</h4>
                 </div>
+                <div class="w-100"></div>
             </div>
+            <div class="btn-group btn-group-toggle" id="second_team_state" data-toggle="buttons"
+                style="align-items: center;">
+                <label class="btn btn-secondary" for="att" id='secondt-att'>
+                    <input type="radio" name="options" id="option1" autocomplete="off"> ATT
+                </label>
+                <label class="btn btn-secondary active" for="def" id='secondt-def'>
+                    <input type="radio" name="options" id="option1" autocomplete="off"> DEF
+                </label>
+            </div>
+            <!-- </div> -->
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<script src="js/ste_wek.js"></script>
