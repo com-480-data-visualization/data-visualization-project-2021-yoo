@@ -1,15 +1,13 @@
-let first_team_state = 'att'
-let second_team_state = 'def'
 let strategy = 'cros'
 let first_team = 'Germany'
-let second_team = 'Slovakia'
-const def_positions = ['CB', 'RB', 'LB', 'RWB', 'LWB'];
-const mid_positions = ['CAM', 'CM', 'CDM', 'RM', 'LM'];
-const att_positons = ['RW', 'LW', 'ST', 'CF', 'RF', 'LF'];
+let second_team = 'France'
 
-const middlePos = 383;
-const wid = 767;
-const hei = 390;
+let att_team = first_team
+let def_team = second_team
+
+const middlePos = 383
+const wid = 767
+const hei = 390
 
 function whenDocumentLoaded(action) {
     if (document.readyState === "loading") {
@@ -196,16 +194,16 @@ function getFirstTeamValue(first_state) {
     if (first_state === 'att') {
         sec_att.classList.remove('active')
         sec_def.classList.add('active')
-        first_team_state = 'att'
-        second_team_state = 'def'
+        att_team = first_team
+        def_team = second_team
 
     }
 
     if (first_state === 'def') {
         sec_att.classList.add('active')
         sec_def.classList.remove('active')
-        first_team_state = 'def'
-        second_team_state = 'att'
+        att_team = second_team
+        def_team = first_team
     }
 }
 
@@ -216,69 +214,68 @@ function getSecondTeamValue(second_state) {
     if (second_state === 'att') {
         first_att.classList.remove('active')
         first_def.classList.add('active')
-        first_team_state = 'att'
-        second_team_state = 'def'
+        att_team = second_team
+        def_team = first_team
     }
 
     if (second_state === 'def') {
         first_att.classList.add('active')
         first_def.classList.remove('active')
-        first_team_state = 'def'
-        second_team_state = 'att'
+        att_team = first_team
+        def_team = second_team
     }
 }
 
 function getStrategy(new_strategy) {
     console.log(new_strategy)
     strategy = new_strategy
-    const div_shooting = document.getElementById('bars');
-    const div_defense = document.getElementById('defenseBar');
-    const div_aerial = document.getElementById('aerialBar');
-    const div_skills = document.getElementById('skillsBar');
-    loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, div_skills, players, strategy));
+    const div_shooting = document.getElementById('bars')
+    const div_defense = document.getElementById('defenseBar')
+    const div_aerial = document.getElementById('aerialBar')
+    const div_skills = document.getElementById('skillsBar')
 }
 
 function highlightArea(pitch_elem) {
     let holder = d3.select(pitch_elem) // select the 'body' element
 
-    holder.selectAll('.highlight').remove();
+    holder.selectAll('.highlight').remove()
     let linecolour = '#9D37E3'
-    const rects = [];
-    let rec1 = {};
-    let rec2 = {};
-    let rec3 = {};
+    const rects = []
+    let rec1 = {}
+    let rec2 = {}
+    let rec3 = {}
     switch (strategy) {
         case 'poss':
-            rec1 = { x: middlePos - 66.667, y: 25, height: 340, width: 266.667 };
-            rects.push(rec1);
-            break;
+            rec1 = { x: middlePos - 66.667, y: 25, height: 340, width: 266.667 }
+            rects.push(rec1)
+            break
         case 'coat':
-            rec1 = { x: 598, y: 25, height: 340, width: 133.33 };
-            rec2 = { x: 33, y: 25, height: 340, width: 133.33 };
-            rects.push(rec1, rec2);
-            break;
+            rec1 = { x: 598, y: 25, height: 340, width: 133.33 }
+            rec2 = { x: 33, y: 25, height: 340, width: 133.33 }
+            rects.push(rec1, rec2)
+            break
         case 'hipr':
-            rec1 = { x: 383, y: 25, height: 340, width: 166.67 };
-            rec2 = { x: -145 + wid, y: 125, height: 50, width: 50 };
-            rects.push(rec1, rec2);
-            break;
+            rec1 = { x: 383, y: 25, height: 340, width: 166.67 }
+            rec2 = { x: -145 + wid, y: 125, height: 50, width: 50 }
+            rects.push(rec1, rec2)
+            break
         case 'cros':
-            rec1 = { x: 558, y: 25, height: 340, width: 173.33 };
-            rects.push(rec1);
-            break;
+            rec1 = { x: 558, y: 25, height: 340, width: 173.33 }
+            rects.push(rec1)
+            break
         case 'deba':
-            rec1 = { x: 33, y: 25, height: 68, width: 700 };
-            rec2 = { x: 33, y: 296.75, height: 68, width: 700 };
-            rec3 = { x: 598, y: 25, height: 340, width: 133.33 };
-            rects.push(rec1, rec2, rec3);
-            break;
+            rec1 = { x: 33, y: 25, height: 68, width: 700 }
+            rec2 = { x: 33, y: 296.75, height: 68, width: 700 }
+            rec3 = { x: 598, y: 25, height: 340, width: 133.33 }
+            rects.push(rec1, rec2, rec3)
+            break
 
         default:
-            break;
+            break
     }
     // draw a rectangle - half 1
     rects.forEach((r) => {
-        console.log(r);
+        console.log(r)
         holder.append("rect")        // attach a rectangle
             .attr("x", r.x)         // position the left of the rectangle
             .attr("y", r.y)          // position the top of the rectangle
@@ -287,7 +284,7 @@ function highlightArea(pitch_elem) {
             .attr("fill-opacity", "0.8")
             .attr("class", "highlight")
             .style("fill", linecolour)    // set the fill colour
-    });
+    })
 
     let data = [1, 5]
 
@@ -296,25 +293,25 @@ function highlightArea(pitch_elem) {
     var bar = d3.select("svg")
         .data(data)
         .enter().append("g")
-        .attr("transform", function (d, i) { return "translate(0," + i * barHeight + ")"; });
+        .attr("transform", function (d, i) { return "translate(0," + i * barHeight + ")" })
 
     bar.append("rect")
         .attr("width", 100)
-        .attr("height", barHeight - 1);
+        .attr("height", barHeight - 1)
 
     // bar.append("text")
-    //     .attr("x", function (d) { return x(d) - 3; })
+    //     .attr("x", function (d) { return x(d) - 3 })
     //     .attr("y", barHeight / 2)
     //     .attr("dy", ".35em")
-    //     .text(function (d) { return d; });
+    //     .text(function (d) { return d })
 
 }
 
 function loadPlayers() {
     return fetch("/website/data/teams_basic_skills.json")
         .then(response => {
-            return response.json();
-        });
+            return response.json()
+        })
 }
 
 function stackedBar(bind, data, config) {
@@ -339,6 +336,9 @@ function stackedBar(bind, data, config) {
         .domain([0, total])
         .range([0, w])
 
+    d3.select(bind).select('svg').remove()
+
+
     // create svg in passed in div
     const selection = d3.select(bind)
         .append('svg')
@@ -346,6 +346,8 @@ function stackedBar(bind, data, config) {
         .attr('height', height)
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+    // selection.selectAll('rect').remove()
 
     // stack rect for each data value
     selection.selectAll('rect')
@@ -390,11 +392,21 @@ function stackedBar(bind, data, config) {
         .text(d => d.label)
 }
 
-function getStackedAttributes(elem, countryPlayers, oppositePlayers, attrs) {
-    console.log(attrs);
-    let shooting = _.map(countryPlayers, p => { let su = 0; _.forEach(attrs, attr => su += p[attr]); return su; });
+function getStackedAttributes(elem, countryPlayers, oppositePlayers, con_attrs_pos, opp_attrs_pos) {
+    console.log('Hello')
+    console.log(countryPlayers);
+
+    let con_pos_arr = con_attrs_pos['pos']
+    countryPlayers = countryPlayers.filter(p => con_pos_arr.includes(p.str_best_position))
+    let con_attrs = con_attrs_pos['attr']
+
+    let opp_pos_arr = opp_attrs_pos['pos']
+    oppositePlayers = oppositePlayers.filter(p => opp_pos_arr.includes(p.str_best_position))
+    let opp_attrs = opp_attrs_pos['attr']
+
+    let shooting = _.map(countryPlayers, p => { let su = 0; _.forEach(con_attrs, attr => su += p[attr]); return su; });
     shooting = (_.sum(shooting) / (countryPlayers.length * 4));
-    let oppositeShooting = _.map(oppositePlayers, p => { let su = 0; _.forEach(attrs, attr => su += p[attr]); return su; });
+    let oppositeShooting = _.map(oppositePlayers, p => { let su = 0; _.forEach(opp_attrs, attr => su += p[attr]); return su; });
     oppositeShooting = (_.sum(oppositeShooting) / (oppositePlayers.length * 4));
 
     console.log(shooting, oppositeShooting);
@@ -418,89 +430,98 @@ function getStackedAttributes(elem, countryPlayers, oppositePlayers, attrs) {
     stackedBar(elem, shootingStack, { total: totalShooting });
 }
 
-funtion findAttrsAtt(){
-    let firstAttrs;
-    let secondAttrs;
-    let thirdAttrs;
+function findAttrsAtt() {
+    let firstAttrs
+    let secondAttrs
+    let thirdAttrs
     switch (strategy) {
-        case 'poss':
-            firstAttrs = { 'attr': ['int_short_passing', 'int_reactions', 'int_ball_control'], 'pos': [] };
-            secondAttrs = { 'attr': ['int_vision', 'int_agility', 'int_dribbling'], 'pos': [] };
-            thirdAttrs = { 'attr': ['int_positioning', 'int_finishing', 'int_composure'], 'pos': [] };
-            break;
-        case 'coat':
-            firstAttrs = { 'attr': ['int_interceptions', 'int_aggression', 'int_standing_tackle'], 'pos': [] };
-            secondAttrs = { 'attr': ['int_dribbling', 'int_vision', 'int_acceleration'], 'pos': [] };
-            thirdAttrs = { 'attr': ['int_positioning', 'int_finishing', 'int_composure'], 'pos': [] };
-            break;
-        case 'hipr':
-            firstAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            secondAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            break;
-        case 'cros':
-            firstAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            secondAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            break;
-        case 'deba':
-            firstAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            secondAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
-            break;
+        case 'poss': // possession
+            firstAttrs = { 'attr': ['int_short_passing', 'int_reactions', 'int_ball_control'], 'pos': ['CDM', 'CM', 'CAM', 'LM', 'RM'] }
+            secondAttrs = { 'attr': ['int_vision', 'int_agility', 'int_dribbling'], 'pos': ['CM', 'CAM', 'LM', 'RM', 'LW', 'RW'] }
+            thirdAttrs = { 'attr': ['int_positioning', 'int_finishing', 'int_composure'], 'pos': ['LW', 'RW', 'LF', 'RF', 'CF', 'ST'] }
+            break
+        case 'coat': //counter attack
+            firstAttrs = { 'attr': ['int_sprint_speed', 'int_acceleration', 'int_long_passing'], 'pos': ['LW', 'RW', 'LF', 'RF', 'CF', 'ST', 'CAM', 'CM'] }
+            secondAttrs = { 'attr': ['int_dribbling', 'int_ball_control', 'int_agility'], 'pos': ['LW', 'RW', 'LF', 'RF', 'CF', 'ST'] }
+            thirdAttrs = { 'attr': ['int_positioning', 'int_finishing', 'int_composure'], 'pos': ['LW', 'RW', 'LF', 'RF', 'CF', 'ST'] }
+            break
+        case 'hipr': // high press
+            firstAttrs = { 'attr': ['int_interceptions', 'int_aggression', 'int_standing_tackle'], 'pos': ['LW', 'RW', 'LF', 'RF', 'CF', 'ST', 'CAM', 'CM'] }
+            secondAttrs = { 'attr': ['int_dribbling', 'int_vision', 'int_acceleration'], 'pos': ['LW', 'RW', 'LF', 'RF', 'CF', 'ST', 'CAM'] }
+            thirdAttrs = { 'attr': ['int_positioning', 'int_finishing', 'int_composure'], 'pos': ['LW', 'RW', 'LF', 'RF', 'CF', 'ST'] }
+            break
+        case 'cros': // deadball
+            firstAttrs = { 'attr': ['int_crossing', 'int_long_passing', 'int_vision'], 'pos': ['CAM', 'CM', 'RM', 'LM'] }
+            secondAttrs = { 'attr': ['int_jumping', 'int_strength', 'int_heading_accuracy'], 'pos': ['ST', 'CB', 'CF', 'LW', 'RW'] }
+            thirdAttrs = { 'attr': ['int_fk_accuracy', 'int_curve', 'int_shot_power'], 'pos': ['CAM', 'CM', 'RW', 'LW', 'LM', 'RM'] }
+            break
+        case 'deba': // wing play
+            firstAttrs = { 'attr': ['int_crossing', 'int_long_passing', 'int_vision'], 'pos': ['LB', 'RB', 'LWB', 'RWB', 'LM', 'RM', 'LW', 'RW'] }
+            secondAttrs = { 'attr': ['int_dribbling', 'int_ball_control', 'int_agility'], 'pos': ['LM', 'RM', 'LW', 'RW'] }
+            thirdAttrs = { 'attr': ['int_long_shots', 'int_curve', 'int_shot_power'], 'pos': ['LM', 'RM', 'LW', 'RW'] }
+            break
 
         default:
-            break;
+            break
     }
+    return [firstAttrs, secondAttrs, thirdAttrs]
 }
+
+function findAttrsDef() {
+    let firstAttrs
+    let secondAttrs
+    let thirdAttrs
+    switch (strategy) {
+        case 'poss': // possession
+            firstAttrs = { 'attr': ['int_interceptions', 'int_aggression', 'int_standing_tackle'], 'pos': ['CB', 'CDM', 'CM', 'LB', 'RB', 'LWB', 'RWB'] }
+            secondAttrs = { 'attr': ['int_interceptions', 'int_sliding_tackle', 'int_standing_tackle'], 'pos': ['CB', 'CDM', 'LB', 'RB', 'LWB', 'RWB'] }
+            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_sliding_tackle', 'int_standing_tackle'], 'pos': ['CB', 'CDM', 'LB', 'RB'] }
+            break
+        case 'coat': //counter attack
+            firstAttrs = { 'attr': ['int_sprint_speed', 'int_acceleration', 'int_interceptions'], 'pos': ['CB', 'CDM', 'LB', 'RB', 'LWB', 'RWB'] }
+            secondAttrs = { 'attr': ['int_strength', 'int_sliding_tackle', 'int_standing_tackle'], 'pos': ['CB', 'CDM', 'LB', 'RB',] }
+            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_sliding_tackle', 'int_standing_tackle'], 'pos': ['CB', 'CDM', 'LB', 'RB',] }
+            break
+        case 'hipr': // high press
+            firstAttrs = { 'attr': ['int_reactions', 'int_ball_control', 'int_short_passing'], 'pos': ['CB', 'CDM', 'CM', 'LB', 'RB', 'LWB', 'RWB'] }
+            secondAttrs = { 'attr': ['int_interceptions', 'int_sliding_tackle', 'int_standing_tackle'], 'pos': ['CB', 'CDM', 'LB', 'RB', 'LWB', 'RWB'] }
+            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_sliding_tackle', 'int_standing_tackle'], 'pos': ['CB', 'CDM', 'LB', 'RB', 'LWB', 'RWB'] }
+            break
+        case 'cros': // deadball
+            firstAttrs = { 'attr': ['int_interceptions', 'int_defensive_awareness', 'int_aggression'], 'pos': ['CB', 'CDM', 'LB', 'RB'] }
+            secondAttrs = { 'attr': ['int_jumping', 'int_strength', 'int_heading_accuracy'], 'pos': ['CB', 'CDM', 'CF', 'ST'] }
+            thirdAttrs = { 'attr': ['int_gk_positioning', 'int_reflexes', 'int_diving'], 'pos': ['GK'] }
+            break
+        case 'deba': // wing play
+            firstAttrs = { 'attr': ['int_interceptions', 'int_defensive_awareness', 'int_aggression'], 'pos': ['CB', 'CDM', 'LB', 'RB'] }
+            secondAttrs = { 'attr': ['int_strength', 'int_sliding_tackle', 'int_standing_tackle'], 'pos': ['CB', 'CDM', 'LB', 'RB', 'LWB', 'RWB'] }
+            thirdAttrs = { 'attr': ['int_gk_positioning', 'int_reflexes', 'int_diving'], 'pos': ['GK'] }
+            break
+
+        default:
+            break
+    }
+    return [firstAttrs, secondAttrs, thirdAttrs]
+}
+
 function showBars(bar_elem, defense_elem, aerial_elem, players, strategy) {
 
-    let firstAttrs;
-    let secondAttrs;
-    let thirdAttrs;
-    switch (strategy) {
-        case 'poss':
-            firstAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            secondAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            thirdAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            break;
-        case 'coat':
-            rfirstAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            secondAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            thirdAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            break;
-        case 'hipr':
-            firstAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            secondAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            thirdAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            break;
-        case 'cros':
-            firstAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            secondAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            thirdAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            break;
-        case 'deba':
-            firstAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            secondAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            thirdAttrs = ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle', 'int_reflexes'];
-            break;
+    let [firstAttrsAtt, secondAttrsAtt, thirdAttrsAtt] = findAttrsAtt()
+    let [firstAttrsDef, secondAttrsDef, thirdAttrsDef] = findAttrsDef()
 
-        default:
-            break;
-    }
-    const countryPlayers = players.filter(p => p.str_nationality === first_team);
-    const oppositePlayers = players.filter(p => p.str_nationality === second_team);
+    let countryPlayers = players.filter(p => p.str_nationality === att_team)
+    let oppositePlayers = players.filter(p => p.str_nationality === def_team)
 
-    // getStackedAttributes(bar_elem, countryPlayers, oppositePlayers, firstAttrs);
-    // getStackedAttributes(defense_elem, countryPlayers, oppositePlayers, secondAttrs);
-    // getStackedAttributes(aerial_elem, countryPlayers, oppositePlayers, thirdAttrs);
+    getStackedAttributes(bar_elem, countryPlayers, oppositePlayers, firstAttrsAtt, firstAttrsDef)
+    getStackedAttributes(defense_elem, countryPlayers, oppositePlayers, secondAttrsAtt, secondAttrsDef)
+    getStackedAttributes(aerial_elem, countryPlayers, oppositePlayers, thirdAttrsAtt, thirdAttrsDef)
 }
 
 whenDocumentLoaded(() => {
     const div_output = document.getElementById('pitch')
-    const div_shooting = document.getElementById('bars');
-    const div_defense = document.getElementById('defenseBar');
-    const div_aerial = document.getElementById('aerialBar');
+    const div_shooting = document.getElementById('bars')
+    const div_defense = document.getElementById('defenseBar')
+    const div_aerial = document.getElementById('aerialBar')
     const first_team_radio = document.getElementById('first_team_state')
     const second_team_radio = document.getElementById('second_team_state')
     const strategy_radio = document.getElementById('strategy')
@@ -509,15 +530,18 @@ whenDocumentLoaded(() => {
 
     first_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
         getFirstTeamValue(target.htmlFor)
+        loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
     })
 
-    loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy));
+    loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
     second_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
         getSecondTeamValue(target.htmlFor)
+        loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
     })
 
     strategy_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
         getStrategy(target.htmlFor)
+        loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
         highlightArea(pitch_elem)
     })
 
