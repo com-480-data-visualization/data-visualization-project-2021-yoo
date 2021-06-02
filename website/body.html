@@ -308,7 +308,7 @@ interact('.drag-drop')
 
 
 function best_players_table(team, pos) {
-    $.getJSON('website/data/teams_basic_skills.json',
+    $.getJSON('data/teams_basic_skills.json',
     function(data){
       top_team = data.filter(x => x.str_nationality == team)
                       .sort( (x, y) => y.int_overall_rating - x.int_overall_rating)
@@ -334,7 +334,6 @@ function best_players_table(team, pos) {
   });
 
   $('#tooltip_position').on(function () {
-   console.log('YOOOO')
   })
 
 
