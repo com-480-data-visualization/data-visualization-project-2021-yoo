@@ -251,13 +251,10 @@ interact('.dropzone').dropzone({
      var draggableElement = event.relatedTarget
      var dropzoneElement = event.target
      event.stopImmediatePropagation()
-     console.log(draggableElement)
-     console.log(dropzoneElement)
      team = draggableElement.getElementsByTagName('span')[0].cloneNode(true)
      dropzoneElement.classList.add('dropped')
      dropzoneElement.replaceChildren(team)
      team = draggableElement.textContent.replace(/^\s+|\s+$/gm, '')
-     console.log(team)
      if (dropzoneElement.classList.contains('left_drop')){left_team = team}
      if (dropzoneElement.classList.contains('right_drop')){right_team = team}
      if (left_team != 0){
@@ -298,7 +295,6 @@ interact('.drag-drop')
     var target = event.target
     // add active dropzone feedback
     if (!target.classList.contains('dropped')){
-      console.log('lalalu')
       target.setAttribute('data-x', 0)
       target.setAttribute('data-y', 0)
       target.style.transform = 'translate(' + 0 + 'px, ' + 0 + 'px)'

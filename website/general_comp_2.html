@@ -196,7 +196,7 @@ d3.json("/website/data/teams_basic_skills.json").then(function(data) {
       .attr("x", -8)
       .attr("width", 16);
 
-  d3.selectAll(".axis.pl_discmethod .tick text")
+  d3.selectAll(".axis.Name.tick text")
     .style("fill", color);
 
 
@@ -214,6 +214,7 @@ d3.json("/website/data/teams_basic_skills.json").then(function(data) {
 
   function draw(d) {
     ctx.strokeStyle = color(d.str_nationality);
+    ctx.lineWidth = 2,5;
     ctx.beginPath();
     var coords = project(d);
     coords.forEach(function(p,i) {
@@ -245,7 +246,7 @@ d3.json("/website/data/teams_basic_skills.json").then(function(data) {
       ctx.lineTo(p[0],p[1]);
     });
     ctx.stroke();
-  }
+  };
 
   function brushstart() {
     d3.event.sourceEvent.stopPropagation();
@@ -310,6 +311,11 @@ d3.json("/website/data/teams_basic_skills.json").then(function(data) {
     render(selected);
 
   };
+
+  // Rebind the axis data to simplify mouseover.
+  svg.select(".axis").selectAll("text:not(.title)")
+      .attr("class", "label")
+      .data(data, function(d) { return d.name || d; });
 
   console.log('mhm')
   var projection = svg.selectAll(".axis line,.axis path, .tick text,.foreground path")

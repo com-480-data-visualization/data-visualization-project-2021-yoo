@@ -437,11 +437,6 @@ tr {
         border-top: 0;
     }
 
-
-		svg {
-		  font: 10px sans-serif;
-		}
-
 		.background path {
 		  fill: none;
 		  stroke: none;
@@ -516,7 +511,7 @@ tr {
 .axis path {
   fill: none;
   stroke: #ccc;
-  stroke-width: 1px;
+  stroke-width: 4px;
 }
 
 .axis .tick text {
@@ -563,7 +558,7 @@ tr {
 .brush .extent {
   fill-opacity: .3;
   stroke: #fff;
-  stroke-width: 1px;
+  stroke-width: 4px;
 }
 
 
