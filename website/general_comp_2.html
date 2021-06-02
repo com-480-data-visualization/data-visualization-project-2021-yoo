@@ -305,11 +305,12 @@ d3.json("/data/teams_basic_skills.json").then(function(data) {
           .style("display", null);
 
 
-    var projection = svg.selectAll(".axis text,.background path,.foreground path")
+    var projection = svg.selectAll(".axis,.background path,.foreground path")
       .on("mouseover", mouseover)
       .on("mouseout", mouseout);
 
     function mouseover(d) {
+      console.log('Yoo')
         svg.classed("active", true);
         projection.classed("inactive", function(p) { return p !== d; });
         projection.filter(function(p) { return p === d; }).each(moveToFront);
