@@ -575,6 +575,7 @@ function setSecondTeamNameAndFlag() {
 }
 
 function showBars(bar_elem, defense_elem, aerial_elem, players) {
+    console.log(first_team)
 
     if (first_team === 0 || second_team === 0)
         return
