@@ -5,6 +5,9 @@ let second_team = 'France'
 let att_team = first_team
 let def_team = second_team
 
+let first_color = 'red'
+let second_color = 'blue'
+
 const middlePos = 383
 const wid = 767
 const hei = 390
@@ -227,7 +230,6 @@ function getSecondTeamValue(second_state) {
 }
 
 function getStrategy(new_strategy) {
-    console.log(new_strategy)
     strategy = new_strategy
     const div_shooting = document.getElementById('bars')
     const div_defense = document.getElementById('defenseBar')
@@ -320,7 +322,7 @@ function stackedBar(bind, data, config) {
         margin: { top: 2, right: 2, bottom: 2, left: 2 },
         width: 800,
         height: 100,
-        barHeight: 100,
+        barHeight: 10,
         colors: ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33'],
         ...config
     }
@@ -336,6 +338,10 @@ function stackedBar(bind, data, config) {
         .domain([0, total])
         .range([0, w])
 
+    console.log(_data[0].percent)
+
+    let cx = w * _data[0].percent / 100
+
     d3.select(bind).select('svg').remove()
 
 
@@ -348,6 +354,14 @@ function stackedBar(bind, data, config) {
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
     // selection.selectAll('rect').remove()
+    let r = 15
+
+    let mid_color
+
+    if (_data[0].percent > _data[1].percent)
+        mid_color = first_color
+    else
+        mid_color = second_color
 
     // stack rect for each data value
     selection.selectAll('rect')
@@ -358,43 +372,52 @@ function stackedBar(bind, data, config) {
         .attr('y', h / 2 - halfBarHeight)
         .attr('height', barHeight)
         .attr('width', d => xScale(d.value))
+        .attr("rx", r)								// how much to round corners - to be transitioned below
+        .attr("ry", r)								// how much to round corners - to be transitioned below
         .style('fill', (d, i) => colors[i])
+
+    selection.selectAll('circle')
+        .data(_data)
+        .enter().append('circle')
+        .attr("cx", cx)           // position the x-centre
+        .attr("cy", (h / 2 - halfBarHeight) + barHeight / 2)           // position the y-centre
+        .attr("r", 10)             // set the radius
+        .style("fill", mid_color)     // set the fill colour
+
 
     // add values on bar
-    selection.selectAll('.text-value')
-        .data(_data)
-        .enter().append('text')
-        .attr('class', 'text-value')
-        .attr('text-anchor', 'middle')
-        .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
-        .attr('y', (h / 2) + 5)
-        .text(d => d.value)
+    // selection.selectAll('.text-value')
+    //     .data(_data)
+    //     .enter().append('text')
+    //     .attr('class', 'text-value')
+    //     .attr('text-anchor', 'middle')
+    //     .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
+    //     .attr('y', (h / 2) + 5)
+    //     .text(d => d.value)
 
-    // add some labels for percentages
-    selection.selectAll('.text-percent')
-        .data(_data)
-        .enter().append('text')
-        .attr('class', 'text-percent')
-        .attr('text-anchor', 'middle')
-        .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
-        .attr('y', (h / 2) - (halfBarHeight * 1.1))
-        .text(d => f(d.percent) + ' %')
+    // // add some labels for percentages
+    // selection.selectAll('.text-percent')
+    //     .data(_data)
+    //     .enter().append('text')
+    //     .attr('class', 'text-percent')
+    //     .attr('text-anchor', 'middle')
+    //     .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
+    //     .attr('y', (h / 2) - (halfBarHeight * 1.1))
+    //     .text(d => f(d.percent) + ' %')
 
-    // add the labels
-    selection.selectAll('.text-label')
-        .data(_data)
-        .enter().append('text')
-        .attr('class', 'text-label')
-        .attr('text-anchor', 'middle')
-        .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
-        .attr('y', (h / 2) + (halfBarHeight * 1.1) + 20)
-        .style('fill', (d, i) => colors[i])
-        .text(d => d.label)
+    // // add the labels
+    // selection.selectAll('.text-label')
+    //     .data(_data)
+    //     .enter().append('text')
+    //     .attr('class', 'text-label')
+    //     .attr('text-anchor', 'middle')
+    //     .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
+    //     .attr('y', (h / 2) + (halfBarHeight * 1.1) + 20)
+    //     .style('fill', (d, i) => colors[i])
+    //     .text(d => d.label)
 }
 
 function getStackedAttributes(elem, countryPlayers, oppositePlayers, con_attrs_pos, opp_attrs_pos) {
-    console.log('Hello')
-    console.log(countryPlayers);
 
     let con_pos_arr = con_attrs_pos['pos']
     countryPlayers = countryPlayers.filter(p => con_pos_arr.includes(p.str_best_position))
