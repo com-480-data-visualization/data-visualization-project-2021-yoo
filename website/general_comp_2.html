@@ -303,33 +303,35 @@ d3.json("/website/data/teams_basic_skills.json").then(function(data) {
         .classed("active", false)
         .selectAll(".tick text")
           .style("display", null);
-console.log('yoo')
 
-    var projection = svg.selectAll(".axis line,.axis path, .tick text,.foreground path")
-      .on("mouseover", mouseover)
-      .on("mouseout", mouseout);
-
-    function mouseover(d) {
-      console.log('Yoo')
-        svg.classed("active", true);
-        projection.classed("inactive", function(p) { return p !== d; });
-        projection.filter(function(p) { return p === d; }).each(moveToFront);
-      }
-
-      function mouseout(d) {
-        svg.classed("active", false);
-        projection.classed("inactive", false);
-      }
-
-      function moveToFront() {
-        this.parentNode.appendChild(this);
-      }
 
     ctx.clearRect(0,0,width,height);
     ctx.globalAlpha = d3.min([0.85/Math.pow(selected.length,0.3),1]);
     render(selected);
 
-  }
+  };
+
+  console.log('mhm')
+  var projection = svg.selectAll(".axis line,.axis path, .tick text,.foreground path")
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout);
+
+  function mouseover(d) {
+    console.log('Yoo')
+      svg.classed("active", true);
+      projection.classed("inactive", function(p) { return p !== d; });
+      projection.filter(function(p) { return p === d; }).each(moveToFront);
+    }
+
+    function mouseout(d) {
+      svg.classed("active", false);
+      projection.classed("inactive", false);
+    }
+
+    function moveToFront() {
+      this.parentNode.appendChild(this);
+    }
+
   });
 
 
