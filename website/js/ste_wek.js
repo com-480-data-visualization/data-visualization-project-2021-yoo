@@ -8,6 +8,34 @@ let def_team = second_team
 let first_color = 'red'
 let second_color = 'blue'
 
+const flag_map = {
+    'Turkey': 'flag-icon-tr',
+    'Italy': 'flag-icon-it',
+    'Wales': 'flag-icon-gb-wls',
+    'Switzerland': 'flag-icon-ch',
+    'Denmark': 'flag-icon-dk',
+    'Finland': 'flag-icon-fi',
+    'Belgium': 'flag-icon-be',
+    'Russia': 'flag-icon-ru',
+    'Netherlands': 'flag-icon-nl',
+    'Ukraine': 'flag-icon-ua',
+    'Austria': 'flag-icon-at',
+    'North Macedonia': 'flag-icon-mk',
+    'England': 'flag-icon-gb',
+    'Croatia': 'flag-icon-hr',
+    'Czech Republic': 'flag-icon-cz',
+    'Scotland': 'flag-icon-sct',
+    'Spain': 'flag-icon-es',
+    'Sweden': 'flag-icon-se',
+    'Poland': 'flag-icon-pl',
+    'Slovakia': 'flag-icon-sk',
+    'Portugal': 'flag-icon-pt',
+    'France': 'flag-icon-fr',
+    'Germany': 'flag-icon-de',
+    'Hungary': 'flag-icon-hu',
+
+}
+
 const middlePos = 383
 const wid = 767
 const hei = 390
@@ -528,7 +556,28 @@ function findAttrsDef() {
     return [firstAttrs, secondAttrs, thirdAttrs]
 }
 
-function showBars(bar_elem, defense_elem, aerial_elem, players, strategy) {
+function setFirstTeamNameAndFlag() {
+    let first_team_name = document.getElementById('first_team_name')
+    let old_team = first_team.innerHTML
+    first_team_name.innerHTML = first_team
+    let first_team_flag = document.getElementById('first_team_flag')
+    first_team_flag.classList.remove(flag_map[old_team])
+    first_team_flag.classList.add(flag_map[first_team])
+}
+
+function setSecondTeamNameAndFlag() {
+    let second_team_name = document.getElementById('second_team_name')
+    let old_team = second_team.innerHTML
+    second_team_name.innerHTML = second_team
+    let second_team_flag = document.getElementById('second_team_flag')
+    second_team_flag.classList.remove(flag_map[old_team])
+    second_team_flag.classList.add(flag_map[second_team])
+}
+
+function showBars(bar_elem, defense_elem, aerial_elem, players) {
+
+    if (first_team === 0 || second_team === 0)
+        return
 
     let [firstAttrsAtt, secondAttrsAtt, thirdAttrsAtt] = findAttrsAtt()
     let [firstAttrsDef, secondAttrsDef, thirdAttrsDef] = findAttrsDef()
