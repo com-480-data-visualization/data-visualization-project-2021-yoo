@@ -417,6 +417,42 @@ function getStackedAttributes(elem, countryPlayers, oppositePlayers, attrs) {
 
     stackedBar(elem, shootingStack, { total: totalShooting });
 }
+
+funtion findAttrsAtt(){
+    let firstAttrs;
+    let secondAttrs;
+    let thirdAttrs;
+    switch (strategy) {
+        case 'poss':
+            firstAttrs = { 'attr': ['int_short_passing', 'int_reactions', 'int_ball_control'], 'pos': [] };
+            secondAttrs = { 'attr': ['int_vision', 'int_agility', 'int_dribbling'], 'pos': [] };
+            thirdAttrs = { 'attr': ['int_positioning', 'int_finishing', 'int_composure'], 'pos': [] };
+            break;
+        case 'coat':
+            firstAttrs = { 'attr': ['int_interceptions', 'int_aggression', 'int_standing_tackle'], 'pos': [] };
+            secondAttrs = { 'attr': ['int_dribbling', 'int_vision', 'int_acceleration'], 'pos': [] };
+            thirdAttrs = { 'attr': ['int_positioning', 'int_finishing', 'int_composure'], 'pos': [] };
+            break;
+        case 'hipr':
+            firstAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            secondAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            break;
+        case 'cros':
+            firstAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            secondAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            break;
+        case 'deba':
+            firstAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            secondAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            thirdAttrs = { 'attr': ['int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle'], 'pos': [] };
+            break;
+
+        default:
+            break;
+    }
+}
 function showBars(bar_elem, defense_elem, aerial_elem, players, strategy) {
 
     let firstAttrs;
