@@ -118,7 +118,7 @@ var axes = svg.selectAll(".axis")
     .attr("class", function(d) { return "axis " + d.key.replace(/ /g, "_"); })
     .attr("transform", function(d,i) { return "translate(" + xscale(i) + ")"; });
 
-d3.json("/data/teams_basic_skills.json").then(function(data) {
+d3.json("/website/data/teams_basic_skills.json").then(function(data) {
   // const data = data.filter(x => x['str_nationality'] == 'Germany')
   const data_filtered =  data.filter(x => (x['str_nationality'] == 'France') | (x['str_nationality'] == 'Germany'))
   data_filtered.forEach(function(d) {
