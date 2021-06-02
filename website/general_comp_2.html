@@ -305,7 +305,7 @@ d3.json("/data/teams_basic_skills.json").then(function(data) {
           .style("display", null);
 
 
-    var projection = svg.selectAll(".axis,.background path,.foreground path")
+    var projection = svg.selectAll(".axis line,.axis path, .tick text,.foreground path")
       .on("mouseover", mouseover)
       .on("mouseout", mouseout);
 
