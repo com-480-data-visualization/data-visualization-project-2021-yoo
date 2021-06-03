@@ -154,7 +154,7 @@
       .attr("class", function (d) { return "axis " + d.key.replace(/ /g, "_"); })
       .attr("transform", function (d, i) { return "translate(" + xscale(i) + ")"; });
 
-    d3.json("/data-visualization-project-2021-yoo/website/data/teams_basic_skills.json").then(function (data) {
+    d3.json("/website/data/teams_basic_skills.json").then(function (data) {
       console.log(position_filter)
       var data_filtered
       if (position_filter == 'no_filter') {
@@ -387,7 +387,7 @@
     if (mode == 'overall') {
       var dimensions = [
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team1,
           type: types["Team1"]
         },
@@ -417,7 +417,7 @@
           type: types["Number"]
         },
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team2,
           type: types["Team2"]
         }
@@ -427,7 +427,7 @@
     else if (mode == 'defense') {
       var dimensions = [
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team1,
           type: types["Team1"]
         },
@@ -462,7 +462,7 @@
           type: types["Number"]
         },
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team2,
           type: types["Team2"]
         }
@@ -472,7 +472,7 @@
     else if (mode == 'attack') {
       var dimensions = [
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team1,
           type: types["Team1"]
         },
@@ -517,7 +517,7 @@
     else if (mode == 'physical') {
       var dimensions = [
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team1,
           type: types["Team1"]
         },
@@ -567,7 +567,7 @@
           type: types["Number"]
         },
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team2,
           type: types["Team2"]
         }]
@@ -575,7 +575,7 @@
     else if (mode == 'goalkeeping') {
       var dimensions = [
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team1,
           type: types["Team1"]
         },
@@ -620,7 +620,7 @@
           type: types["Number"]
         },
         {
-          key: "Str_player_name",
+          key: "str_player_name",
           description: team2,
           type: types["Team2"]
         }
