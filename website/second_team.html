@@ -12,7 +12,11 @@
             <div class="w-100"></div>
         </div>
 
-        <img src="images/radar_chart_2.png" width="250" height="250">
+        <div id="container" style="height: 400px">
+            <div id="chart" style="height: 300px">
+                <canvas id="myChart2" width="200" height="200" style="height: 200px"></canvas>
+            </div>  
+        </div>
     </div>
 </div>
 
@@ -57,3 +61,96 @@
     </div>
 </div>
 </div>
+
+<script src="../package/dist/chart.js"></script>
+<script type="text/javascript" src="../EC_teams.json"></script>
+<script src="RadarChart.js"></script>
+<script type="text/javascript">
+    function best_players_table(team, pos) {
+        $.getJSON('data/teams_basic_skills.json',
+            function (data) {
+                top_team = data.filter(x => x.str_nationality == team)
+                    .sort((x, y) => y.int_overall_rating - x.int_overall_rating)
+                    .filter((x, idx) => idx < 5);
+                $("#team_" + pos + "_table tbody").empty()
+                top_team.forEach((item, i) => {
+                    best_position = item['str_best_position']
+                    position_explain = position_dict[best_position]
+                    $("#team_" + pos + "_table").append("<tr><td><span id='tooltip_position' data-toggle='tooltip' title='" +
+                        position_explain + "'>" + best_position
+                        + "</span></td><td>" + item['Name'] + "</td><td>"
+                        + item["int_overall_rating"] + "</td></tr>")
+                });
+                $("#best_players").removeClass('inactive')
+                $("#team_" + pos + "_table").removeClass('inactive')
+
+            })
+    }
+
+
+    if( document.readyState !== 'loading' ) {
+        team2 = get_team(second_team)
+
+        buttons_labels = get_labels(team2.averages[0], possibles_keys)
+        labels = get_labels(team2.averages[0], selected_keys)
+
+        var ctxteam2 = document.getElementById('myChart2').getContext('2d');
+        ctxteam2.height = 500;
+        var radarChartTeam2 = new Chart(ctxteam2, {
+          type: 'radar',
+          data: {
+              labels: labels,
+              datasets: [
+              {
+                  label: team2.team_name,
+                  name: "t1",
+                  data: get_values(team2.averages[0], selected_keys),
+                  backgroundColor: [
+                      'rgba(255, 99, 132,0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)'
+                  ],
+                  borderWidth: 1
+              }
+              ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false
+          }
+        });
+
+        var buttonsWanted = buttons_labels.length;
+        var doc = document;
+        var docFrag = document.createDocumentFragment();
+        var showbutton = false
+
+        if(showbutton){
+          for(var x = 0; x < buttonsWanted; x++){
+            var button = doc.createElement('button');
+            console.log(labels[x])
+            button.setAttribute("id", buttons_labels[x]);
+            button.setAttribute("type", "button");
+            button.setAttribute("value", buttons_labels[x]);
+
+            var tag = document.createElement("p");
+            var text = document.createTextNode(buttons_labels[x]);
+            tag.appendChild(text);
+            button.appendChild(tag);
+
+            button.addEventListener("click", function() {
+                    alerted(this.value);
+                }, false);
+
+            docFrag.appendChild(button);
+          }
+
+          doc.getElementById('container').appendChild(docFrag);
+        };
+    }else {
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log( 'Non' );
+        });
+    }
+</script>

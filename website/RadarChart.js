@@ -1,12 +1,43 @@
-document.addEventListener("DOMContentLoaded", function(event) { 
+var teams = EC_teams.data
+selected_keys = ['int_weight', 'int_overall_rating', 'int_potential_rating', 'int_best_overall_rating']
+possibles_keys = [ 'int_height', 'int_weight', 'int_overall_rating', 'int_potential_rating', 'int_best_overall_rating', 'int_finishing','int_heading_accuracy', 'int_short_passing', 'int_volleys', 'int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle','int_diving', 'int_handling', 'int_kicking']
+		
+function FCapitalize(s) {
+	  if (typeof s !== 'string') return ''
+	  return s.charAt(0).toUpperCase() + s.slice(1)
+	}
+
+	function pretty_writing(str){
+		return FCapitalize(str.substring(4)).replaceAll('_' ,' ') 
+	}
 
 
-	var teams = JSON.parse(JSON.stringify(EC_teams))[0]
+	// Dataset are teams data 
+	function get_values(dataset, list_keys){ 
+		values = []
+		for(var k in dataset){
+			if (list_keys.includes(k)) {
+				values.push(dataset[k])
+			}
+		}
+		return values 
+	}
+
+
+	function get_labels(dataset, list_keys){
+		labels = []
+		for(var k in dataset){
+			if (list_keys.includes(k)) {
+				labels.push(pretty_writing(k));
+			}
+		}
+		return labels 
+	}
 
 
 	function get_team(team_name){
 		found_team = null 
-			teams.data.forEach((team) => {
+			teams.forEach((team) => {
 				if (team.team_name == team_name){
 					found_team = team
 				}	
@@ -14,7 +45,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	    return found_team
 	}
 
-	var testt = 2
+
+	document.addEventListener("DOMContentLoaded", function(event) { 
+
+	dic_to_pretty = {}
+	dic_to_ugly = {}
+	for (var s in possibles_keys){
+		pretty = pretty_writing(possibles_keys[s])
+		dic_to_pretty[possibles_keys[s]] = pretty;
+		dic_to_ugly[pretty] = possibles_keys[s];
+	}
+
+	
 	buttons_labels = get_labels(team1average[0], possibles_keys)
 	labels = get_labels(team1average[0], selected_keys)
 	var ctx = document.getElementById('radarchart-team1').getContext('2d');

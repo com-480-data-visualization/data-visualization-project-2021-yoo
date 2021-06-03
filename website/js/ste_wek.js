@@ -615,20 +615,26 @@ whenDocumentLoaded(() => {
     showFootballPitch(div_output)
     const pitch_elem = document.getElementById('pitch_canvas')
 
-    first_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
+    if(first_team_radio){ 
+        first_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
         getFirstTeamValue(target.htmlFor)
         loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
     })
+    }
 
-    second_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
+    if(second_team_radio){ 
+        second_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
         getSecondTeamValue(target.htmlFor)
         loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
     })
+    }
 
-    strategy_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
+    if(strategy_radio){ 
+        strategy_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
         getStrategy(target.htmlFor)
         loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
         highlightArea(pitch_elem)
     })
+    }
 
 })

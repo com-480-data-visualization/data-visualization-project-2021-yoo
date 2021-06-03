@@ -169,13 +169,24 @@
     <div class="row">
         <div class="col-lg-4 mb-4">
             <div class="card">
-                <img class="card-img-top border-0" src="images/radar_chart_1.png" alt="Card image cap">
+                <div id="container" style="height: 400px">
+                    <div id="chart" style="height: 300px">
+                        <canvas id="radarchart-team1" width="200" height="200" style="height: 200px"></canvas>
+                    </div>  
+                </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4 offset-md-2">
             <div class="card">
-                <img class="card-img-top border-0" src="images/radar_chart_2.png" alt="Card image cap">
-            </div>
+                <div id="container" style="height: 400px">
+                    <div id="chart" style="height: 300px">
+                        <canvas id="radarchart-team2" width="200" height="200" style="height: 200px"></canvas>
+                    </div>  
+                </div>
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript" src="../EC_teams.json"></script>
+<script src="RadarChart.js"></script>
