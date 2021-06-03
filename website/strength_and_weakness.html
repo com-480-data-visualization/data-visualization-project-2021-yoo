@@ -6,10 +6,10 @@
             <!-- <div class="d-flex flex-column justify-content-left"> -->
             <div class="card border-0">
                 <div class="card-header border-0 px-2">
-                    <span class="flag-icon flag-icon-de" style="height: 100%;">
+                    <span class="flag-icon" style="height: 100%;" id="first_team_flag">
                 </div>
                 <div class=" card-block border-0">
-                    <h4 class="card-title border-0 ">Germany</h4>
+                    <h4 class="card-title border-0 " id="first_team_name"></h4>
                 </div>
                 <div class="w-100"></div>
             </div>
@@ -33,14 +33,15 @@
         </div>
         <div class="col-sm text-center">
             <!-- <div class="d-flex flex-column justify-content-center"> -->
-            <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="strategy">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons"
+                style="align-items: center; margin-bottom: 3%;" id="strategy">
                 <label class="btn btn-secondary" for="poss">
                     <input type="radio" name="options" id="option1" autocomplete="off"> Possesion
                 </label>
                 <label class="btn btn-secondary" for="hipr">
                     <input type="radio" name="options" id="option1" autocomplete="off"> High Press
                 </label>
-                <label class="btn btn-secondary active" for="cros">
+                <label class="btn btn-secondary" for="cros">
                     <input type="radio" name="options" id="option1" autocomplete="off"> Dead Ball
                 </label>
                 <label class="btn btn-secondary" for="deba">
@@ -52,23 +53,23 @@
             </div>
             <!-- </div> -->
             <br>
-            <span>shooting</span>
-            <div id="bars" class="bars" style="margin-top: 2%;"></div>
-            <span>defense</span>
-            <div id="defenseBar" class="defenseBar" style="margin-top: 2%;"></div>
-            <span>Aerial skills</span>
-            <div id="aerialBar" class="aerialBar" style="margin-top: 2%;"></div>
+            <span class="skills-text" id="first-skill"></span>
+            <div id="bars" class="bars" style="margin-top: 1%;"></div>
+            <span class="skills-text" id="second-skill"></span>
+            <div id="defenseBar" class="defenseBar" style="margin-top: 1%;"></div>
+            <span class="skills-text" id="third-skill"></span>
+            <div id="aerialBar" class="aerialBar" style="margin-top: 1%;"></div>
             <!-- <object data="images/Pich.svg" width="500" height="500" style="margin-top: 2%; width: 100%;"> </object> -->
-            <div id="pitch" class="pitch" style="margin-top: 5%;"></div>
+            <div id="pitch" class="pitch" style="margin-top: 3%;"></div>
         </div>
         <div class="col-sm text-center">
             <!-- <div class="d-flex flex-column justify-content-left"> -->
             <div class="card border-0">
                 <div class="card-header border-0 px-2">
-                    <span class="flag-icon flag-icon-fr" style="height: 100%;">
+                    <span class="flag-icon" id="second_team_flag" style="height: 100%;">
                 </div>
                 <div class=" card-block border-0">
-                    <h4 class="card-title border-0 ">France</h4>
+                    <h4 class="card-title border-0 " id="second_team_name"></h4>
                 </div>
                 <div class="w-100"></div>
             </div>

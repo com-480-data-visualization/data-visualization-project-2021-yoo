@@ -8,6 +8,43 @@ let def_team = second_team
 let first_color = 'red'
 let second_color = 'blue'
 
+const flag_map = {
+    'Turkey': 'flag-icon-tr',
+    'Italy': 'flag-icon-it',
+    'Wales': 'flag-icon-gb-wls',
+    'Switzerland': 'flag-icon-ch',
+    'Denmark': 'flag-icon-dk',
+    'Finland': 'flag-icon-fi',
+    'Belgium': 'flag-icon-be',
+    'Russia': 'flag-icon-ru',
+    'Netherlands': 'flag-icon-nl',
+    'Ukraine': 'flag-icon-ua',
+    'Austria': 'flag-icon-at',
+    'North Macedonia': 'flag-icon-mk',
+    'England': 'flag-icon-gb',
+    'Croatia': 'flag-icon-hr',
+    'Czech Republic': 'flag-icon-cz',
+    'Scotland': 'flag-icon-gb-sct',
+    'Spain': 'flag-icon-es',
+    'Sweden': 'flag-icon-se',
+    'Poland': 'flag-icon-pl',
+    'Slovakia': 'flag-icon-sk',
+    'Portugal': 'flag-icon-pt',
+    'France': 'flag-icon-fr',
+    'Germany': 'flag-icon-de',
+    'Hungary': 'flag-icon-hu',
+
+}
+
+const strategy_map = {
+    'poss': ['Keeping Possesion', 'Chance creation', 'Scoring'],
+    'coat': ['Fast transition', 'One on One', 'Scoring'],
+    'hipr': ['Press high', 'Explosive attack', 'Scoring'],
+    'cros': ['Crossing', 'Aerial duels', 'Direct shooting'],
+    'deba': ['Crossing', 'One on One', 'Long shots']
+}
+
+
 const middlePos = 383
 const wid = 767
 const hei = 390
@@ -234,7 +271,6 @@ function getStrategy(new_strategy) {
     const div_shooting = document.getElementById('bars')
     const div_defense = document.getElementById('defenseBar')
     const div_aerial = document.getElementById('aerialBar')
-    const div_skills = document.getElementById('skillsBar')
 }
 
 function highlightArea(pitch_elem) {
@@ -318,9 +354,10 @@ function loadPlayers() {
 }
 
 function stackedBar(bind, data, config) {
+
     config = {
         f: d3.format('.1f'),
-        margin: { top: 2, right: 2, bottom: 2, left: 2 },
+        margin: { top: 1, right: 2, bottom: 1, left: 2 },
         width: 800,
         height: 100,
         barHeight: 10,
@@ -397,25 +434,26 @@ function stackedBar(bind, data, config) {
     //     .text(d => d.value)
 
     // // add some labels for percentages
-    // selection.selectAll('.text-percent')
-    //     .data(_data)
-    //     .enter().append('text')
-    //     .attr('class', 'text-percent')
-    //     .attr('text-anchor', 'middle')
-    //     .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
-    //     .attr('y', (h / 2) - (halfBarHeight * 1.1))
-    //     .text(d => f(d.percent) + ' %')
+    selection.selectAll('.text-percent')
+        .data(_data)
+        .enter().append('text')
+        .attr('class', 'text-percent')
+        .attr('text-anchor', 'middle')
+        .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
+        .attr('y', (h / 2) - (halfBarHeight * 1.1) - 10)
+        .style('fill', (d, i) => colors[i])
+        .text(d => f(d.percent) + ' %')
 
-    // // add the labels
-    // selection.selectAll('.text-label')
-    //     .data(_data)
-    //     .enter().append('text')
-    //     .attr('class', 'text-label')
-    //     .attr('text-anchor', 'middle')
-    //     .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
-    //     .attr('y', (h / 2) + (halfBarHeight * 1.1) + 20)
-    //     .style('fill', (d, i) => colors[i])
-    //     .text(d => d.label)
+    // add the labels
+    selection.selectAll('.text-label')
+        .data(_data)
+        .enter().append('text')
+        .attr('class', 'text-label')
+        .attr('text-anchor', 'middle')
+        .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
+        .attr('y', (h / 2) + (halfBarHeight * 1.1) + 20)
+        .style('fill', (d, i) => colors[i])
+        .text(d => d.label)
 }
 
 function getStackedAttributes(elem, countryPlayers, oppositePlayers, con_attrs_pos, opp_attrs_pos) {
@@ -528,7 +566,36 @@ function findAttrsDef() {
     return [firstAttrs, secondAttrs, thirdAttrs]
 }
 
-function showBars(bar_elem, defense_elem, aerial_elem, players, strategy) {
+function setFirstTeamNameAndFlag() {
+    let first_team_name = document.getElementById('first_team_name')
+    let old_team = first_team_name.innerHTML
+    first_team_name.innerHTML = first_team
+    let first_team_flag = document.getElementById('first_team_flag')
+    first_team_flag.classList.remove(flag_map[old_team])
+    first_team_flag.classList.add(flag_map[first_team])
+}
+
+function setSecondTeamNameAndFlag() {
+    let second_team_name = document.getElementById('second_team_name')
+    let old_team = second_team_name.innerHTML
+    second_team_name.innerHTML = second_team
+    let second_team_flag = document.getElementById('second_team_flag')
+    second_team_flag.classList.remove(flag_map[old_team])
+    second_team_flag.classList.add(flag_map[second_team])
+    console.log(second_team_flag.classList)
+}
+
+function showBars(bar_elem, defense_elem, aerial_elem, players) {
+
+    if (first_team === 0 || second_team === 0)
+        return
+
+    let first_skill = document.getElementById('first-skill')
+    first_skill.innerHTML = strategy_map[strategy][0]
+    let second_skill = document.getElementById('second-skill')
+    second_skill.innerHTML = strategy_map[strategy][1]
+    let third_skill = document.getElementById('third-skill')
+    third_skill.innerHTML = strategy_map[strategy][2]
 
     let [firstAttrsAtt, secondAttrsAtt, thirdAttrsAtt] = findAttrsAtt()
     let [firstAttrsDef, secondAttrsDef, thirdAttrsDef] = findAttrsDef()
@@ -557,7 +624,6 @@ whenDocumentLoaded(() => {
         loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
     })
 
-    loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
     second_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
         getSecondTeamValue(target.htmlFor)
         loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
