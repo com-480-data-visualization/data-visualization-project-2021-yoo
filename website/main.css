@@ -496,7 +496,7 @@ tr {
 }
 
 .parcoords canvas {
-  opacity: 0.9;
+  opacity: 0.99;
   pointer-events: none;
 }
 
@@ -511,7 +511,7 @@ tr {
 .axis path {
   fill: none;
   stroke: #ccc;
-  stroke-width: 4px;
+  stroke-width: 1px;
 }
 
 .axis .tick text {
@@ -556,7 +556,7 @@ tr {
 }
 
 .brush .extent {
-  fill-opacity: .3;
+  fill-opacity: .95;
   stroke: #fff;
   stroke-width: 4px;
 }
@@ -570,7 +570,17 @@ tr {
   fill: #ccc;
 }
 
+<<<<<<< Updated upstream
 .skills-text {
 	color: #021e52;
 	font-weight: bold;
+=======
+
+.btn-secondary,  .btn-primary:active, .btn-primary:visited {
+    background-color: #2b4e55 !important;
+}
+
+.btn-secondary:active, .btn-secondary:visited {
+    background-color: #f9d207 !important;
+>>>>>>> Stashed changes
 }

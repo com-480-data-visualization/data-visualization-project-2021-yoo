@@ -69,15 +69,15 @@ function showFootballPitch(container_element) {
         .attr("width", 767)
         .attr("height", 390)
 
-    // Total Grass    
+    // Total Grass
     holder.append("rect")        // attach a rectangle
         .attr("x", 0)         // position the left of the rectangle
         .attr("y", 0)          // position the top of the rectangle
         .attr("height", 390)    // set the height
         .attr("width", 767)    // set the width
-        .style("fill", fillcolour)   // set the fill colour    
+        .style("fill", fillcolour)   // set the fill colour
 
-    // draw a rectangle pitch outline    
+    // draw a rectangle pitch outline
     holder.append("rect")        // attach a rectangle
         .attr("x", 33)         // position the left of the rectangle
         .attr("y", 25)          // position the top of the rectangle
@@ -85,7 +85,7 @@ function showFootballPitch(container_element) {
         .attr("width", 700)    // set the width
         .style("stroke-width", 2.5)    // set the stroke width
         .style("stroke", linecolour)   // set the line colour
-        .style("fill", fillcolour)    // set the fill colour     
+        .style("fill", fillcolour)    // set the fill colour
 
     // // draw a rectangle - half 1
     holder.append("rect")        // attach a rectangle
@@ -105,7 +105,7 @@ function showFootballPitch(container_element) {
         .attr("width", 350)    // set the width
         .style("stroke-width", 2.5)    // set the stroke width
         .style("stroke", linecolour)    // set the line colour
-        .style("fill", "none")    // set the fill colour 
+        .style("fill", "none")    // set the fill colour
 
 
     // // draw a circle - center circle
@@ -126,7 +126,7 @@ function showFootballPitch(container_element) {
         .attr("width", 110)    // set the width
         .style("stroke-width", 2.5)    // set the stroke width
         .style("stroke", linecolour)    // set the line colour
-        .style("fill", "none")    // set the fill colour 
+        .style("fill", "none")    // set the fill colour
 
 
     // // draw a rectangle - penalty area 2
@@ -137,7 +137,7 @@ function showFootballPitch(container_element) {
         .attr("width", 110)    // set the width
         .style("stroke-width", 2.5)    // set the stroke width
         .style("stroke", linecolour)    // set the line colour
-        .style("fill", "none")    // set the fill colour 
+        .style("fill", "none")    // set the fill colour
 
     // // draw a rectangle - six yard box 1
     holder.append("rect")        // attach a rectangle
@@ -147,7 +147,7 @@ function showFootballPitch(container_element) {
         .attr("width", 36.67)    // set the width
         .style("stroke-width", 2.5)    // set the stroke width
         .style("stroke", linecolour)    // set the line colour
-        .style("fill", "none")    // set the fill colour 
+        .style("fill", "none")    // set the fill colour
 
     // // draw a rectangle - six yard box 2
     holder.append("rect")        // attach a rectangle
@@ -157,7 +157,7 @@ function showFootballPitch(container_element) {
         .attr("width", 36.67)    // set the width
         .style("stroke-width", 2.5)    // set the stroke width
         .style("stroke", linecolour)    // set the line colour
-        .style("fill", "none")    // set the fill colour 
+        .style("fill", "none")    // set the fill colour
 
     // // draw a rectangle - goalmouth 1
     holder.append("rect")        // attach a rectangle
@@ -313,7 +313,6 @@ function highlightArea(pitch_elem) {
     }
     // draw a rectangle - half 1
     rects.forEach((r) => {
-        console.log(r)
         holder.append("rect")        // attach a rectangle
             .attr("x", r.x)         // position the left of the rectangle
             .attr("y", r.y)          // position the top of the rectangle
@@ -348,7 +347,6 @@ function highlightArea(pitch_elem) {
 function loadPlayers() {
     return $.getJSON('data/teams_basic_skills.json')
         .then(response => {
-            console.log(response)
             return response
         })
 }
@@ -376,7 +374,6 @@ function stackedBar(bind, data, config) {
         .domain([0, total])
         .range([0, w])
 
-    console.log(_data[0].percent)
 
     let cx = w * _data[0].percent / 100
 
@@ -471,7 +468,6 @@ function getStackedAttributes(elem, countryPlayers, oppositePlayers, con_attrs_p
     let oppositeShooting = _.map(oppositePlayers, p => { let su = 0; _.forEach(opp_attrs, attr => su += p[attr]); return su; });
     oppositeShooting = (_.sum(oppositeShooting) / (oppositePlayers.length * 4));
 
-    console.log(shooting, oppositeShooting);
     const totalShooting = shooting + oppositeShooting;
     let percent = d3.scaleLinear()
         .domain([0, totalShooting])
@@ -636,4 +632,3 @@ whenDocumentLoaded(() => {
     })
 
 })
-
