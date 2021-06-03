@@ -1,37 +1,37 @@
 <h3 class="text-center">Overall Comparison</h3>
 
 <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="comparison_mode">
-  <label class="btn btn-secondary active" for="overall">
+  <label class="btn btn-sm btn-secondary active" for="overall">
     <input type="radio" name="overall" id="mode" autocomplete="off"> Overall
   </label>
-  <label class="btn btn-secondary" for="attack">
+  <label class="btn btn-sm btn-secondary" for="attack">
     <input type="radio" name="defense" id="mode" autocomplete="off"> Attack
   </label>
-  <label class="btn btn-secondary" for="defense">
+  <label class="btn btn-sm btn-secondary" for="defense">
     <input type="radio" name="attack" id="mode" autocomplete="off"> Defense
   </label>
-  <label class="btn btn-secondary" for="goalkeeping">
+  <label class="btn btn-sm btn-secondary" for="goalkeeping">
     <input type="radio" name="attack" id="mode" autocomplete="off"> Goalkeeping
   </label>
-  <label class="btn btn-secondary" for="physical">
+  <label class="btn btn-sm btn-secondary" for="physical">
     <input type="radio" name="physical" id="mode" autocomplete="off"> Physical
   </label>
 </div>
 <p></p>
 <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="filter_position">
-  <label class="btn btn-secondary active" for="no_filter">
+  <label class="btn btn-sm btn-secondary active" for="no_filter">
     <input type="radio" name="attack" id="filter" autocomplete="off"> No filter
   </label>
-  <label class="btn btn-secondary" for="filter_attack">
+  <label class="btn btn-sm btn-secondary" for="filter_attack">
     <input type="radio" name="attack" id="filter" autocomplete="off"> Attackers
   </label>
-  <label class="btn btn-secondary" for="filter_middlefield">
+  <label class="btn btn-sm btn-secondary" for="filter_middlefield">
     <input type="radio" name="defense" id="filter" autocomplete="off"> Midfielders
   </label>
-  <label class="btn btn-secondary" for="filter_defense">
+  <label class="btn btn-sm btn-secondary" for="filter_defense">
     <input type="radio" name="attack" id="filter" autocomplete="off"> Defenders
   </label>
-  <label class="btn btn-secondary" for="filter_goalkeeper">
+  <label class="btn btn-sm btn-secondary" for="filter_goalkeeper">
     <input type="radio" name="physical" id="filter" autocomplete="off"> Goalkeeper
   </label>
 </div>
@@ -49,7 +49,7 @@
 
 
   // set the dimensions and margins of the graph
-  var margin = { top: 66, right: 110, bottom: 20, left: 110 },
+  var margin = { top: 66, right: 110, bottom: 500, left: 110 },
     width = document.body.clientWidth - margin.left - margin.right,
     height = 1000 - margin.top - margin.bottom,
     innerHeight = height - 2;

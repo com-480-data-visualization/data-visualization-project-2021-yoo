@@ -29,7 +29,7 @@ html, body, figure {
 /* Default font and size */
 body {
 	font-family: Raleway;
-	font-size: 14px;
+	font-size: 13px;
 	color: white;
 }
 
@@ -343,14 +343,14 @@ textarea {
 
 .dropped{
 	font-size: 50px;
-	background-color: #2b2e4a;
+	background-color: transparent;
 	color:transparent;
 }
 
 
 .vs{
 	padding-top: 4%;
-	background-color: #2b2e4a;
+	background-color: transparent;
 	font-size: 50px;
 	color: white;
 	text-align: center;
@@ -573,7 +573,20 @@ tr {
 .skills-text {
 	color: #021e52;
 	font-weight: bold;
+}
 
-.btn-secondary:active, .btn-secondary:visited {
-    background-color: #f9d207 !important;
+.btn-secondary:hover{
+    background-color: #c4a407;
+}
+
+.btn-secondary {
+    background-color: #b97902;
+}
+
+.btn.btn-sm.btn-secondary.active {
+    background-color: #f9d207;
+}
+
+#filter{
+	background-color: #c4a407;
 }
