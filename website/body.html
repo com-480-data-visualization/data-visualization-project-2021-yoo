@@ -385,7 +385,7 @@
                     position_explain = position_dict[best_position]
                     $("#team_" + pos + "_table").append("<tr><td><span id='tooltip_position' data-toggle='tooltip' title='" +
                         position_explain + "'>" + best_position
-                        + "</span></td><td>" + item['Name'] + "</td><td>"
+                        + "</span></td><td>" + item['str_player_name'] + "</td><td>"
                         + item["int_overall_rating"] + "</td></tr>")
                 });
                 $("#best_players").removeClass('inactive')
