@@ -413,7 +413,7 @@ tr {
 
 .inactive{
 	background-color: transparent;
-	color: transparent;s
+	color: transparent;
 	border-top: 0;
 	border-bottom:0;
 
@@ -568,4 +568,9 @@ tr {
 
 .label.inactive {
   fill: #ccc;
+}
+
+.skills-text {
+	color: #021e52;
+	font-weight: bold;
 }

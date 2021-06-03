@@ -258,8 +258,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="website/js/ste_wek.js">
-</script>
+<script type="text/javascript" src="website/js/ste_wek.js"></script>
 
 
 <script>
@@ -321,17 +320,22 @@
             if (dropzoneElement.classList.contains('left_drop')) { left_team = team }
             if (dropzoneElement.classList.contains('right_drop')) { right_team = team }
             if (left_team != 0) {
+                left_team = left_team.replace("\n", " ")
                 best_players_table(left_team, 'left')
                 first_team = left_team
                 att_team = first_team
                 setFirstTeamNameAndFlag()
             }
             if (right_team != 0) {
+                right_team = right_team.replace("\n", " ")
                 best_players_table(right_team, 'right')
                 second_team = right_team
                 def_team = second_team
                 setSecondTeamNameAndFlag()
             }
+
+            console.log(left_team)
+            console.log(right_team)
 
 
         },

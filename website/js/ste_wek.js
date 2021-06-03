@@ -36,6 +36,14 @@ const flag_map = {
 
 }
 
+const strategy_map = {
+    'poss': ['Keeping Possesion', 'Chance creation', 'Scoring'],
+    'coat': ['Fast transition', 'One on One', 'Scoring'],
+    'hipr': ['Press high', 'Explosive attack', 'Scoring'],
+    'cros': ['Crossing', 'Aerial duels', 'Direct shooting'],
+    'deba': ['Crossing', 'One on One', 'Long shots']
+}
+
 
 const middlePos = 383
 const wid = 767
@@ -263,7 +271,6 @@ function getStrategy(new_strategy) {
     const div_shooting = document.getElementById('bars')
     const div_defense = document.getElementById('defenseBar')
     const div_aerial = document.getElementById('aerialBar')
-    const div_skills = document.getElementById('skillsBar')
 }
 
 function highlightArea(pitch_elem) {
@@ -347,17 +354,10 @@ function loadPlayers() {
 }
 
 function stackedBar(bind, data, config) {
-    const strategy_map = {
-        'poss': ['Keeping Possesion', 'Chance creation', 'Scoring'],
-        'coat': ['Fast transition', 'One on One', 'Scoring'],
-        'hipr': ['Press high', 'Explosive attack', 'Scoring'],
-        'cros': ['Crossing', 'Aerial duels', 'Direct shooting'],
-        'deba': ['Crossing', 'One on One', 'Long shots']
-    }
 
     config = {
         f: d3.format('.1f'),
-        margin: { top: 2, right: 2, bottom: 2, left: 2 },
+        margin: { top: 1, right: 2, bottom: 1, left: 2 },
         width: 800,
         height: 100,
         barHeight: 10,
@@ -440,7 +440,8 @@ function stackedBar(bind, data, config) {
         .attr('class', 'text-percent')
         .attr('text-anchor', 'middle')
         .attr('x', d => xScale(d.cumulative) + (xScale(d.value) / 2))
-        .attr('y', (h / 2) - (halfBarHeight * 1.1))
+        .attr('y', (h / 2) - (halfBarHeight * 1.1) - 10)
+        .style('fill', (d, i) => colors[i])
         .text(d => f(d.percent) + ' %')
 
     // add the labels
@@ -588,6 +589,13 @@ function showBars(bar_elem, defense_elem, aerial_elem, players) {
 
     if (first_team === 0 || second_team === 0)
         return
+
+    let first_skill = document.getElementById('first-skill')
+    first_skill.innerHTML = strategy_map[strategy][0]
+    let second_skill = document.getElementById('second-skill')
+    second_skill.innerHTML = strategy_map[strategy][1]
+    let third_skill = document.getElementById('third-skill')
+    third_skill.innerHTML = strategy_map[strategy][2]
 
     let [firstAttrsAtt, secondAttrsAtt, thirdAttrsAtt] = findAttrsAtt()
     let [firstAttrsDef, secondAttrsDef, thirdAttrsDef] = findAttrsDef()
