@@ -8,124 +8,122 @@ let margin, width, height, innerHeight, color
 
 let team_mean1 = []
 let team_mean2 = []
-let  team_mean= [];
+let team_mean = [];
 let val_team1 = []
 let val_team2 = []
-let teams_values =[]
-let mode_labels = [] 
+let teams_values = []
+let mode_labels = []
 let values = []
 
 
 let possible_attributes = {
-    'overall': ['int_overall_rating', 'int_aggression', 'int_agility'],
-    'defense': ['int_sliding_tackle', 'int_standing_tackle', 'int_aggression', 'int_defensive_awareness', 'int_agility', 'int_interceptions'],
-    'attack': ['int_crossing', 'int_finishing', 'int_heading_accuracy', 'int_volleys', 'int_shot_power','int_long_shots'],
-    'physical': ['int_acceleration', 'int_sprint_speed', 'int_agility', 'int_reactions', 'int_jumping', 'int_balance', 'int_strength'],
-    'goalkeeping': ['int_diving', 'int_handling', 'int_kicking', 'int_gk_positioning', 'int_height', 'int_reactions', 'int_reflexes', 'int_jumping']
-  }
+  'overall': ['int_overall_rating', 'int_aggression', 'int_agility'],
+  'defense': ['int_sliding_tackle', 'int_standing_tackle', 'int_aggression', 'int_defensive_awareness', 'int_agility', 'int_interceptions'],
+  'attack': ['int_crossing', 'int_finishing', 'int_heading_accuracy', 'int_volleys', 'int_shot_power', 'int_long_shots'],
+  'physical': ['int_acceleration', 'int_sprint_speed', 'int_agility', 'int_reactions', 'int_jumping', 'int_balance', 'int_strength'],
+  'goalkeeping': ['int_diving', 'int_handling', 'int_kicking', 'int_gk_positioning', 'int_height', 'int_reactions', 'int_reflexes', 'int_jumping']
+}
 
 
 
 
 function return_corresponding_attributes(mode) {
-    return possible_attributes[mode]
+  return possible_attributes[mode]
 }
 
 
 function aggregate_over_list(data, attributes) {
   team_mean = []
-  console.log(attributes)
-  console.log(data)
   for (att in attributes) {
     agg_team = data.reduce((sum, x) => sum + x[attributes[att]], 0) / data.length
     team_mean.push(agg_team)
   }
-  console.log(team_mean)
   return team_mean
 }
 
 
 function return_aggregated_data(attributes, teamA, teamB) {
 
-    $.getJSON('data/teams_basic_skills.json')
+  return $.getJSON('data/teams_basic_skills.json')
     .then(function (data) {
       data_team1 = data.filter(x => x.str_nationality == teamA)
       data_team2 = data.filter(x => x.str_nationality == teamB)
       team_mean1 = aggregate_over_list(data_team1, attributes)
       team_mean2 = aggregate_over_list(data_team2, attributes)
-      }
+      return [team_mean1, team_mean2]
+    }
     )
-    return [team_mean1, team_mean2]
+
 };
 
 
 
 
-var waitForEl = function(selector, callback) {
+var waitForEl = function (selector, callback) {
   if (jQuery(selector).length) {
     callback();
   } else {
-    setTimeout(function() {
+    setTimeout(function () {
       waitForEl(selector, callback);
     }, 100);
   }
 };
 
-function loadradar_team_both_2(mode){
-    console.log("HERE")
-      mode_labels = return_corresponding_attributes(mode)
-      console.log("Mode Labels")
-      console.log(mode_labels)
+async function loadradar_team_both_2(mode) {
+  console.log("HERE")
+  mode_labels = return_corresponding_attributes(mode)
+  console.log("Mode Labels")
+  console.log(mode_labels)
 
-      return_aggregated_data(mode_labels, team_par1, team_par2)
-      teams_values = return_aggregated_data(mode_labels, team_par1, team_par2)
-      console.log("Team Men 1 & 2")
-      console.log(team_mean1)
-      console.log(team_mean2)
+  await return_aggregated_data(mode_labels, team_par1, team_par2)
+  // teams_values = return_aggregated_data(mode_labels, team_par1, team_par2)
+  console.log("Team Men 1 & 2")
+  console.log(team_mean1)
+  console.log(team_mean2)
 
-      var ctx_both = document.getElementById('radarchart-both-team').getContext('2d');
-          ctx_both.height = 500;
+  var ctx_both = document.getElementById('radarchart-both-team').getContext('2d');
+  ctx_both.height = 500;
 
-          if(window.radarChartBothTeam != null){
-             window.radarChartBothTeam.destroy();
-          }   
+  if (window.radarChartBothTeam != null) {
+    window.radarChartBothTeam.destroy();
+  }
 
-          window.radarChartBothTeam = new Chart(ctx_both, {
-            type: 'radar',
-            data: {
-                labels: mode_labels,
-                datasets: [{
-                    label: team_par1,
-                    name: "t2",
-                    data: team_mean1,
-                    backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)'
-                    ],
-                    borderWidth: 1
-                },
-                {
-                    label: team_par2,
-                    name: "t1",
-                    data: team_mean2,
-                    backgroundColor: [
-                        'rgba(255, 99, 132,0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)'
-                    ],
-                    borderWidth: 1
-                }
-                ]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false
-            }
-          });
-  };
+  window.radarChartBothTeam = new Chart(ctx_both, {
+    type: 'radar',
+    data: {
+      labels: mode_labels,
+      datasets: [{
+        label: team_par1,
+        name: "t2",
+        data: team_mean1,
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.2)'
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)'
+        ],
+        borderWidth: 1
+      },
+      {
+        label: team_par2,
+        name: "t1",
+        data: team_mean2,
+        backgroundColor: [
+          'rgba(255, 99, 132,0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)'
+        ],
+        borderWidth: 1
+      }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+};
 
 
 
@@ -192,7 +190,7 @@ function draw_par(team_par_draw1, team_par_draw2) {
 
   const filter_radio = document.getElementById('filter_position')
   let new_mode = 0
-  
+
   if (mode_radio) {
     mode_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
       new_mode = target.htmlFor
@@ -201,12 +199,11 @@ function draw_par(team_par_draw1, team_par_draw2) {
       plot_graph(dimensions, position_filter)
     })
   }
-  
+
 
   if (filter_radio) {
     filter_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
       new_filter = target.htmlFor
-      console.log(new_filter)
       plot_graph(dimensions, new_filter)
     })
   }
@@ -268,7 +265,6 @@ function plot_graph(dimensions, position_filter) {
     .attr("class", function (d) { return "axis " + d.key.replace(/ /g, "_"); })
     .attr("transform", function (d, i) { return "translate(" + xscale(i) + ")"; });
 
-  console.log('hereeee')
   $.getJSON('data/teams_basic_skills.json')
     .then(function (data) {
       var data_filtered
@@ -276,11 +272,8 @@ function plot_graph(dimensions, position_filter) {
         data_filtered = data.filter(x => (x['str_nationality'] == team_par1) | (x['str_nationality'] == team_par2))
       } else {
         const filtered_positions = return_valid_positions(position_filter)
-        console.log(filtered_positions)
         data_filtered = data.filter(x => (x['str_nationality'] == team_par1) | (x['str_nationality'] == team_par2)).filter(x => filtered_positions.includes(x['str_best_position']))
       }
-      console.log('here')
-      console.log(data_filtered)
 
       data_filtered.forEach(function (d) {
         dimensions.forEach(function (p) {
@@ -483,7 +476,7 @@ function plot_graph(dimensions, position_filter) {
 
       };
 
-      
+
     });
 
 
