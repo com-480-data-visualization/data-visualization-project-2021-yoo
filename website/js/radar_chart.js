@@ -269,7 +269,7 @@ whenDocumentLoaded(() => {
 		      console.log( 'Non' )
 		});
 	}
-	}); */ 
+	}); */
 
 
 
@@ -335,7 +335,7 @@ whenDocumentLoaded(() => {
 		}
 	});*/
 
-    waitForEl('#radarchart-both-team', function(){
+    /* waitForEl('#radarchart-both-team', function(){
 	    var ctx = document.getElementById('radarchart-both-team').getContext('2d');
 			ctx.height = 500;
 			window.radarChartBothTeam = new Chart(ctx, {
@@ -407,10 +407,11 @@ whenDocumentLoaded(() => {
 
 
 			  });
-		}
+		//}
 	});
-});
+*/
 
+});
 function loadradar_team_1(){
     waitForEl('#radarchart-team1', function(){
     	labels = get_labels(team_1.averages[0], selected_keys)
@@ -540,4 +541,5 @@ function loadradar_team_both(){
 
 	});
 };
+
 

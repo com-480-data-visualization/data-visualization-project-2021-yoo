@@ -576,11 +576,9 @@ function setFirstTeamNameAndFlag() {
     first_team_flag_analyse.classList.remove(flag_map[old_team])
     first_team_flag_analyse.classList.add(flag_map[first_team])
 
-
+    
     team_1 = get_team(first_team);
 
-    loadradar_team_1();
-    loadradar_team_both();
     // loadlinear_chart();
     fill_table_first_team(first_team, "no_filter");
     // best_players_single_right_table(first_team, 'right');
@@ -606,8 +604,7 @@ function setSecondTeamNameAndFlag() {
 
 
     team_2 = get_team(second_team)
-    loadradar_team_2();
-    loadradar_team_both();
+
     // loadlinear_chart();
     fill_table_second_team(second_team, "no_filter");
     // best_players_single_left_table(second_team, 'left');
