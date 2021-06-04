@@ -41,9 +41,9 @@
 
 <script>
 
-  team1 = 'France'
-  team2 = 'Germany'
 
+  let team_par1 = left_team
+  let team_par2 = right_team
 
   var color = d3.scaleOrdinal().domain(["Germany", "France"]).range(["white", "#3248c8"]);
 
@@ -181,12 +181,12 @@
       dimensions.forEach(function (dim) {
         if (!("domain" in dim)) {
           // detect domain using dimension type's extent function
-          if (dim.description == team1) {
-            dim.domain = d3_functor(dim.type.extent)(data_filtered.filter(x => (x['str_nationality'] == team1))
+          if (dim.description == team_par1) {
+            dim.domain = d3_functor(dim.type.extent)(data_filtered.filter(x => (x['str_nationality'] == team_par1))
               .map(function (d) { return d[dim.key]; }));
           }
-          else if (dim.description == team2) {
-            dim.domain = d3_functor(dim.type.extent)(data_filtered.filter(x => (x['str_nationality'] == team2))
+          else if (dim.description == team_par2) {
+            dim.domain = d3_functor(dim.type.extent)(data_filtered.filter(x => (x['str_nationality'] == team_par2))
               .map(function (d) { return d[dim.key]; }));
           }
           else {
@@ -209,7 +209,7 @@
 
       axes.append("g")
         .each(function (d) {
-          if (d.description == team2) {
+          if (d.description == team_par2) {
             var renderAxis = "axis" in d
               ? d.axis.scale(d.scale)  // custom axis
               : yAxisRight.scale(d.scale);  // default axis
@@ -315,10 +315,10 @@
         var selected = data_filtered.filter(function (d) {
           if (actives.every(function (active) {
             var dim = active.dimension;
-            if ((dim.description == team1) & (d['str_nationality'] == team2)) {
+            if ((dim.description == team_par1) & (d['str_nationality'] == team_par2)) {
               return true
             }
-            if ((dim.description == team2) & (d['str_nationality'] == team1)) {
+            if ((dim.description == team_par2) & (d['str_nationality'] == team_par1)) {
               return true
             }
             // test if point is within extents for each active brush
@@ -388,7 +388,7 @@
       var dimensions = [
         {
           key: "str_player_name",
-          description: team1,
+          description: team_par1,
           type: types["Team1"]
         },
         {
@@ -418,7 +418,7 @@
         },
         {
           key: "str_player_name",
-          description: team2,
+          description: team_par2,
           type: types["Team2"]
         }
       ];
@@ -428,7 +428,7 @@
       var dimensions = [
         {
           key: "str_player_name",
-          description: team1,
+          description: team_par1,
           type: types["Team1"]
         },
         {
@@ -463,7 +463,7 @@
         },
         {
           key: "str_player_name",
-          description: team2,
+          description: team_par2,
           type: types["Team2"]
         }
       ];
@@ -473,7 +473,7 @@
       var dimensions = [
         {
           key: "str_player_name",
-          description: team1,
+          description: team_par1,
           type: types["Team1"]
         },
         {
@@ -508,7 +508,7 @@
         },
         {
           key: "str_player_name",
-          description: team2,
+          description: team_par2,
           type: types["Team2"]
         }
       ];
@@ -518,7 +518,7 @@
       var dimensions = [
         {
           key: "str_player_name",
-          description: team1,
+          description: team_par1,
           type: types["Team1"]
         },
         {
@@ -568,7 +568,7 @@
         },
         {
           key: "str_player_name",
-          description: team2,
+          description: team_par2,
           type: types["Team2"]
         }]
     }
@@ -576,7 +576,7 @@
       var dimensions = [
         {
           key: "str_player_name",
-          description: team1,
+          description: team_par1,
           type: types["Team1"]
         },
         {
@@ -621,7 +621,7 @@
         },
         {
           key: "str_player_name",
-          description: team2,
+          description: team_par2,
           type: types["Team2"]
         }
       ];
