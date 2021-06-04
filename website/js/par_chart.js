@@ -5,6 +5,120 @@ let team_par2
 let types
 let margin, width, height, innerHeight, color
 
+
+let team_mean1 = []
+let team_mean2 = []
+let  team_mean= [];
+let val_team1 = []
+let val_team2 = []
+let teams_values =[]
+let mode_labels = [] 
+let values = []
+
+
+function return_corresponding_attributes(mode) {
+    return possible_attributes[mode]
+}
+
+
+function aggregate_over_list(data, attributes) {
+  team_mean = []
+  console.log(attributes)
+  console.log(data)
+  for (att in attributes) {
+    agg_team = data.reduce((sum, x) => sum + x[attributes[att]], 0) / data.length
+    team_mean.push(agg_team)
+  }
+  console.log(team_mean)
+  return team_mean
+}
+
+
+function return_aggregated_data(attributes, teamA, teamB) {
+
+    $.getJSON('data/teams_basic_skills.json')
+    .then(function (data) {
+      data_team1 = data.filter(x => x.str_nationality == teamA)
+      data_team2 = data.filter(x => x.str_nationality == teamB)
+      team_mean1 = aggregate_over_list(data_team1, attributes)
+      team_mean2 = aggregate_over_list(data_team2, attributes)
+      }
+    )
+    return [team_mean1, team_mean2]
+};
+
+
+
+
+
+
+function loadradar_team_both_2(mode){
+    console.log("HERE")
+
+
+    waitForEl('#radarchart-both-team', function(){
+
+        mode_labels = return_corresponding_attributes(mode)
+        console.log("Mode Labels")
+        console.log(mode_labels)
+
+        return_aggregated_data(mode_labels, first_team, second_team)
+        teams_values = return_aggregated_data(mode_labels, first_team, second_team)
+        console.log("Team Men 1 & 2")
+        console.log(team_mean1)
+        console.log(team_mean2)
+
+
+        console.log("First team")
+
+        console.log(first_team)
+
+        var ctx_both = document.getElementById('radarchart-both-team').getContext('2d');
+            ctx_both.height = 500;
+
+            if(window.radarChartBothTeam != null){
+               window.radarChartBothTeam.destroy();
+            }   
+
+            window.radarChartBothTeam = new Chart(ctx_both, {
+              type: 'radar',
+              data: {
+                  labels: mode_labels,
+                  datasets: [{
+                      label: first_team,
+                      name: "t2",
+                      data: team_mean1,
+                      backgroundColor: [
+                          'rgba(75, 192, 192, 0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(75, 192, 192, 1)'
+                      ],
+                      borderWidth: 1
+                  },
+                  {
+                      label: second_team,
+                      name: "t1",
+                      data: team_mean2,
+                      backgroundColor: [
+                          'rgba(255, 99, 132,0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(255, 99, 132, 1)'
+                      ],
+                      borderWidth: 1
+                  }
+                  ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            });
+    });
+};
+
+
 function whenDocumentLoaded(action) {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", action)
@@ -67,12 +181,14 @@ function draw_par(team_par_draw1, team_par_draw2) {
   let position_filter = 'no_filter'
 
   const filter_radio = document.getElementById('filter_position')
-
+  let new_mode = 0
   if (mode_radio) {
 
     mode_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
       new_mode = target.htmlFor
       dimensions = return_dimensions(new_mode)
+      loadradar_team_both_2(new_mode);
+      loadradar_team_both_2(new_mode);
       plot_graph(dimensions, position_filter)
     })
   }
@@ -357,10 +473,11 @@ function plot_graph(dimensions, position_filter) {
 
       };
 
-
+      
     });
-}
 
+
+}
 function return_valid_positions(position_filter) {
   if (position_filter == 'filter_attack') {
     return ['ST', 'CF', 'LW', 'RW', 'LM', 'RM']

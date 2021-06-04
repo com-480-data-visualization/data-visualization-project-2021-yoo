@@ -8,15 +8,7 @@
              </div>
         </div>
         <div class="col-lg-8 mb-3">
-            <div class="card border-0">
-                <div class="card-body">
-                    <div id="container" >
-                    <div id="chart" >
-                        <canvas id="radarchart-both-team" width="200" height="200" style="height: 28vw"></canvas>
-                    </div>  
-                </div>
-                </div>
-            </div>
+            
         </div>
         <div class="col-lg-2 mb-3">
             <div class="card">
@@ -31,6 +23,21 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+const possible_attributes = {
+    'overall': ['int_overall_rating', 'int_aggression', 'int_agility'],
+    'defense': ['int_sliding_tackle', 'int_standing_tackle', 'int_aggression', 'int_defensive_awareness', 'int_agility', 'int_interceptions'],
+    'attack': ['int_crossing', 'int_finishing', 'int_heading_accuracy', 'int_volleys', 'int_shot_power','int_long_shots'],
+    'physical': ['int_acceleration', 'int_sprint_speed', 'int_agility', 'int_reactions', 'int_jumping', 'int_balance', 'int_strength'],
+    'goalkeeping': ['int_diving', 'int_handling', 'int_kicking', 'int_gk_positioning', 'int_height', 'int_reactions', 'int_reflexes', 'int_jumping']
+    }
+
+
+
+
+
+</script>
 
 <!-- <div class="table-responsive col-md-2">
             <table class="table table-striped">
