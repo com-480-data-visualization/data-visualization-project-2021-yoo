@@ -9,8 +9,10 @@ function whenDocumentLoaded(action) {
 
 
 whenDocumentLoaded(() => {
-    let team_par1 = left_team
-    let team_par2 = right_team
+
+  function draw_par(team_par1, team_par2) { 
+    var team_par1 = left_team
+    var team_par2 = right_team
 
     var color = d3.scaleOrdinal().domain([team_par1, team_par2]).range(["white", "#3248c8"]);
 
@@ -78,6 +80,7 @@ whenDocumentLoaded(() => {
 
   plot_graph(dimensions, position_filter)
 
+}
 })
 
   function plot_graph(dimensions, position_filter) {
@@ -121,7 +124,7 @@ whenDocumentLoaded(() => {
       .attr("transform", function (d, i) { return "translate(" + xscale(i) + ")"; });
 
       console.log('hereeee')
-    d3.json("/data-visualization-project-2021-yoo/website/data/teams_basic_skills.json").then(function (data) {
+    d3.json("/website/data/teams_basic_skills.json").then(function (data) {
       var data_filtered
       if (position_filter == 'no_filter') {
         data_filtered = data.filter(x => (x['str_nationality'] == team_par1) | (x['str_nationality'] == team_par2))

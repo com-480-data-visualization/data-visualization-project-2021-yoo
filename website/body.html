@@ -261,6 +261,7 @@
 <script type="text/javascript" src="./js/ste_wek.js"></script>
 <script type="text/javascript" src="./js/par_chart.js"></script>
 <script type="text/javascript" src="../EC_teams.json"></script>
+<script type="text/javascript" src="RadarChart.js"></script>
 
 
 <script>
@@ -340,6 +341,11 @@
                 def_team = second_team
                 setSecondTeamNameAndFlag()
             }
+
+            if ((right_team != 0) & (left_team != 0) ){
+                draw_par(left_team, right_team)
+            }
+           
 
             console.log(left_team)
             console.log(right_team)
