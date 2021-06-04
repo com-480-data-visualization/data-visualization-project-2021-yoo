@@ -570,13 +570,8 @@ function setFirstTeamNameAndFlag() {
     let first_team_flag_full = document.getElementById('first_team_flag_full')
     let first_team_flag_analyse = document.getElementById('first_team_flag_analyse')
 
-    if (first_team == "Czech Republic") {
-        first_team_flag_full.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
-        first_team_flag_analyse.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
-    } else {
-        first_team_flag_full.src = "https://cdn.countryflags.com/thumbs/" + first_team.toLowerCase() + "/flag-square-250.png"
-        first_team_flag_analyse.src = "https://cdn.countryflags.com/thumbs/" + first_team.toLowerCase() + "/flag-square-250.png"
-    }
+    first_team_flag_full.src = "https://cdn.countryflags.com/thumbs/" + first_team.toLowerCase().replace(' ', '-') + "/flag-square-250.png"
+    first_team_flag_analyse.src = "https://cdn.countryflags.com/thumbs/" + first_team.toLowerCase().replace(' ', '-') + "/flag-square-250.png"
 
 
     team_1 = get_team(first_team);
@@ -601,13 +596,9 @@ function setSecondTeamNameAndFlag() {
     let second_team_flag_analyse = document.getElementById('second_team_flag_analyse')
 
 
-    if (second_team == "Czech Republic") {
-        second_team_flag_full.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
-        second_team_flag_analyse.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
-    } else {
-        second_team_flag_full.src = "https://cdn.countryflags.com/thumbs/" + second_team.toLowerCase() + "/flag-square-250.png"
-        second_team_flag_analyse.src = "https://cdn.countryflags.com/thumbs/" + second_team.toLowerCase() + "/flag-square-250.png"
-    }
+    second_team_flag_full.src = "https://cdn.countryflags.com/thumbs/" + second_team.toLowerCase().replace(' ', '-') + "/flag-square-250.png"
+    second_team_flag_analyse.src = "https://cdn.countryflags.com/thumbs/" + second_team.toLowerCase().replace(' ', '-') + "/flag-square-250.png"
+
 
     team_2 = get_team(second_team)
     loadradar_team_2();
