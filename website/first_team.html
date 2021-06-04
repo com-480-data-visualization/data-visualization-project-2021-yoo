@@ -2,155 +2,53 @@
 <div class="container"  style="background-color: white;" >
     <div class="d-flex flex-row" style="margin-right: 5%;">
 
-        <div class="card d-flex flex-row border-0 mr-auto p-2" style="height: 80px;">
-            <div class=" card-block border-0">
-                <h4 class="card-title border-0 ">Germany</h4>
-            </div>
-            <div class="card-header border-0 px-2">
-                <img src="images/download.jpeg" style="background-color: white;">
+        <div class="row">
+                    <div class="card-title">
+                    <h4  id="first_team_name">Germany</h4>
+                    </div>
+                <!-- Flags come from https://www.countryflags.com/europe/ -->
+                <div class="col">
+                    <img class="card-img-top border-0"  id="first_team_flag_analyse" src="https://cdn.countryflags.com/thumbs/germany/flag-square-250.png" alt="Card image cap">
+                </div>
             </div>
             <div class="w-100"></div>
-        </div>
-
-        <div id="radarchart-buttons">
-        </div>
         
-        <div id="chart" style="height: 300px">
-            <canvas id="myChart" width="200" height="200" style="height: 200px"></canvas> 
+        <div id="chart" style="height: 28vw">
+            <canvas id="radarchart-team1" width="200" height="200" style="height: 28vw"></canvas> 
         </div>
     </div>
 </div>
 
-<div class="container" style="margin-top: 2%;">
-    <div class=" table-responsive">
-        <table class="table table-striped">
-            <thead>
+<div class="container">
+    <div id="radarchart-buttons-first-team" class="row">
+        
+    </div>
+</div>
+
+<div class="row inactive justify-content-center" id='best_players'>
+    <div class="table col">
+        <table class="table table-borderless table_rounded inactive" id='team_right_single_table'>
+            <thead class="thead-light">
                 <tr>
-                    <th class="col-md-1">Name</th>
-                    <th class="col-md-1">Position</th>
-                    <th class="col-md-1">Pace</th>
-                    <th class="col-md-1">Shoot</th>
-                    <th class="col-md-1">Pass</th>
-                    <th class="col-md-1">Dri</th>
-                    <th class="col-md-1">Def</th>
-                    <th class="col-md-1">PHY</th>
+                    <th>Position</th>
+                    <th>Player</th>
+                    <th>Rating</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="col-md-1">Tony Kroos</td>
-                    <td class="col-md-1">CM</td>
-                    <td class="col-md-1">54</td>
-                    <td class="col-md-1">81</td>
-                    <td class="col-md-1">91</td>
-                    <td class="col-md-1">81</td>
-                    <td class="col-md-1">71</td>
-                    <td class="col-md-1">69</td>
-                </tr>
-                <tr>
-                    <td class="col-md-1">Joshua Kimmich</td>
-                    <td class="col-md-1">CDM</td>
-                    <td class="col-md-1">71</td>
-                    <td class="col-md-1">72</td>
-                    <td class="col-md-1">86</td>
-                    <td class="col-md-1">84</td>
-                    <td class="col-md-1">81</td>
-                    <td class="col-md-1">79</td>
-                </tr>
             </tbody>
         </table>
     </div>
+
 </div>
 
-<script src="../package/dist/chart.js"></script>
-<script type="text/javascript" src="../EC_teams.json"></script>
-<script src="RadarChart.js"></script>
+<div class="tooltip bs-tooltip-top" role="tooltip">
+    <div class="arrow"></div>
+    <div class="tooltip-inner">
+        Some tooltip text!
+    </div>
+</div>
+
 <script type="text/javascript">
-    function best_players_table(team, pos) {
-        $.getJSON('data/teams_basic_skills.json',
-            function (data) {
-                top_team = data.filter(x => x.str_nationality == team)
-                    .sort((x, y) => y.int_overall_rating - x.int_overall_rating)
-                    .filter((x, idx) => idx < 5);
-                $("#team_" + pos + "_table tbody").empty()
-                top_team.forEach((item, i) => {
-                    best_position = item['str_best_position']
-                    position_explain = position_dict[best_position]
-                    $("#team_" + pos + "_table").append("<tr><td><span id='tooltip_position' data-toggle='tooltip' title='" +
-                        position_explain + "'>" + best_position
-                        + "</span></td><td>" + item['Name'] + "</td><td>"
-                        + item["int_overall_rating"] + "</td></tr>")
-                });
-                $("#best_players").removeClass('inactive')
-                $("#team_" + pos + "_table").removeClass('inactive')
-
-            })
-    }
-
-
-    if( document.readyState !== 'loading' ) {
-        team1 = get_team(first_team)
-
-        buttons_labels = get_labels(team1.averages[0], possibles_keys)
-        labels = get_labels(team1.averages[0], selected_keys)
-
-        var ctxteam1 = document.getElementById('myChart').getContext('2d');
-        ctxteam1.height = 500;
-        var radarChartTeam1 = new Chart(ctxteam1, {
-          type: 'radar',
-          data: {
-              labels: labels,
-              datasets: [
-              {
-                  label: team1.team_name,
-                  name: "t1",
-                  data: get_values(team1.averages[0], selected_keys),
-                  backgroundColor: [
-                      'rgba(255, 99, 132,0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255, 99, 132, 1)'
-                  ],
-                  borderWidth: 1
-              }
-              ]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false
-          }
-        });
-
-        var buttonsWanted = buttons_labels.length;
-        var doc = document;
-        var docFrag = document.createDocumentFragment();
-        var showbutton = false
-
-        if(showbutton){
-          for(var x = 0; x < buttonsWanted; x++){
-            var button = doc.createElement('button');
-            console.log(labels[x])
-            button.setAttribute("id", buttons_labels[x]);
-            button.setAttribute("type", "button");
-            button.setAttribute("value", buttons_labels[x]);
-
-            var tag = document.createElement("p");
-            var text = document.createTextNode(buttons_labels[x]);
-            tag.appendChild(text);
-            button.appendChild(tag);
-
-            button.addEventListener("click", function() {
-                    alerted(this.value);
-                }, false);
-
-            docFrag.appendChild(button);
-          }
-
-          doc.getElementById('radarchart-buttons').appendChild(docFrag);
-        };
-    }else {
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log( 'Non' );
-        });
-    }
+    best_players_single_right_table(first_team, 'right');
 </script>

@@ -1,6 +1,40 @@
 <div class="container">
+    <div id="radarchart-buttons" class="row">
+        
+
+    </div>
+</div>
+
+<div class="container">
     <div class="row">
-        <div class="table-responsive col-md-2">
+        <div class="col-lg-2 mb-3">
+             <div class="card-header border-0 px-2">
+                    <img class="card-img-top border-0"  id="first_team_flag_full" src="https://cdn.countryflags.com/thumbs/germany/flag-square-250.png" alt="Card image cap">
+             </div>
+        </div>
+        <div class="col-lg-8 mb-3">
+            <div class="card border-0">
+                <div class="card-body">
+                    <div id="container" >
+                    <div id="chart" >
+                        <canvas id="radarchart-both-team" width="200" height="200" style="height: 28vw"></canvas>
+                    </div>  
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 mb-3">
+            <div class="card">
+                <!-- Flags come from https://www.countryflags.com/europe/ -->
+                <img class="card-img-top border-0" id="second_team_flag_full" src="https://cdn.countryflags.com/thumbs/france/flag-square-250.png" alt="Card image cap">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- <div class="table-responsive col-md-2">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -95,7 +129,6 @@
                 </tbody>
             </table>
         </div>
-
         <div class="table-responsive col-md-2">
             <table class="table table-striped">
                 <thead>
@@ -143,50 +176,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
+--> 
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-4 mb-3">
-            <div class="card">
-                <img class="card-img-top border-0" src="images/download.jpeg" alt="Card image cap">
-            </div>
-        </div>
-        <div class="col-lg-2 mb-3">
-            <div class="card border-0">
-                <div class="card-body">
-                    <h1 class="card-title">VS</h1>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-3">
-            <div class="card">
-                <img class="card-img-top border-0" src="images/flag-button-round-250.png" alt="Card image cap">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <div id="container" style="height: 400px">
-                    <div id="chart" style="height: 300px">
-                        <canvas id="radarchart-team1" width="200" height="200" style="height: 200px"></canvas>
-                    </div>  
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-4 offset-md-2">
-            <div class="card">
-                <div id="container" style="height: 400px">
-                    <div id="chart" style="height: 300px">
-                        <canvas id="radarchart-team2" width="200" height="200" style="height: 200px"></canvas>
-                    </div>  
-                </div>
-        </div>
-    </div>
-</div>
-
-
-<script type="text/javascript" src="../EC_teams.json"></script>
-<script src="RadarChart.js"></script>

@@ -332,6 +332,8 @@
             }
             if (right_team != 0) {
                 right_team = right_team.replace("\n", " ")
+                console.log("RIGHT TEAM")
+                console.log(right_team)
                 best_players_table(right_team, 'right')
                 second_team = right_team
                 def_team = second_team
@@ -378,6 +380,8 @@
 
 
     function best_players_table(team, pos) {
+
+        console.log(team)
         $.getJSON('data/teams_basic_skills.json',
             function (data) {
                 top_team = data.filter(x => x.str_nationality == team)

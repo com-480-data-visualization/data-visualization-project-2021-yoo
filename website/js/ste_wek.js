@@ -1,55 +1,6 @@
-let strategy = 'cros'
-let first_team = 'Germany'
-let second_team = 'France'
-
-let att_team = first_team
-let def_team = second_team
-
-let first_color = 'red'
-let second_color = 'blue'
-
-const flag_map = {
-    'Turkey': 'flag-icon-tr',
-    'Italy': 'flag-icon-it',
-    'Wales': 'flag-icon-gb-wls',
-    'Switzerland': 'flag-icon-ch',
-    'Denmark': 'flag-icon-dk',
-    'Finland': 'flag-icon-fi',
-    'Belgium': 'flag-icon-be',
-    'Russia': 'flag-icon-ru',
-    'Netherlands': 'flag-icon-nl',
-    'Ukraine': 'flag-icon-ua',
-    'Austria': 'flag-icon-at',
-    'North Macedonia': 'flag-icon-mk',
-    'England': 'flag-icon-gb',
-    'Croatia': 'flag-icon-hr',
-    'Czech Republic': 'flag-icon-cz',
-    'Scotland': 'flag-icon-gb-sct',
-    'Spain': 'flag-icon-es',
-    'Sweden': 'flag-icon-se',
-    'Poland': 'flag-icon-pl',
-    'Slovakia': 'flag-icon-sk',
-    'Portugal': 'flag-icon-pt',
-    'France': 'flag-icon-fr',
-    'Germany': 'flag-icon-de',
-    'Hungary': 'flag-icon-hu',
-
-}
-
-const strategy_map = {
-    'poss': ['Keeping Possesion', 'Chance creation', 'Scoring'],
-    'coat': ['Fast transition', 'One on One', 'Scoring'],
-    'hipr': ['Press high', 'Explosive attack', 'Scoring'],
-    'cros': ['Crossing', 'Aerial duels', 'Direct shooting'],
-    'deba': ['Crossing', 'One on One', 'Long shots']
-}
 
 
-const middlePos = 383
-const wid = 767
-const hei = 390
-
-function whenDocumentLoaded(action) {
+    function whenDocumentLoaded(action) {
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", action)
     } else {
@@ -569,6 +520,26 @@ function setFirstTeamNameAndFlag() {
     let first_team_flag = document.getElementById('first_team_flag')
     first_team_flag.classList.remove(flag_map[old_team])
     first_team_flag.classList.add(flag_map[first_team])
+
+    let first_team_flag_full = document.getElementById('first_team_flag_full')
+    let first_team_flag_analyse = document.getElementById('first_team_flag_analyse')
+
+    if( first_team == "Czech Republic"){
+        first_team_flag_full.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
+        first_team_flag_analyse.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
+    } else {
+        first_team_flag_full.src = "https://cdn.countryflags.com/thumbs/" + first_team.toLowerCase() + "/flag-square-250.png"
+        first_team_flag_analyse.src = "https://cdn.countryflags.com/thumbs/" + first_team.toLowerCase() + "/flag-square-250.png"
+    }
+
+
+    team_1 = get_team(first_team);
+
+    loadradar_team_1();
+    loadradar_team_both();
+    loadlinear_chart();
+
+    best_players_single_right_table(first_team, 'right');
 }
 
 function setSecondTeamNameAndFlag() {
@@ -579,6 +550,26 @@ function setSecondTeamNameAndFlag() {
     second_team_flag.classList.remove(flag_map[old_team])
     second_team_flag.classList.add(flag_map[second_team])
     console.log(second_team_flag.classList)
+
+    let second_team_flag_full = document.getElementById('second_team_flag_full')
+    let second_team_flag_analyse = document.getElementById('second_team_flag_analyse')
+
+
+    if( second_team == "Czech Republic"){
+        second_team_flag_full.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
+        second_team_flag_analyse.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
+    } else {
+        second_team_flag_full.src = "https://cdn.countryflags.com/thumbs/" + second_team.toLowerCase() + "/flag-square-250.png"
+        second_team_flag_analyse.src = "https://cdn.countryflags.com/thumbs/" + second_team.toLowerCase() + "/flag-square-250.png"
+    }
+
+    team_2 = get_team(second_team)
+    loadradar_team_2();
+    loadradar_team_both();
+    loadlinear_chart();
+
+    best_players_single_left_table(second_team, 'left');
+
 }
 
 function showBars(bar_elem, defense_elem, aerial_elem, players) {
