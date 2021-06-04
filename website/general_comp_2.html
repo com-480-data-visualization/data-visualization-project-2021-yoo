@@ -45,7 +45,7 @@
   let team_par1 = left_team
   let team_par2 = right_team
 
-  var color = d3.scaleOrdinal().domain(["Germany", "France"]).range(["white", "#3248c8"]);
+  var color = d3.scaleOrdinal().domain([team_par1, team_par2]).range(["white", "#3248c8"]);
 
 
   // set the dimensions and margins of the graph
@@ -155,16 +155,15 @@
       .attr("transform", function (d, i) { return "translate(" + xscale(i) + ")"; });
 
     d3.json("/website/data/teams_basic_skills.json").then(function (data) {
-      console.log(position_filter)
       var data_filtered
       if (position_filter == 'no_filter') {
-        data_filtered = data.filter(x => (x['str_nationality'] == 'France') | (x['str_nationality'] == 'Germany'))
+        data_filtered = data.filter(x => (x['str_nationality'] == team_par1) | (x['str_nationality'] == team_par2))
       } else {
         const filtered_positions = return_valid_positions(position_filter)
         console.log(filtered_positions)
-        data_filtered = data.filter(x => (x['str_nationality'] == 'France') | (x['str_nationality'] == 'Germany')).filter(x => filtered_positions.includes(x['str_best_position']))
+        data_filtered = data.filter(x => (x['str_nationality'] == team_par1) | (x['str_nationality'] == team_par2)).filter(x => filtered_positions.includes(x['str_best_position']))
       }
-
+      console.log(data_filtered)
 
       data_filtered.forEach(function (d) {
         dimensions.forEach(function (p) {
