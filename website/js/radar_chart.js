@@ -187,19 +187,6 @@ function FCapitalize(s) {
 
 	
 
-
-
-
-	var waitForEl = function(selector, callback) {
-  if (jQuery(selector).length) {
-    callback();
-  } else {
-    setTimeout(function() {
-      waitForEl(selector, callback);
-    }, 100);
-  }
-};
-
 team_1 = get_team(first_team)
 team_2 = get_team(second_team)
 
@@ -487,59 +474,6 @@ function loadradar_team_2(){
 		
 	})
 		
-};
-
-
-
-function loadradar_team_both(){
-	waitForEl('#radarchart-both-team', function(){
-		labels = get_labels(team_1.averages[0], selected_keys)
-
-	    var ctx = document.getElementById('radarchart-both-team').getContext('2d');
-			ctx.height = 500;
-
-			if(window.radarChartBothTeam != null){
-			   window.radarChartBothTeam.destroy();
-			}	
-
-			window.radarChartBothTeam = new Chart(ctx, {
-			  type: 'radar',
-			  data: {
-			      labels: labels,
-			      datasets: [{
-			          label: team_1.team_name,
-			          name: "t2",
-			          data: get_values(team_1.averages[0], selected_keys),
-			          backgroundColor: [
-			              'rgba(75, 192, 192, 0.2)'
-			          ],
-			          borderColor: [
-			              'rgba(75, 192, 192, 1)'
-			          ],
-			          borderWidth: 1
-			      },
-			      {
-			          label: team_2.team_name,
-			          name: "t1",
-			          data: get_values(team_2.averages[0], selected_keys),
-			          backgroundColor: [
-			              'rgba(255, 99, 132,0.2)'
-			          ],
-			          borderColor: [
-			              'rgba(255, 99, 132, 1)'
-			          ],
-			          borderWidth: 1
-			      }
-			      ]
-			  },
-			  options: {
-			    responsive: true,
-		    	maintainAspectRatio: false
-			  }
-			});
-
-
-	});
 };
 
 

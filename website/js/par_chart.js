@@ -16,6 +16,17 @@ let mode_labels = []
 let values = []
 
 
+let possible_attributes = {
+    'overall': ['int_overall_rating', 'int_aggression', 'int_agility'],
+    'defense': ['int_sliding_tackle', 'int_standing_tackle', 'int_aggression', 'int_defensive_awareness', 'int_agility', 'int_interceptions'],
+    'attack': ['int_crossing', 'int_finishing', 'int_heading_accuracy', 'int_volleys', 'int_shot_power','int_long_shots'],
+    'physical': ['int_acceleration', 'int_sprint_speed', 'int_agility', 'int_reactions', 'int_jumping', 'int_balance', 'int_strength'],
+    'goalkeeping': ['int_diving', 'int_handling', 'int_kicking', 'int_gk_positioning', 'int_height', 'int_reactions', 'int_reflexes', 'int_jumping']
+  }
+
+
+
+
 function return_corresponding_attributes(mode) {
     return possible_attributes[mode]
 }
@@ -50,73 +61,72 @@ function return_aggregated_data(attributes, teamA, teamB) {
 
 
 
-
+var waitForEl = function(selector, callback) {
+  if (jQuery(selector).length) {
+    callback();
+  } else {
+    setTimeout(function() {
+      waitForEl(selector, callback);
+    }, 100);
+  }
+};
 
 function loadradar_team_both_2(mode){
     console.log("HERE")
+      mode_labels = return_corresponding_attributes(mode)
+      console.log("Mode Labels")
+      console.log(mode_labels)
 
+      return_aggregated_data(mode_labels, team_par1, team_par2)
+      teams_values = return_aggregated_data(mode_labels, team_par1, team_par2)
+      console.log("Team Men 1 & 2")
+      console.log(team_mean1)
+      console.log(team_mean2)
 
-    waitForEl('#radarchart-both-team', function(){
+      var ctx_both = document.getElementById('radarchart-both-team').getContext('2d');
+          ctx_both.height = 500;
 
-        mode_labels = return_corresponding_attributes(mode)
-        console.log("Mode Labels")
-        console.log(mode_labels)
+          if(window.radarChartBothTeam != null){
+             window.radarChartBothTeam.destroy();
+          }   
 
-        return_aggregated_data(mode_labels, first_team, second_team)
-        teams_values = return_aggregated_data(mode_labels, first_team, second_team)
-        console.log("Team Men 1 & 2")
-        console.log(team_mean1)
-        console.log(team_mean2)
+          window.radarChartBothTeam = new Chart(ctx_both, {
+            type: 'radar',
+            data: {
+                labels: mode_labels,
+                datasets: [{
+                    label: team_par1,
+                    name: "t2",
+                    data: team_mean1,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: team_par2,
+                    name: "t1",
+                    data: team_mean2,
+                    backgroundColor: [
+                        'rgba(255, 99, 132,0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }
+                ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false
+            }
+          });
+  };
 
-
-        console.log("First team")
-
-        console.log(first_team)
-
-        var ctx_both = document.getElementById('radarchart-both-team').getContext('2d');
-            ctx_both.height = 500;
-
-            if(window.radarChartBothTeam != null){
-               window.radarChartBothTeam.destroy();
-            }   
-
-            window.radarChartBothTeam = new Chart(ctx_both, {
-              type: 'radar',
-              data: {
-                  labels: mode_labels,
-                  datasets: [{
-                      label: first_team,
-                      name: "t2",
-                      data: team_mean1,
-                      backgroundColor: [
-                          'rgba(75, 192, 192, 0.2)'
-                      ],
-                      borderColor: [
-                          'rgba(75, 192, 192, 1)'
-                      ],
-                      borderWidth: 1
-                  },
-                  {
-                      label: second_team,
-                      name: "t1",
-                      data: team_mean2,
-                      backgroundColor: [
-                          'rgba(255, 99, 132,0.2)'
-                      ],
-                      borderColor: [
-                          'rgba(255, 99, 132, 1)'
-                      ],
-                      borderWidth: 1
-                  }
-                  ]
-              },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false
-              }
-            });
-    });
-};
 
 
 function whenDocumentLoaded(action) {
@@ -182,16 +192,16 @@ function draw_par(team_par_draw1, team_par_draw2) {
 
   const filter_radio = document.getElementById('filter_position')
   let new_mode = 0
+  
   if (mode_radio) {
-
     mode_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
       new_mode = target.htmlFor
       dimensions = return_dimensions(new_mode)
       loadradar_team_both_2(new_mode);
-      loadradar_team_both_2(new_mode);
       plot_graph(dimensions, position_filter)
     })
   }
+  
 
   if (filter_radio) {
     filter_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
@@ -201,7 +211,7 @@ function draw_par(team_par_draw1, team_par_draw2) {
     })
   }
 
-
+  loadradar_team_both_2(mode);
   plot_graph(dimensions, position_filter)
 
 }
