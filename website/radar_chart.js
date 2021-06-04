@@ -1,6 +1,6 @@
 var teams = EC_teams.data
-selected_keys = ['int_overall_rating', 'int_potential_rating', 'int_best_overall_rating']
-possibles_keys = ['int_weight', 'int_overall_rating', 'int_potential_rating', 'int_best_overall_rating', 'int_finishing','int_heading_accuracy', 'int_short_passing', 'int_volleys', 'int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle','int_diving', 'int_handling', 'int_kicking']
+selected_keys = ['int_overall_rating', 'int_short_passing', 'int_defensive_awareness']
+possibles_keys = ['int_age', 'int_overall_rating', 'int_finishing','int_heading_accuracy', 'int_short_passing', 'int_volleys', 'int_defensive_awareness', 'int_standing_tackle', 'int_sliding_tackle','int_diving', 'int_handling', 'int_kicking']
 
 let strategy = 'cros'
 let first_team = 'Germany'
@@ -54,9 +54,6 @@ const wid = 767
 const hei = 390
 
 
-
-
-		
 function FCapitalize(s) {
 	  if (typeof s !== 'string') return ''
 	  return s.charAt(0).toUpperCase() + s.slice(1)
@@ -100,6 +97,9 @@ function FCapitalize(s) {
 	    return found_team
 	}
 
+	function get_team_color(team_name){
+		return team_colors[team_name]
+	}
 
 	function addData(chart, label, data) {
 	    chart.data.labels.push(label);
@@ -179,8 +179,10 @@ team_2 = get_team(second_team)
 buttons_labels = get_labels(team_1.averages[0], possibles_keys)
 labels = get_labels(team_1.averages[0], selected_keys)
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
+
+whenDocumentLoaded(() => {
+
+	 console.log('DOM fully loaded and parsed');
 
 
     waitForEl('#radarchart-team2', function(){
@@ -240,7 +242,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		      console.log( 'Non' )
 		});
 	}
-
 	});
 
 

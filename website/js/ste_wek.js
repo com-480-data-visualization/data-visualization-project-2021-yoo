@@ -538,7 +538,7 @@ function setFirstTeamNameAndFlag() {
     loadradar_team_1();
     loadradar_team_both();
     // loadlinear_chart();
-
+    best_players_table_first_team(first_team);
     // best_players_single_right_table(first_team, 'right');
 }
 
@@ -567,7 +567,7 @@ function setSecondTeamNameAndFlag() {
     loadradar_team_2();
     loadradar_team_both();
     // loadlinear_chart();
-
+    best_players_table_second_team(second_team);
     // best_players_single_left_table(second_team, 'left');
 
 }

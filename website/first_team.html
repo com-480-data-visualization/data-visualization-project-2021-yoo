@@ -28,7 +28,7 @@
 
 <div class="row inactive justify-content-center" id='best_players'>
     <div class="table col">
-        <table class="table table-borderless table_rounded inactive" id='team_right_single_table'>
+        <table class="table table-borderless table_rounded inactive" id='team_first_best_table'>
             <thead class="thead-light">
                 <tr>
                     <th>Position</th>
@@ -50,6 +50,26 @@
     </div>
 </div>
 
-<!-- <script type="text/javascript">
-    best_players_single_right_table(first_team, 'right');
+<script type="text/javascript">
+    function best_players_table_first_team(team) {
+        console.log(team)
+        $.getJSON('data/teams_basic_skills.json',
+            function (data) {
+                top_team = data.filter(x => x.str_nationality == team)
+                    .sort((x, y) => y.int_overall_rating - x.int_overall_rating)
+                    .filter((x, idx) => idx < 5);
+                $("#team_first_best_table tbody").empty()
+                top_team.forEach((item, i) => {
+                    best_position = item['str_best_position']
+                    position_explain = position_dict[best_position]
+                    $("#team_first_best_table").append("<tr><td class='text-dark'><span id='tooltip_position' data-toggle='tooltip' title='" +
+                        position_explain + "'>" + best_position
+                        + "</span></td><td class='text-dark'>" + item['str_player_name'] + "</td><td class='text-dark'>"
+                        + item["int_overall_rating"] + "</td></tr>")
+                });
+                $("#best_players").removeClass('inactive')
+                $("#team_first_best_table").removeClass('inactive')
+
+            })
+ }
 </script> -->
