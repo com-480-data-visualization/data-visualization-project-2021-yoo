@@ -1,3 +1,47 @@
+function best_players_single_right_table(team, pos) {
+  $.getJSON('data/teams_basic_skills.json',
+      function (data) {
+          top_team = data.filter(x => x.str_nationality == team)
+              .sort((x, y) => y.int_overall_rating - x.int_overall_rating)
+              .filter((x, idx) => idx < 5);
+          $("#team_" + pos + "_single_table tbody").empty()
+          top_team.forEach((item, i) => {
+              best_position = item['str_best_position']
+              position_explain = position_dict[best_position]
+              $("#team_" + pos + "_single_table").append("<tr><td class='text-light'><span  id='tooltip_position'  data-toggle='tooltip' title='" +
+                  position_explain + "'>" + best_position
+                  + "</span></td><td class='text-light'>" + item['Name'] + "</td><td class='text-light'>"
+                  + item["int_overall_rating"] + "</td></tr>")
+          });
+          $("#best_players").removeClass('inactive')
+          $("#team_" + pos + "_single_table").removeClass('inactive')
+
+      })
+}
+
+function best_players_single_left_table(team, pos) {
+  $.getJSON('data/teams_basic_skills.json',
+      function (data) {
+          top_team = data.filter(x => x.str_nationality == team)
+              .sort((x, y) => y.int_overall_rating - x.int_overall_rating)
+              .filter((x, idx) => idx < 5);
+          $("#team_" + pos + "_single_table tbody").empty()
+          top_team.forEach((item, i) => {
+              best_position = item['str_best_position']
+              position_explain = position_dict[best_position]
+              $("#team_" + pos + "_single_table").append("<tr><td class='text-dark'><span id='tooltip_position'  data-toggle='tooltip' title='" +
+                  position_explain + "'>" + best_position
+                  + "</span></td><td class='text-dark'>" + item['Name'] + "</td><td class='text-dark'>"
+                  + item["int_overall_rating"] + "</td></tr>")
+          });
+          $("#best_players").removeClass('inactive')
+          $("#team_" + pos + "_single_table").removeClass('inactive')
+
+      })
+}
+
+
+
 function loadlinear_chart(){
 
   var color = d3.scaleOrdinal().domain([first_team, second_team]).range(["white", "#3248c8"]);
@@ -50,18 +94,21 @@ function loadlinear_chart(){
 
   const filter_radio = document.getElementById('filter_position')
 
-  mode_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
-    new_mode = target.htmlFor
-    dimensions = return_dimensions(new_mode)
-    plot_graph(dimensions, position_filter)
-  })
+  if(mode_radio){
+    mode_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
+      new_mode = target.htmlFor
+      dimensions = return_dimensions(new_mode)
+      plot_graph(dimensions, position_filter)
+  })};
 
 
-  filter_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
-    new_filter = target.htmlFor
-    console.log(new_filter)
-    plot_graph(dimensions, new_filter)
+  if(mode_radio){
+    filter_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
+      new_filter = target.htmlFor
+      console.log(new_filter)
+      plot_graph(dimensions, new_filter)
   })
+  };
 
 
   plot_graph(dimensions, position_filter)
@@ -97,107 +144,109 @@ function loadlinear_chart(){
       .style("margin-top", margin.top + "px")
       .style("margin-left", margin.left + "px");
 
-    var ctx = canvas.node().getContext("2d");
-    ctx.globalCompositeOperation = 'darken';
-    ctx.globalAlpha = 0.95;
-    ctx.lineWidth = 1.5;
-    ctx.scale(devicePixelRatio, devicePixelRatio);
+    if(canvas.node()){
+      var ctx = canvas.node().getContext("2d");
+      ctx.globalCompositeOperation = 'darken';
+      ctx.globalAlpha = 0.95;
+      ctx.lineWidth = 1.5;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
 
-    var axes = svg.selectAll(".axis")
-      .data(dimensions)
-      .enter().append("g")
-      .attr("class", function (d) { return "axis " + d.key.replace(/ /g, "_"); })
-      .attr("transform", function (d, i) { return "translate(" + xscale(i) + ")"; });
+      var axes = svg.selectAll(".axis")
+        .data(dimensions)
+        .enter().append("g")
+        .attr("class", function (d) { return "axis " + d.key.replace(/ /g, "_"); })
+        .attr("transform", function (d, i) { return "translate(" + xscale(i) + ")"; });
 
-    d3.json("/website/data/teams_basic_skills.json").then(function (data) {
-      console.log(position_filter)
-      var data_filtered
-      if (position_filter == 'no_filter') {
-        data_filtered = data.filter(x => (x['str_nationality'] == 'France') | (x['str_nationality'] == 'Germany'))
-      } else {
-        const filtered_positions = return_valid_positions(position_filter)
-        console.log(filtered_positions)
-        data_filtered = data.filter(x => (x['str_nationality'] == 'France') | (x['str_nationality'] == 'Germany')).filter(x => filtered_positions.includes(x['str_best_position']))
-      }
+      d3.json("/website/data/teams_basic_skills.json").then(function (data) {
+        console.log(position_filter)
+        var data_filtered
+        if (position_filter == 'no_filter') {
+          data_filtered = data.filter(x => (x['str_nationality'] == 'France') | (x['str_nationality'] == 'Germany'))
+        } else {
+          const filtered_positions = return_valid_positions(position_filter)
+          console.log(filtered_positions)
+          data_filtered = data.filter(x => (x['str_nationality'] == 'France') | (x['str_nationality'] == 'Germany')).filter(x => filtered_positions.includes(x['str_best_position']))
+        }
 
 
-      data_filtered.forEach(function (d) {
-        dimensions.forEach(function (p) {
-          d[p.key] = !d[p.key] ? null : p.type.coerce(d[p.key]);
+        data_filtered.forEach(function (d) {
+          dimensions.forEach(function (p) {
+            d[p.key] = !d[p.key] ? null : p.type.coerce(d[p.key]);
+          });
+
+          // truncate long text strings to fit in data table
+          for (var key in d) {
+            if (d[key] && d[key].length > 35) d[key] = d[key].slice(0, 36);
+          }
         });
 
-        // truncate long text strings to fit in data table
-        for (var key in d) {
-          if (d[key] && d[key].length > 35) d[key] = d[key].slice(0, 36);
-        }
-      });
+        // type/dimension default setting happens here
+        dimensions.forEach(function (dim) {
+          if (!("domain" in dim)) {
+            // detect domain using dimension type's extent function
+            if (dim.description == first_team) {
+              dim.domain = d3_functor(dim.type.extent)(data_filtered.filter(x => (x['str_nationality'] == first_team))
+                .map(function (d) { return d[dim.key]; }));
+            }
+            else if (dim.description == second_team) {
+              dim.domain = d3_functor(dim.type.extent)(data_filtered.filter(x => (x['str_nationality'] == second_team))
+                .map(function (d) { return d[dim.key]; }));
+            }
+            else {
+              dim.domain = d3_functor(dim.type.extent)(data_filtered.map(function (d) { return d[dim.key]; }));
+            }
 
-      // type/dimension default setting happens here
-      dimensions.forEach(function (dim) {
-        if (!("domain" in dim)) {
-          // detect domain using dimension type's extent function
-          if (dim.description == first_team) {
-            dim.domain = d3_functor(dim.type.extent)(data_filtered.filter(x => (x['str_nationality'] == first_team))
-              .map(function (d) { return d[dim.key]; }));
           }
-          else if (dim.description == second_team) {
-            dim.domain = d3_functor(dim.type.extent)(data_filtered.filter(x => (x['str_nationality'] == second_team))
-              .map(function (d) { return d[dim.key]; }));
+          if (!("scale" in dim)) {
+            // use type's default scale for dimension
+            dim.scale = dim.type.defaultScale.copy();
           }
-          else {
-            dim.domain = d3_functor(dim.type.extent)(data_filtered.map(function (d) { return d[dim.key]; }));
-          }
+          dim.scale.domain(dim.domain);
+        });
 
-        }
-        if (!("scale" in dim)) {
-          // use type's default scale for dimension
-          dim.scale = dim.type.defaultScale.copy();
-        }
-        dim.scale.domain(dim.domain);
-      });
+        var render = renderQueue(draw).rate(5);
 
-      var render = renderQueue(draw).rate(5);
+        ctx.clearRect(0, 0, width, height);
+        ctx.globalAlpha = d3.min([1.15 / Math.pow(data_filtered.length, 0.25), 1]);
+        render(data_filtered);
 
-      ctx.clearRect(0, 0, width, height);
-      ctx.globalAlpha = d3.min([1.15 / Math.pow(data_filtered.length, 0.25), 1]);
-      render(data_filtered);
+        axes.append("g")
+          .each(function (d) {
+            if (d.description == second_team) {
+              var renderAxis = "axis" in d
+                ? d.axis.scale(d.scale)  // custom axis
+                : yAxisRight.scale(d.scale);  // default axis
+              d3.select(this).call(renderAxis);
+            } else {
+              var renderAxis = "axis" in d
+                ? d.axis.scale(d.scale)  // custom axis
+                : yAxisLeft.scale(d.scale);  // default axis
+              d3.select(this).call(renderAxis);
+            }
+          })
+          .append("text")
+          .attr("class", "title")
+          .attr("text-anchor", "start")
+          .text(function (d) { return "description" in d ? d.description : d.key; });
 
-      axes.append("g")
-        .each(function (d) {
-          if (d.description == second_team) {
-            var renderAxis = "axis" in d
-              ? d.axis.scale(d.scale)  // custom axis
-              : yAxisRight.scale(d.scale);  // default axis
-            d3.select(this).call(renderAxis);
-          } else {
-            var renderAxis = "axis" in d
-              ? d.axis.scale(d.scale)  // custom axis
-              : yAxisLeft.scale(d.scale);  // default axis
-            d3.select(this).call(renderAxis);
-          }
-        })
-        .append("text")
-        .attr("class", "title")
-        .attr("text-anchor", "start")
-        .text(function (d) { return "description" in d ? d.description : d.key; });
+        // Add and store a brush for each axis.
+        axes.append("g")
+          .attr("class", "brush")
+          .each(function (d) {
+            d3.select(this).call(d.brush = d3.brushY()
+              .extent([[-10, 0], [10, height]])
+              .on("start", brushstart)
+              .on("brush", brush)
+              .on("end", brush)
+            )
+          })
+          .selectAll("rect")
+          .attr("x", -8)
+          .attr("width", 16);
 
-      // Add and store a brush for each axis.
-      axes.append("g")
-        .attr("class", "brush")
-        .each(function (d) {
-          d3.select(this).call(d.brush = d3.brushY()
-            .extent([[-10, 0], [10, height]])
-            .on("start", brushstart)
-            .on("brush", brush)
-            .on("end", brush)
-          )
-        })
-        .selectAll("rect")
-        .attr("x", -8)
-        .attr("width", 16);
+        d3.selectAll(".axis.Name.tick text")
+          .style("fill", color);
 
-      d3.selectAll(".axis.Name.tick text")
-        .style("fill", color);
 
 
       function project(d) {
@@ -320,6 +369,7 @@ function loadlinear_chart(){
 
     });
   }
+};
 
   function return_valid_positions(position_filter) {
     if (position_filter == 'filter_attack') {
@@ -591,4 +641,8 @@ function loadlinear_chart(){
   };
 
 
-  loadlinear_chart();
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+
+    loadlinear_chart();
+  });
