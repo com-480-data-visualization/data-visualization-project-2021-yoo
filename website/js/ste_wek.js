@@ -274,6 +274,52 @@ function highlightArea(pitch_elem) {
             .style("fill", linecolour)    // set the fill colour
     })
 
+    if (strategy === 'coat') {
+
+        // Define the arrowhead marker variables
+        const markerBoxWidth = 5;
+        const markerBoxHeight = 5;
+        const refX = markerBoxWidth / 2;
+        const refY = markerBoxHeight / 2;
+        const arrowPoints = [[0, 0], [0, 5], [5, 2.5]];
+
+        holder.append('defs')
+            .append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', [0, 0, markerBoxWidth, markerBoxHeight])
+            .attr('refX', refX)
+            .attr('refY', refY)
+            .attr('markerWidth', markerBoxWidth)
+            .attr('markerHeight', markerBoxHeight)
+            .attr('orient', 'auto-start-reverse')
+            .append('path')
+            .attr('d', d3.line()(arrowPoints))
+            .attr('stroke', linecolour)
+            .attr('stroke', linecolour)
+            .style("fill", linecolour)    // set the fill colour
+
+        holder.append("path")        // attach a rectangle
+            .attr('d', d3.line()([[176.33, 60], [580, 60]]))
+            .attr("class", "highlight")
+            .attr('marker-end', 'url(#arrow)')
+            .style("stroke", linecolour)    // set the fill colour
+            .style("stroke-width", 3)
+
+        holder.append("path")        // attach a rectangle
+            .attr('d', d3.line()([[176.33, 195], [580, 195]]))
+            .attr("class", "highlight")
+            .attr('marker-end', 'url(#arrow)')
+            .style("stroke", linecolour)    // set the fill colour
+            .style("stroke-width", 3)
+
+        holder.append("path")        // attach a rectangle
+            .attr('d', d3.line()([[176.33, 330], [580, 330]]))
+            .attr("class", "highlight")
+            .attr('marker-end', 'url(#arrow)')
+            .style("stroke", linecolour)    // set the fill colour
+            .style("stroke-width", 3)
+    }
+
     let data = [1, 5]
 
     let barHeight = 100
