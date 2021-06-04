@@ -8,6 +8,7 @@ function whenDocumentLoaded(action) {
 }
 
 
+whenDocumentLoaded(() => {
     let team_par1 = left_team
     let team_par2 = right_team
 
@@ -22,29 +23,29 @@ function whenDocumentLoaded(action) {
 
   // Define the different types of attributes we want to show in the graph
   var types = {
-        "Number": {
-        key: "Number",
+    "Number": {
+      key: "Number",
       coerce: function (d) { return +d; },
       extent: d3.extent,
       within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
       defaultScale: d3.scaleLinear().range([innerHeight, 0])
     },
     "Team1": {
-        key: "String",
+      key: "String",
       coerce: String,
       extent: function (data) { return data.sort(); },
       within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
       defaultScale: d3.scalePoint().range([0, innerHeight])
     },
     "Team2": {
-        key: "String",
+      key: "String",
       coerce: String,
       extent: function (data) { return data.sort(); },
       within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
       defaultScale: d3.scalePoint().range([0, innerHeight])
     },
     "String": {
-        key: "String",
+      key: "String",
       coerce: String,
       extent: function (data) { return data.sort(); },
       within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
@@ -77,7 +78,7 @@ function whenDocumentLoaded(action) {
 
   plot_graph(dimensions, position_filter)
 
-
+})
 
   function plot_graph(dimensions, position_filter) {
     var xscale = d3.scalePoint()
@@ -87,7 +88,6 @@ function whenDocumentLoaded(action) {
     var yAxisLeft = d3.axisLeft();
     var yAxisRight = d3.axisRight();
 
-    console.log(d3.select("#my_dataviz").selectAll('div'))
     d3.select("#my_dataviz").selectAll('div').remove()
     var container = d3.select("#my_dataviz").append("div")
       .attr("class", "parcoords")
@@ -120,7 +120,8 @@ function whenDocumentLoaded(action) {
       .attr("class", function (d) { return "axis " + d.key.replace(/ /g, "_"); })
       .attr("transform", function (d, i) { return "translate(" + xscale(i) + ")"; });
 
-    d3.json("/website/data/teams_basic_skills.json").then(function (data) {
+      console.log('hereeee')
+    d3.json("/data-visualization-project-2021-yoo/website/data/teams_basic_skills.json").then(function (data) {
       var data_filtered
       if (position_filter == 'no_filter') {
         data_filtered = data.filter(x => (x['str_nationality'] == team_par1) | (x['str_nationality'] == team_par2))
@@ -129,6 +130,7 @@ function whenDocumentLoaded(action) {
         console.log(filtered_positions)
         data_filtered = data.filter(x => (x['str_nationality'] == team_par1) | (x['str_nationality'] == team_par2)).filter(x => filtered_positions.includes(x['str_best_position']))
       }
+      console.log('here')
       console.log(data_filtered)
 
       data_filtered.forEach(function (d) {
