@@ -1,6 +1,6 @@
 
 
-    function whenDocumentLoaded(action) {
+function whenDocumentLoaded(action) {
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", action)
     } else {
@@ -524,7 +524,7 @@ function setFirstTeamNameAndFlag() {
     let first_team_flag_full = document.getElementById('first_team_flag_full')
     let first_team_flag_analyse = document.getElementById('first_team_flag_analyse')
 
-    if( first_team == "Czech Republic"){
+    if (first_team == "Czech Republic") {
         first_team_flag_full.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
         first_team_flag_analyse.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
     } else {
@@ -537,9 +537,9 @@ function setFirstTeamNameAndFlag() {
 
     loadradar_team_1();
     loadradar_team_both();
-    loadlinear_chart();
+    // loadlinear_chart();
 
-    best_players_single_right_table(first_team, 'right');
+    // best_players_single_right_table(first_team, 'right');
 }
 
 function setSecondTeamNameAndFlag() {
@@ -555,7 +555,7 @@ function setSecondTeamNameAndFlag() {
     let second_team_flag_analyse = document.getElementById('second_team_flag_analyse')
 
 
-    if( second_team == "Czech Republic"){
+    if (second_team == "Czech Republic") {
         second_team_flag_full.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
         second_team_flag_analyse.src = "https://www.countryflags.com/wp-content/uploads/czech-republic-flag-png-large.png"
     } else {
@@ -566,9 +566,9 @@ function setSecondTeamNameAndFlag() {
     team_2 = get_team(second_team)
     loadradar_team_2();
     loadradar_team_both();
-    loadlinear_chart();
+    // loadlinear_chart();
 
-    best_players_single_left_table(second_team, 'left');
+    // best_players_single_left_table(second_team, 'left');
 
 }
 
@@ -606,26 +606,26 @@ whenDocumentLoaded(() => {
     showFootballPitch(div_output)
     const pitch_elem = document.getElementById('pitch_canvas')
 
-    if(first_team_radio){ 
+    if (first_team_radio) {
         first_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
-        getFirstTeamValue(target.htmlFor)
-        loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
-    })
+            getFirstTeamValue(target.htmlFor)
+            loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
+        })
     }
 
-    if(second_team_radio){ 
+    if (second_team_radio) {
         second_team_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
-        getSecondTeamValue(target.htmlFor)
-        loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
-    })
+            getSecondTeamValue(target.htmlFor)
+            loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
+        })
     }
 
-    if(strategy_radio){ 
+    if (strategy_radio) {
         strategy_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
-        getStrategy(target.htmlFor)
-        loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
-        highlightArea(pitch_elem)
-    })
+            getStrategy(target.htmlFor)
+            loadPlayers().then(players => showBars(div_shooting, div_defense, div_aerial, players, strategy))
+            highlightArea(pitch_elem)
+        })
     }
 
 })
