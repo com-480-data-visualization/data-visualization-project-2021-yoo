@@ -143,7 +143,7 @@ function plot_graph(dimensions, position_filter) {
     .attr("transform", function (d, i) { return "translate(" + xscale(i) + ")"; });
 
   console.log('hereeee')
-  d3.json("data/teams_basic_skills.json")
+  $.getJSON('data/teams_basic_skills.json')
     .then(function (data) {
       var data_filtered
       if (position_filter == 'no_filter') {
