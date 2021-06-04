@@ -40,6 +40,33 @@ const flag_map = {
 
 }
 
+const color_teams = {
+    'Turkey': 'rgba(227, 10, 24)',
+    'Italy': 'rgba(0, 146, 70)',
+    'Wales': 'rgba(0, 171, 57)',
+    'Switzerland': 'rgba(213, 43, 30)',
+    'Denmark':'rgba(200, 15, 46)',
+    'Finland':'rgba(0, 54, 128)',
+    'Belgium':'rgba(255, 217, 13)',
+    'Russia': 'rgba(0, 57, 166)',
+    'Netherlands': 'rgba(255, 119, 2)',
+    'Ukraine': 'rgba(255, 213, 0)',
+    'Austria': 'rgba(237, 42, 57)',
+    'North Macedonia': 'rgba(246, 188, 0)',
+    'England': 'rgba(140, 153, 183)',
+    'Croatia': 'rgba(24, 24, 150)',
+    'Czech Republic': 'rgba(17, 168, 126)',
+    'Scotland': 'rgba(0, 101, 189)',
+    'Spain': 'rgba(170, 21, 28)',
+    'Sweden': 'rgba(254, 204, 0)',
+    'Poland': 'rgba(238, 148, 164)',
+    'Slovakia':'rgba(108, 61, 118)',
+    'Portugal': 'rgba(0, 102, 0)',
+    'France': 'rgba(0, 38, 127)',
+    'Germany': 'rgba(0, 0, 0)',
+    'Hungary': 'rgba(187, 214, 169)'
+}
+
 const strategy_map = {
     'poss': ['Keeping Possesion', 'Chance creation', 'Scoring'],
     'coat': ['Fast transition', 'One on One', 'Scoring'],
@@ -185,7 +212,7 @@ whenDocumentLoaded(() => {
 	 console.log('DOM fully loaded and parsed');
 
 
-    waitForEl('#radarchart-team2', function(){
+    /* waitForEl('#radarchart-team2', function(){
 	    var ctx_team2 = document.getElementById('radarchart-team2').getContext('2d');
 			ctx_team2.height = 500;
 			window.radarChartTeam2 = new Chart(ctx_team2, {
@@ -242,11 +269,11 @@ whenDocumentLoaded(() => {
 		      console.log( 'Non' )
 		});
 	}
-	});
+	}); */ 
 
 
 
-    waitForEl('#radarchart-team1', function(){
+    /*waitForEl('#radarchart-team1', function(){
 	    var ctxteam1 = document.getElementById('radarchart-team1').getContext('2d');
 	    ctxteam1.height = 500;
 	    window.radarChartTeam1 = new Chart(ctxteam1, {
@@ -298,7 +325,7 @@ whenDocumentLoaded(() => {
 
 		    docFrag.appendChild(button);
 		  }
-		  doc.getElementById('radarchart-buttons-first-team').appendChild(docFrag);
+		  //doc.getElementById('radarchart-buttons-first-team').appendChild(docFrag);
 		}else {
 		  document.addEventListener('DOMContentLoaded', function () {
 		      console.log( 'Non' )
@@ -306,7 +333,7 @@ whenDocumentLoaded(() => {
 
 		  });
 		}
-	});
+	});*/
 
     waitForEl('#radarchart-both-team', function(){
 	    var ctx = document.getElementById('radarchart-both-team').getContext('2d');

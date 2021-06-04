@@ -524,8 +524,11 @@ function setFirstTeamNameAndFlag() {
     let first_team_flag_full = document.getElementById('first_team_flag_full')
     let first_team_flag_analyse = document.getElementById('first_team_flag_analyse')
 
-    first_team_flag_full.src = "https://cdn.countryflags.com/thumbs/" + first_team.toLowerCase().replace(' ', '-') + "/flag-square-250.png"
-    first_team_flag_analyse.src = "https://cdn.countryflags.com/thumbs/" + first_team.toLowerCase().replace(' ', '-') + "/flag-square-250.png"
+    
+    first_team_flag_full.classList.remove(flag_map[old_team])
+    first_team_flag_full.classList.add(flag_map[first_team])
+    first_team_flag_analyse.classList.remove(flag_map[old_team])
+    first_team_flag_analyse.classList.add(flag_map[first_team])
 
 
     team_1 = get_team(first_team);
@@ -533,7 +536,7 @@ function setFirstTeamNameAndFlag() {
     loadradar_team_1();
     loadradar_team_both();
     // loadlinear_chart();
-    best_players_table_first_team(first_team);
+    fill_table_first_team(first_team, "no_filter");
     // best_players_single_right_table(first_team, 'right');
 }
 
@@ -550,15 +553,17 @@ function setSecondTeamNameAndFlag() {
     let second_team_flag_analyse = document.getElementById('second_team_flag_analyse')
 
 
-    second_team_flag_full.src = "https://cdn.countryflags.com/thumbs/" + second_team.toLowerCase().replace(' ', '-') + "/flag-square-250.png"
-    second_team_flag_analyse.src = "https://cdn.countryflags.com/thumbs/" + second_team.toLowerCase().replace(' ', '-') + "/flag-square-250.png"
+    second_team_flag_full.classList.remove(flag_map[old_team])
+    second_team_flag_full.classList.add(flag_map[second_team])
+    second_team_flag_analyse.classList.remove(flag_map[old_team])
+    second_team_flag_analyse.classList.add(flag_map[second_team])
 
 
     team_2 = get_team(second_team)
     loadradar_team_2();
     loadradar_team_both();
     // loadlinear_chart();
-    best_players_table_second_team(second_team);
+    fill_table_second_team(second_team, "no_filter");
     // best_players_single_left_table(second_team, 'left');
 
 }

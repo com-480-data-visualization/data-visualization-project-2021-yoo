@@ -3,29 +3,45 @@
     <div class="d-flex flex-row" style="margin-right: 5%;">
 
         <div class="row">
-            <div class="card-title">
-                <h4 id="first_team_name">Germany</h4>
-            </div>
-            <!-- Flags come from https://www.countryflags.com/europe/ -->
             <div class="col">
-                <img class="card-img-top border-0" id="first_team_flag_analyse"
-                    src="https://cdn.countryflags.com/thumbs/germany/flag-square-250.png" alt="Card image cap">
-            </div>
-        </div>
-        <div class="w-100"></div>
 
+                <div class="card-title">
+                    <h4 id="first_team_name"></h4>
+                </div>
+                <div class="card-header border-0 px-2">
+                     <span class="flag-icon" id="first_team_flag_analyse" style="width: 28vw;">
+                </div>
+                <!-- Flags come from https://www.countryflags.com/europe/ -->
+                    
+                    
+             <div class="w-100"></div>
+
+            </div>
         <div id="chart" style="height: 28vw">
             <canvas id="radarchart-team1" width="200" height="200" style="height: 28vw"></canvas>
         </div>
     </div>
 </div>
 
-<div class="container">
-    <div id="radarchart-buttons-first-team" class="row">
+ <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 
-    </div>
+<div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="player_filter_position">
+  <label class="btn btn-sm btn-secondary active" for="no_filter">
+    <input type="radio" name="attack" id="filter" autocomplete="off"> No filter
+  </label>
+  <label class="btn btn-sm btn-secondary" for="filter_attack">
+    <input type="radio" name="attack" id="filter" autocomplete="off"> Attackers
+  </label>
+  <label class="btn btn-sm btn-secondary" for="filter_middlefield">
+    <input type="radio" name="defense" id="filter" autocomplete="off"> Midfielders
+  </label>
+  <label class="btn btn-sm btn-secondary" for="filter_defense">
+    <input type="radio" name="attack" id="filter" autocomplete="off"> Defenders
+  </label>
+  <label class="btn btn-sm btn-secondary" for="filter_goalkeeper">
+    <input type="radio" name="physical" id="filter" autocomplete="off"> Goalkeeper
+  </label>
 </div>
-
 <div class="row inactive justify-content-center" id='best_players'>
     <div class="table col">
         <table class="table table-borderless table_rounded inactive" id='team_first_best_table'>
@@ -34,6 +50,7 @@
                     <th>Position</th>
                     <th>Player</th>
                     <th>Rating</th>
+                    <th>Show</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,25 +68,138 @@
 </div>
 
 <script type="text/javascript">
-    function best_players_table_first_team(team) {
+
+let player1;
+
+function fill_table_first_team(team, player_filter_position) {
         console.log(team)
+        const p_filter_position = return_valid_positions(player_filter_position)
         $.getJSON('data/teams_basic_skills.json',
             function (data) {
-                top_team = data.filter(x => x.str_nationality == team)
+                team_players = data.filter(x => x.str_nationality == team)
                     .sort((x, y) => y.int_overall_rating - x.int_overall_rating)
-                    .filter((x, idx) => idx < 5);
+                if(p_filter_position){
+                    team_players = team_players.filter(x => (x['str_nationality'] == team_par1) | (x['str_nationality'] == team_par2)).filter(x => p_filter_position.includes(x['str_best_position']))
+                }
                 $("#team_first_best_table tbody").empty()
-                top_team.forEach((item, i) => {
+                team_players.forEach((item, i) => {
                     best_position = item['str_best_position']
+                    console.log(item['str_player_name'])
                     position_explain = position_dict[best_position]
                     $("#team_first_best_table").append("<tr><td class='text-dark'><span id='tooltip_position' data-toggle='tooltip' title='" +
                         position_explain + "'>" + best_position
                         + "</span></td><td class='text-dark'>" + item['str_player_name'] + "</td><td class='text-dark'>"
-                        + item["int_overall_rating"] + "</td></tr>")
+                        + item["int_overall_rating"] + "</td> <td class='text-dark'><button type='button' class='btn btn-indigo btn-sm m-0' onclick='printOnRadChart("+ i +")'>Show</button></td></tr>")      
+
                 });
                 $("#best_players").removeClass('inactive')
                 $("#team_first_best_table").removeClass('inactive')
 
             })
  }
-</script> -->
+
+
+ function printOnRadChart(i){
+    player1 = team_players[i]
+    player_name = player1['str_player_name']
+    console.log(player_name)
+
+    to_show_labels = [ "int_overall_rating", "int_aggression", "int_agility", "int_acceleration", "int_strength"]
+
+    values = []
+    labels = []
+    for (var i in to_show_labels){
+        values.push(player1[to_show_labels[i]])
+        labels.push(FCapitalize(to_show_labels[i].substring(4)).replaceAll('_' ,' '))
+    }
+
+    console.log(labels)
+
+    var ctxteam1 = document.getElementById('radarchart-team1').getContext('2d');
+    ctxteam1.height = 500;
+
+    if(window.radarChartTeam1 != null){
+           window.radarChartTeam1.destroy();
+        }   
+
+    window.radarChartTeam1 = new Chart(ctxteam1, {
+      type: 'radar',
+      data: {
+          labels: labels,
+          datasets: [
+          {
+              label: player_name,
+              name: "t1",
+              data: values,
+              backgroundColor: [
+                  'rgba(255, 99, 132,0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)'
+              ],
+              borderWidth: 1
+          }
+          ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+        });
+    };
+ 
+
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("team_first_best_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function best_players_table_first_team(team) {
+    console.log(team)
+    $.getJSON('data/teams_basic_skills.json',
+        function (data) {
+            top_team = data.filter(x => x.str_nationality == team)
+                .sort((x, y) => y.int_overall_rating - x.int_overall_rating)
+                .filter((x, idx) => idx < 5);
+            $("#team_first_best_table tbody").empty()
+            top_team.forEach((item, i) => {
+                best_position = item['str_best_position']
+                position_explain = position_dict[best_position]
+                $("#team_first_best_table").append("<tr><td class='text-dark'><span id='tooltip_position' data-toggle='tooltip' title='" +
+                    position_explain + "'>" + best_position
+                    + "</span></td><td class='text-dark'>" + item['str_player_name'] + "</td><td class='text-dark'>"
+                    + item["int_overall_rating"] + "</td></tr>")
+            });
+            $("#best_players").removeClass('inactive')
+            $("#team_first_best_table").removeClass('inactive')
+
+        })
+ }
+
+
+let player_filter_radio = document.getElementById('player_filter_position')
+
+player_filter_radio.addEventListener('click', ({ target }) => { // handler fires on root container click
+  new_filter = target.htmlFor
+  console.log(new_filter)
+  fill_table_first_team(first_team, new_filter);
+
+})
+</script>
