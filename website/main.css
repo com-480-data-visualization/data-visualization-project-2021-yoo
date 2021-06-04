@@ -398,6 +398,17 @@ tr {
 	height: auto;
 }
 
+.ste-flag{
+	height: 2cm;
+	width: 3cm;
+}
+
+.wek-flag{
+	width: 100%;
+	height: 100%;
+}
+
+
 #outer-dropzone.table tr {
     border: none;
 }
