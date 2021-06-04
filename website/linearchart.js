@@ -62,20 +62,6 @@ function loadlinear_chart(){
       within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
       defaultScale: d3.scaleLinear().range([innerHeight, 0])
     },
-    "Team1": {
-      key: "String",
-      coerce: String,
-      extent: function (data) { return data.sort(); },
-      within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
-      defaultScale: d3.scalePoint().range([0, innerHeight])
-    },
-    "Team2": {
-      key: "String",
-      coerce: String,
-      extent: function (data) { return data.sort(); },
-      within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
-      defaultScale: d3.scalePoint().range([0, innerHeight])
-    },
     "String": {
       key: "String",
       coerce: String,
@@ -84,6 +70,23 @@ function loadlinear_chart(){
       defaultScale: d3.scalePoint().range([0, innerHeight])
     }
   };
+
+
+  types[first_team] = {
+      key: "String",
+      coerce: String,
+      extent: function (data) { return data.sort(); },
+      within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
+      defaultScale: d3.scalePoint().range([0, innerHeight])
+    }
+
+  types[second_team] = {
+      key: "String",
+      coerce: String,
+      extent: function (data) { return data.sort(); },
+      within: function (d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
+      defaultScale: d3.scalePoint().range([0, innerHeight])
+    }
 
   let mode = 'overall'
   var dimensions = return_dimensions(mode)
@@ -394,7 +397,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: first_team,
-          type: types["Team1"]
+          type: types[first_team]
         },
         {
           key: "age",
@@ -424,7 +427,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: second_team,
-          type: types["Team2"]
+          type: types[second_team]
         }
       ];
     }
@@ -434,7 +437,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: first_team,
-          type: types["Team1"]
+          type: types[first_team]
         },
         {
           key: "int_sliding_tackle",
@@ -469,7 +472,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: second_team,
-          type: types["Team2"]
+          type: types[second_team]
         }
       ];
     }
@@ -479,7 +482,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: first_team,
-          type: types["Team1"]
+          type: types[first_team]
         },
         {
           key: "int_crossing",
@@ -514,7 +517,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: second_team,
-          type: types["Team2"]
+          type: types[second_team]
         }
       ];
     }
@@ -524,7 +527,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: first_team,
-          type: types["Team1"]
+          type: types[first_team]
         },
         {
           key: "int_acceleration",
@@ -574,7 +577,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: second_team,
-          type: types["Team2"]
+          type: types[second_team]
         }]
     }
     else if (mode == 'goalkeeping') {
@@ -582,7 +585,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: first_team,
-          type: types["Team1"]
+          type: types[first_team]
         },
         {
           key: "int_diving",
@@ -627,7 +630,7 @@ function loadlinear_chart(){
         {
           key: "str_player_name",
           description: second_team,
-          type: types["Team2"]
+          type: types[second_team]
         }
       ];
 
