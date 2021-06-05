@@ -49,7 +49,7 @@ Enjoy our website !
 
 ### Screencast
 
-Here you can find a link to a [demonstration](https://github.com/com-480-data-visualization/data-visualization-project-2021-yoo/)
+Here you can find a link to a [demonstration](https://youtu.be/gsQ2dGACQKo)
 
 ### Additional Content 
 
