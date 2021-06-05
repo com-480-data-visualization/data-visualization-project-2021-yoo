@@ -567,12 +567,8 @@ function setFirstTeamNameAndFlag() {
     first_team_flag.classList.remove(flag_map[old_team])
     first_team_flag.classList.add(flag_map[first_team])
 
-    let first_team_flag_full = document.getElementById('first_team_flag_full')
     let first_team_flag_analyse = document.getElementById('first_team_flag_analyse')
 
-    
-    first_team_flag_full.classList.remove(flag_map[old_team])
-    first_team_flag_full.classList.add(flag_map[first_team])
     first_team_flag_analyse.classList.remove(flag_map[old_team])
     first_team_flag_analyse.classList.add(flag_map[first_team])
 
@@ -593,12 +589,9 @@ function setSecondTeamNameAndFlag() {
     second_team_flag.classList.add(flag_map[second_team])
     console.log(second_team_flag.classList)
 
-    let second_team_flag_full = document.getElementById('second_team_flag_full')
     let second_team_flag_analyse = document.getElementById('second_team_flag_analyse')
 
 
-    second_team_flag_full.classList.remove(flag_map[old_team])
-    second_team_flag_full.classList.add(flag_map[second_team])
     second_team_flag_analyse.classList.remove(flag_map[old_team])
     second_team_flag_analyse.classList.add(flag_map[second_team])
 
