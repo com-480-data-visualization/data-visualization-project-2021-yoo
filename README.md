@@ -6,7 +6,11 @@
 | Max STIEBER                       | 313425 |
 | Simon Adam Johan HAMON            | 334060 |
 
-[Milestone 1](#Milestone-1) • [Milestone 2](#Milestone-2) • [Milestone 3](#Milestone-3)
+[Milestone 1](#Milestone-1) • [Milestone 2](#Milestone-2) • [Milestone 3](https://com-480-data-visualization.github.io/data-visualization-project-2021-yoo/website/first_try.html)
+
+
+**The website is available [here]().**
+
 
 # Milestone 1
 
@@ -108,13 +112,7 @@ A common football team representation is a picture of every player on their resp
 None of us already used this dataset.
 
 
-# Milestone 2 (7th May, 5pm)
-
-**10% of the final grade**
-
-As a reminder, we want to provide a easy comparison tool for football teams competiting for the Euro 2021. 
-
-The goal is to have a comprehensive and intuitive tool, that easily present rudimentary analysis, for a wider public, and also more specific comparisons for fan. 
+## Milestone 2
 
 ### Sketches 
 
@@ -154,9 +152,8 @@ One of our thoughts as an upgrade will be to implement team composition, formati
 As expected, to implement our project, we will use all lectures about HTML, CSS and Javascript. Our graphs require the use of 3D.js library. Plus for interaction and design, we will rely on lectures on interactions and perception colors. Two future lectures, graph and tabular data, will be useful as well for our comparison representation. It might gives us advice and tricks to adapt our graphs.
 
 A draft website is avalaible here 
-# Milestone 3
-
-**80% of the final grade**
+## Milestone 3
+We completed the website on time for the beginning if the Uefa Euro 2021. We hope you enjoy the analysis we provide on our page. 
 
 
 ## Late policy
