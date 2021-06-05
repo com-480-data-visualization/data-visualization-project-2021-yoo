@@ -25,7 +25,10 @@ let possible_attributes = {
 }
 
 
-
+function FCapitalize_2(s) {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
 
 function return_corresponding_attributes(mode) {
   return possible_attributes[mode]
@@ -72,6 +75,11 @@ var waitForEl = function (selector, callback) {
 async function loadradar_team_both_2(mode) {
   console.log("HERE")
   mode_labels = return_corresponding_attributes(mode)
+  labels = []
+  for (var l in mode_labels){
+    labels.push(FCapitalize_2(mode_labels[l].substring(4)).replaceAll('_', ' '))
+  }
+
   console.log("Mode Labels")
   console.log(mode_labels)
 
@@ -91,7 +99,7 @@ async function loadradar_team_both_2(mode) {
   window.radarChartBothTeam = new Chart(ctx_both, {
     type: 'radar',
     data: {
-      labels: mode_labels,
+      labels: labels,
       datasets: [{
         label: team_par1,
         name: "t2",

@@ -1,49 +1,53 @@
 <h3 class="text-center">Overall Comparison</h3>
 
-<div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="comparison_mode">
-  <label class="btn btn-sm btn-secondary active" for="overall">
-    <input type="radio" name="overall" id="mode" autocomplete="off"> Overall
-  </label>
-  <label class="btn btn-sm btn-secondary" for="attack">
-    <input type="radio" name="defense" id="mode" autocomplete="off"> Attack
-  </label>
-  <label class="btn btn-sm btn-secondary" for="defense">
-    <input type="radio" name="attack" id="mode" autocomplete="off"> Defense
-  </label>
-  <label class="btn btn-sm btn-secondary" for="goalkeeping">
-    <input type="radio" name="attack" id="mode" autocomplete="off"> Goalkeeping
-  </label>
-  <label class="btn btn-sm btn-secondary" for="physical">
-    <input type="radio" name="physical" id="mode" autocomplete="off"> Physical
-  </label>
-</div>
-<p></p>
-<div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="filter_position">
-  <label class="btn btn-sm btn-secondary active" for="no_filter">
-    <input type="radio" name="attack" id="filter" autocomplete="off"> No filter
-  </label>
-  <label class="btn btn-sm btn-secondary" for="filter_attack">
-    <input type="radio" name="attack" id="filter" autocomplete="off"> Attackers
-  </label>
-  <label class="btn btn-sm btn-secondary" for="filter_middlefield">
-    <input type="radio" name="defense" id="filter" autocomplete="off"> Midfielders
-  </label>
-  <label class="btn btn-sm btn-secondary" for="filter_defense">
-    <input type="radio" name="attack" id="filter" autocomplete="off"> Defenders
-  </label>
-  <label class="btn btn-sm btn-secondary" for="filter_goalkeeper">
-    <input type="radio" name="physical" id="filter" autocomplete="off"> Goalkeeper
-  </label>
-</div>
 
-<div class="card border-0">
-    <div class="card-body">
-        <div id="container" >
-        <div id="chart" >
-            <canvas id="radarchart-both-team" width="200" height="200" style="height: 28vw"></canvas>
-        </div>  
+<div class="row">
+  <div class="col">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="comparison_mode">
+      <label class="btn btn-sm btn-secondary active" for="overall">
+        <input type="radio" name="overall" id="mode" autocomplete="off"> Overall
+      </label>
+      <label class="btn btn-sm btn-secondary" for="attack">
+        <input type="radio" name="defense" id="mode" autocomplete="off"> Attack
+      </label>
+      <label class="btn btn-sm btn-secondary" for="defense">
+        <input type="radio" name="attack" id="mode" autocomplete="off"> Defense
+      </label>
+      <label class="btn btn-sm btn-secondary" for="goalkeeping">
+        <input type="radio" name="attack" id="mode" autocomplete="off"> Goalkeeping
+      </label>
+      <label class="btn btn-sm btn-secondary" for="physical">
+        <input type="radio" name="physical" id="mode" autocomplete="off"> Physical
+      </label>
     </div>
+    <p></p>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="filter_position">
+      <label class="btn btn-sm btn-secondary active" for="no_filter">
+        <input type="radio" name="attack" id="filter" autocomplete="off"> No filter
+      </label>
+      <label class="btn btn-sm btn-secondary" for="filter_attack">
+        <input type="radio" name="attack" id="filter" autocomplete="off"> Attackers
+      </label>
+      <label class="btn btn-sm btn-secondary" for="filter_middlefield">
+        <input type="radio" name="defense" id="filter" autocomplete="off"> Midfielders
+      </label>
+      <label class="btn btn-sm btn-secondary" for="filter_defense">
+        <input type="radio" name="attack" id="filter" autocomplete="off"> Defenders
+      </label>
+      <label class="btn btn-sm btn-secondary" for="filter_goalkeeper">
+        <input type="radio" name="physical" id="filter" autocomplete="off"> Goalkeeper
+      </label>
     </div>
+  </div>
+  <div class="card border-0">
+      <div class="card-body">
+          <div id="container" >
+          <div id="chart" >
+              <canvas id="radarchart-both-team" width="200" height="200" style="height: 15vw"></canvas>
+          </div>  
+      </div>
+      </div>
+  </div>
 </div>
 
 <div id="my_dataviz"></div>
