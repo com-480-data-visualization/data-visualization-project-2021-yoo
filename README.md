@@ -6,7 +6,7 @@
 | Max STIEBER                       | 313425 |
 | Simon Adam Johan HAMON            | 334060 |
 
-[Milestone 1](#Milestone-1) • [Milestone 2](#Milestone-2) • [Milestone 3](#Mileston-e3)
+[Milestone 1](#Milestone-1) • [Milestone 2](#Milestone-2) • [Milestone 3](#Milestone-3)
 
 # Milestone 1
 
