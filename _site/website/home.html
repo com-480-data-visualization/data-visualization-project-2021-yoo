@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>EURO 2021 Viz</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="shortcut icon" href="images/UEFA_Euro_2020_logo.png" type="image/x-icon"> 
+  <link rel="stylesheet" type="text/css" href="lib/jquery.pagepiling.css" />
+  <style>
+    .fakeimg {
+      height: 80px;
+      background: #aaa;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+  <div id="pagepiling">
+    <div class="section">
+      <div id="divBodyContent"></div>
+    </div>
+    <div class="section">
+      <div id="generalComp2"></div>
+    </div>
+    <div class="section">
+      <div id="firstTeam"></div>
+    </div>
+
+    <div class="section">
+      <div id="secondTeam"></div>
+    </div>
+    <div class="section">
+      <div id="stWeak"></div>
+
+
+    </div>
+  </div>
+</body>
+
+<!---------------------------------------------- Libraries ------------------------------------------------------>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-Cv93isQdFwaKBV+Z4X8kaVBYWHST58Xb/jVOcV9aRsGSArZsgAnFIhMpDoMDcFNoUtday1hdjn0nGp3+KZyyFw==" crossorigin="anonymous" />
+
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
+<script type="text/javascript" src="lib/jquery.pagepiling.js"></script>
+
+<script type="text/javascript" src="data/teams_basic_skills.json"></script>
+
+
+<script src="https://bl.ocks.org/syntagmatic/raw/3341641/render-queue.js"></script>
+
+
+<link rel="stylesheet" href="main.css">
+
+
+<!---------------------------------------------- Our Scripts ------------------------------------------------------>
+
+<!---------------------------------------------- Functions ------------------------------------------------------>
+<script>
+  $(function () {
+    $("#divBodyContent").load("body.html");
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#generalComp1").load("general_comp_1.html");
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#generalComp2").load("general_comp_2.html");
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#stWeak").load("strength_and_weakness.html");
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#firstTeam").load("first_team.html");
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#secondTeam").load("second_team.html");
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#pagepiling').pagepiling({
+      menu: '#menu',
+      direction: 'vertical',
+      verticalCentered: true,
+      sectionsColor: ['#042837', '#042837', '#042837', '#042837', '#042837', '#042837'],
+      anchors: ['page1', 'page2', 'page3', 'page4'],
+      scrollingSpeed: 700,
+      navigation: {
+        'position': 'right',
+        'tooltips': ['Page 1', 'Page 2', 'Page 3', 'Page 4']
+      },
+      sectionSelector: '.section',
+      animateAnchor: false,
+
+      //events
+      onLeave: function (index, nextIndex, direction) { },
+      afterLoad: function (anchorLink, index) { },
+      afterRender: function () { },
+    });
+  });
+</script>
+
+
+<script src="../package/dist/chart.js"></script>
+<script type="text/javascript" src="../EC_teams.json"></script>
+
+
+</html>
