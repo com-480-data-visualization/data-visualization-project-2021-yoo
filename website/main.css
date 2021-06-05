@@ -363,10 +363,11 @@ textarea {
 
 
 .table_rounded.table{
-	border-radius: 25px;
+	border-radius: 15px;
 	background-color: #FFFFFF35;
-	padding-left: 20%
+	/* padding-left: 20% */
 }
+
 
 .table-borderless th {
     border: none;
@@ -383,6 +384,24 @@ tr {
 	padding-left: 3%;
 	padding-right: 3%;
 	/* margin: 20%; */
+}
+
+/* . tbody{
+	position: relative;
+	height: 200px;
+	overflow-y: scroll;
+	width:100%;
+	display: block;
+} */
+
+.table_players.table-borderless>tbody>tr:nth-of-type(odd){
+   background-color: #00000035;
+}
+
+.table_players.table{
+	background-color: #FFFFFF35;
+	width: 100%;
+	/* padding-left: 20% */
 }
 
 #dropzone.table{
@@ -409,8 +428,8 @@ tr {
 }
 
 .wek-flag{
-	width: 100%;
-	height: 100%;
+	width: 4cm;
+	height: 3cm;
 }
 
 
@@ -421,13 +440,32 @@ tr {
 .my-custom-scrollbar {
 	position: relative;
 	height: 200px;
-	overflow: visible; 
+	
 	overflow-y: scroll;
 }
-.table-wrapper-scroll-y {
-	display: block;
 
-	}
+.table-responsive::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+/* .table-responsive::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+.table-responsive::-webkit-scrollbar:horizontal {
+    height: 12px;
+} */
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    border-radius: 10px;  
+    background-color: #ffffff; 
+}
 
 
 
@@ -490,10 +528,6 @@ tr {
 		  fill: none;
 		  stroke: #000;
 		  shape-rendering: crispEdges;
-		}
-
-		.label {
-		  -webkit-transition: fill 125ms linear;
 		}
 
 		.active .label:not(.inactive) {
@@ -618,4 +652,8 @@ tr {
 
 #filter{
 	background-color: #c4a407;
+}
+
+.card{ 
+	background-color: transparent;
 }

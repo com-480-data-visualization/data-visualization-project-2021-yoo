@@ -1,7 +1,6 @@
 <h3 class="text-center">First Team Analysis</h3>
-<div class="container" style="background-color: white;">
+<div class="container">
     <div class="d-flex flex-row" style="margin-right: 5%;">
-
         <div class="row">
             <div class="col">
 
@@ -23,7 +22,7 @@
     </div>
 </div>
 
- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+ 
 
 <div class="btn-group btn-group-toggle" data-toggle="buttons" style="align-items: center;" id="player_filter_position">
   <label class="btn btn-sm btn-secondary active" for="no_filter">
@@ -42,22 +41,21 @@
     <input type="radio" name="physical" id="filter" autocomplete="off"> Goalkeeper
   </label>
 </div>
-<div class="row inactive justify-content-center overflow-auto normalScrollElements" id='best_players'>
-    <div class="table col table-wrapper-scroll-y my-custom-scrollbar" style="height: 5cm;">
-        <table class="table table-borderless table_rounded inactive overflow-auto normalScrollElements" id='team_first_best_table'>
-            <thead class="thead-light">
-                <tr>
-                    <th>Position</th>
-                    <th>Player</th>
-                    <th>Rating</th>
-                    <th>Show</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-
+<input type="text" id="myInput1" onkeyup="myFunction()" placeholder="Search for names..">
+<p></p>
+<div class="row">
+    <table class="table table-responsive table_players table-borderless my-custom-scrollbar" id='team_first_best_table'>
+        <thead class="thead">
+            <tr>
+                <th>Position</th>
+                <th>Player</th>
+                <th>Overall</th>
+                <th>Show</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </div>
 
 <div class="tooltip bs-tooltip-top" role="tooltip">
@@ -86,10 +84,10 @@ function fill_table_first_team(team, player_filter_position) {
                     best_position = item['str_best_position']
                     console.log(item['str_player_name'])
                     position_explain = position_dict[best_position]
-                    $("#team_first_best_table").append("<tr><td class='text-dark'><span id='tooltip_position' data-toggle='tooltip' title='" +
+                    $("#team_first_best_table").append("<tr><td><span id='tooltip_position' data-toggle='tooltip' title='" +
                         position_explain + "'>" + best_position
-                        + "</span></td><td class='text-dark'>" + item['str_player_name'] + "</td><td class='text-dark'>"
-                        + item["int_overall_rating"] + "</td> <td class='text-dark'><button type='button' class='btn btn-indigo btn-sm m-0' onclick='printOnRadChart("+ i +")'>Show</button></td></tr>")      
+                        + "</span></td><td>" + item['str_player_name'] + "</td><td>"
+                        + item["int_overall_rating"] + "</td> <td><button type='button' class='btn btn-indigo btn-sm m-0' onclick='printOnRadChart("+ i +")'>Show</button></td></tr>")      
 
                 });
                 $("#best_players").removeClass('inactive')
@@ -132,10 +130,10 @@ function fill_table_first_team(team, player_filter_position) {
               name: "t1",
               data: values,
               backgroundColor: [
-                  'rgba(255, 99, 132,0.2)'
+                  '#042837'
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)'
+                  'white'
               ],
               borderWidth: 1
           }
@@ -152,7 +150,7 @@ function fill_table_first_team(team, player_filter_position) {
 function myFunction() {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
+  input = document.getElementById("myInput1");
   filter = input.value.toUpperCase();
   table = document.getElementById("team_first_best_table");
   tr = table.getElementsByTagName("tr");
@@ -182,9 +180,9 @@ function best_players_table_first_team(team) {
             top_team.forEach((item, i) => {
                 best_position = item['str_best_position']
                 position_explain = position_dict[best_position]
-                $("#team_first_best_table").append("<tr><td class='text-dark'><span id='tooltip_position' data-toggle='tooltip' title='" +
+                $("#team_first_best_table").append("<tr><td><span id='tooltip_position' data-toggle='tooltip' title='" +
                     position_explain + "'>" + best_position
-                    + "</span></td><td class='text-dark'>" + item['str_player_name'] + "</td><td class='text-dark'>"
+                    + "</span></td><td>" + item['str_player_name'] + "</td><td>"
                     + item["int_overall_rating"] + "</td></tr>")
             });
             $("#best_players").removeClass('inactive')
