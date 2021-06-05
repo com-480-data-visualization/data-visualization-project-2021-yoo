@@ -6,16 +6,7 @@
 | Max STIEBER                       | 313425 |
 | Simon Adam Johan HAMON            | 334060 |
 
-[Milestone 1](#Milestone1) • [Milestone 2](#Milestone2) • [Milestone 3](#Milestone3)
-
-## Milestone 1 (23rd April, 5pm)
-
-**10% of the final grade**
-
-This is a preliminary milestone to let you set up goals for your final project and assess the feasibility of your ideas.
-Please, fill the following sections about your project.
-
-*(max. 2000 characters per section)*
+[Milestone 1](#Milestone 1) • [Milestone 2](#Milestone 2) • [Milestone 3](#Milestone3)
 
 # Milestone 1
 
@@ -117,7 +108,7 @@ A common football team representation is a picture of every player on their resp
 None of us already used this dataset.
 
 
-## Milestone 2 (7th May, 5pm)
+# Milestone 2 (7th May, 5pm)
 
 **10% of the final grade**
 
@@ -162,11 +153,8 @@ One of our thoughts as an upgrade will be to implement team composition, formati
 
 As expected, to implement our project, we will use all lectures about HTML, CSS and Javascript. Our graphs require the use of 3D.js library. Plus for interaction and design, we will rely on lectures on interactions and perception colors. Two future lectures, graph and tabular data, will be useful as well for our comparison representation. It might gives us advice and tricks to adapt our graphs.
 
-### Website 
-
-
 A draft website is avalaible here 
-## Milestone 3 (4th June, 5pm)
+# Milestone 3
 
 **80% of the final grade**
 
