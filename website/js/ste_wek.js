@@ -352,9 +352,9 @@ function stackedBar(bind, data, config) {
 
     config = {
         f: d3.format('.1f'),
-        margin: { top: 1, right: 2, bottom: 1, left: 2 },
+        margin: { top: 0, right: 2, bottom: 0.25, left: 2 },
         width: 800,
-        height: 100,
+        height: 50,
         barHeight: 10,
         colors: ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33'],
         ...config
@@ -401,7 +401,7 @@ function stackedBar(bind, data, config) {
         .enter().append('rect')
         .attr('class', 'rect-stacked')
         .attr('x', d => xScale(d.cumulative))
-        .attr('y', h / 2 - halfBarHeight)
+        .attr('y', h / 2)
         .attr('height', barHeight)
         .attr('width', d => xScale(d.value))
         .attr("rx", r)								// how much to round corners - to be transitioned below
@@ -412,7 +412,7 @@ function stackedBar(bind, data, config) {
         .data(_data)
         .enter().append('circle')
         .attr("cx", cx)           // position the x-centre
-        .attr("cy", (h / 2 - halfBarHeight) + barHeight / 2)           // position the y-centre
+        .attr("cy", (h / 2 - halfBarHeight) + barHeight / 2 + 5)           // position the y-centre
         .attr("r", 10)             // set the radius
         .style("fill", mid_color)     // set the fill colour
 
@@ -572,7 +572,7 @@ function setFirstTeamNameAndFlag() {
     first_team_flag_analyse.classList.remove(flag_map[old_team])
     first_team_flag_analyse.classList.add(flag_map[first_team])
 
-    
+
     team_1 = get_team(first_team);
 
     // loadlinear_chart();
