@@ -9,12 +9,11 @@
 [Milestone 1](#Milestone-1) • [Milestone 2](#Milestone-2) • [Milestone 3](https://com-480-data-visualization.github.io/data-visualization-project-2021-yoo/website/first_try.html)
 
 
-**The website is available [here]().**
+**The website is available [here](https://com-480-data-visualization.github.io/data-visualization-project-2021-yoo/website/first_try.html).**
 
 
-# Milestone 1
+## Milestone 1
 
-## Problematic
 
 ### Project Problematic
 
