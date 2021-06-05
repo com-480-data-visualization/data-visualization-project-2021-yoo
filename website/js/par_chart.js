@@ -23,7 +23,9 @@ let possible_attributes = {
   'physical': ['int_acceleration', 'int_sprint_speed', 'int_agility', 'int_reactions', 'int_jumping', 'int_balance', 'int_strength'],
   'goalkeeping': ['int_diving', 'int_handling', 'int_kicking', 'int_gk_positioning', 'int_height', 'int_reactions', 'int_reflexes', 'int_jumping']
 }
-
+let color1 = 'white'
+let color2 = '#b97905'
+        
 
 function FCapitalize_2(s) {
     if (typeof s !== 'string') return ''
@@ -108,7 +110,7 @@ async function loadradar_team_both_2(mode) {
           'rgba(75, 192, 192, 0.2)'
         ],
         borderColor: [
-          'rgba(75, 192, 192, 1)'
+          color1
         ],
         borderWidth: 1
       },
@@ -120,7 +122,7 @@ async function loadradar_team_both_2(mode) {
           'rgba(255, 99, 132,0.2)'
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)'
+          color2
         ],
         borderWidth: 1
       }
@@ -148,7 +150,7 @@ function draw_par(team_par_draw1, team_par_draw2) {
   team_par1 = team_par_draw1
   team_par2 = team_par_draw2
 
-  color = d3.scaleOrdinal().domain([team_par1, team_par2]).range(["white", "#3248c8"]);
+  color = d3.scaleOrdinal().domain([team_par1, team_par2]).range([color1, color2]);
 
 
   // set the dimensions and margins of the graph
