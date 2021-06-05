@@ -119,10 +119,10 @@ async function loadradar_team_both_2(mode) {
         name: "t1",
         data: team_mean2,
         backgroundColor: [
-          'rgba(255, 99, 132,0.2)'
+          'rgba(185, 121, 5, 0.2)'
         ],
         borderColor: [
-          color2
+          'rgba(185, 121, 5, 1)'
         ],
         borderWidth: 1
       }
