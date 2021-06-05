@@ -152,7 +152,7 @@ As expected, to implement our project, we will use all lectures about HTML, CSS 
 
 A draft website is avalaible here 
 ## Milestone 3
-We completed the website on time for the beginning if the Uefa Euro 2021. We hope you enjoy the analysis we provide on our page. 
+We completed the website on time for the beginning if the Uefa Euro 2021. We hope you enjoy the analysis we provide on our page. Our process book is available [here](https://github.com/com-480-data-visualization/data-visualization-project-2021-yoo/blob/master/process_book.pdf)
 
 
 ## Late policy
